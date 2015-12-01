@@ -4,7 +4,8 @@ __author__ = 'boevering'
 
 # Well, this seems to be working....
 
+# Oke this went complety wrong...
 
-# oke this went complety wrong...
+# How about now?
 
-# how abount now?
+# Now it's oke
