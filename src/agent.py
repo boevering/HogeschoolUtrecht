@@ -55,7 +55,7 @@ def get_value(number):
         return psutil.cpu_percent()
 
     if number == 11:
-        return psutil.cpu_times_percent()
+        return str(psutil.cpu_times_percent())
 
     if number == 20:
         return psutil.virtual_memory().percent
