@@ -38,7 +38,7 @@ def get_value(number):
         p=subprocess.Popen(['powershell.exe',    # Atlijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
             'C:\\HogeschoolUtrecht\\src\\agent_counters.ps1'],  # Naam van en pad naar je PowerShell script
-        stdout=subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+        stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
 
@@ -46,7 +46,7 @@ def get_value(number):
     if number == 5:
         p=subprocess.Popen(['powershell',
             "get-service | measure-object | select -expandproperty count"],
-        stdout=subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+        stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
 
