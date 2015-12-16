@@ -9,6 +9,7 @@ c:\\P2\App\python.exe c:\scripts\agent.py
 from pysimplesoap.server import SoapDispatcher, SOAPHandler
 from BaseHTTPServer import HTTPServer
 import sys,subprocess
+import psutil
 
 # ---------------------------------------------------------
 
@@ -49,6 +50,10 @@ def get_value(number):
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
+
+    if number == 6:
+        return str(psutil.cpu_percent())
+
 
     # Last value
     return None
