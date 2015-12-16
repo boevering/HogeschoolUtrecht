@@ -51,8 +51,14 @@ def get_value(number):
         output = p.stdout.read()                 # De stdout
         return output
 
-    if number == 6:
-        return str(psutil.cpu_percent())
+    if number == 10:
+        return psutil.cpu_percent()
+
+    if number == 11:
+        return psutil.cpu_times_percent()
+
+    if number == 20:
+        return psutil.virtual_memory().percent
 
 
     # Last value
