@@ -69,10 +69,6 @@ def get_value(number):
         waardes = str(p.used) + ';' + str(p.available)  + ';' + str(p.total)
         return waardes
 
-    if number == 20:
-        return str(psutil.virtual_memory())
-
-
     # Last value
     return None
 

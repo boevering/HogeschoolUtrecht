@@ -2,6 +2,14 @@
 __author__ = 'Bart Oevering & Mike Slotboom'
 
 from pysimplesoap.client import SoapClient, SoapFault
+from lxml import etree
+
+# get server from xmlfile
+tree = etree.parse('servers.xml')
+servers = tree.xpath('/servers/server')
+
+for i in servers:
+    print "Elk Client: \n       ",etree.tostring(i)
 
 # create a simple consumer
 client = SoapClient(
@@ -38,6 +46,3 @@ print "psutil.cpu_times() =10 :", lijst
 r11=str(client.get_value(number=11).resultaat)
 lijst = r11.split(';')
 print "psutil.virtual_memory() =11 :", lijst
-
-# r20=str(client.get_value(number=20).resultaat)
-# print "psutil.virtual_memory().percent =20 :", float(r20)
