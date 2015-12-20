@@ -28,8 +28,7 @@ r10=float(client.get_value(number=10).resultaat)
 print "psutil.cpu_percent =10 :", r10
 
 r11=list(client.get_value(number=11).resultaat)
-lijsten = r11[0]
-print "psutil.cpu_times() =11 :", lijsten
+print "psutil.cpu_times() =11 :", r11
 
 r20=str(client.get_value(number=20).resultaat)
 print "psutil.virtual_memory().percent =20 :", float(r20)
