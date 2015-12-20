@@ -1,6 +1,3 @@
-#! /usr/bin/python
-__author__ = 'Bart Oevering & Mike Slotboom'
-
 """
 Usage:
 Portable Python installed in c:\P2.7.6.1 and agent script in c:\scripts\agent.py
@@ -39,17 +36,49 @@ def get_value(number):
     # Example in which a PowerShell script is used. The STDOUT is used to pass results back to python.
     # Exporting with export-csv and reading the CSV using Python is also possible of course.
     if number == 4:
-        p=subprocess.Popen(['powershell.exe',    # Atlijd gelijk of volledig pad naar powershell.exe
+        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
             'C:\\HogeschoolUtrecht\\src\\agent_counters.ps1'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
 
-    # Example of sing a PowerShell oneliner. Useful for simple PowerShell commands.
+    # # Example of sing a PowerShell oneliner. Useful for simple PowerShell commands.
+    # if number == 5:
+    #     p=subprocess.Popen(['powershell',
+    #         "get-service | measure-object | select -expandproperty count"],
+    #         stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+    #     output = p.stdout.read()                 # De stdout
+    #     return output
+
     if number == 5:
-        p=subprocess.Popen(['powershell',
-            "get-service | measure-object | select -expandproperty count"],
+        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
+            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
+            'C:\\HogeschoolUtrecht\\src\\free_memory.ps1'],  # Naam van en pad naar je PowerShell script
+            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+        output = p.stdout.read()                 # De stdout
+        return output
+
+    if number == 6:
+        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
+            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
+            'C:\\HogeschoolUtrecht\\src\\free_space.ps1'],  # Naam van en pad naar je PowerShell script
+            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+        output = p.stdout.read()                 # De stdout
+        return output
+
+    if number == 7:
+        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
+            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
+            'C:\\HogeschoolUtrecht\\src\\first_ip.ps1'],  # Naam van en pad naar je PowerShell script
+            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+        output = p.stdout.read()                 # De stdout
+        return output
+
+    if number == 8:
+        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
+            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
+            'C:\\HogeschoolUtrecht\\src\\uptime.ps1'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
