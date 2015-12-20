@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 from pysimplesoap.client import SoapClient, SoapFault
 
 # create a simple consumer
