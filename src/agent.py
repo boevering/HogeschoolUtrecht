@@ -51,14 +51,23 @@ def get_value(number):
         output = p.stdout.read()                 # De stdout
         return output
 
+    if number == 9:
+        p = psutil.disk_usage('c:\\')
+        waardes = str(p.free) + ';' + str(p.used)  + ';' + str(p.total)
+        return waardes
+
     if number == 10:
-        return psutil.cpu_percent()
+        p = psutil.cpu_times()
+        waardes = str(p.user) + ';' + str(p.system)  + ';' + str(p.idle)
+        return waardes
 
     if number == 11:
-        return list(psutil.cpu_times_percent())
+        p = psutil.virtual_memory()
+        waardes = str(p.used) + ';' + str(p.available)  + ';' + str(p.total)
+        return waardes
 
     if number == 20:
-        return list(psutil.virtual_memory())
+        return str(psutil.virtual_memory())
 
 
     # Last value
@@ -88,4 +97,3 @@ print "Starting server on port",port,"..."
 httpd = HTTPServer(("", port), SOAPHandler)
 httpd.dispatcher = dispatcher
 httpd.serve_forever()
-
