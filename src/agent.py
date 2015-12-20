@@ -1,4 +1,5 @@
 #! /usr/bin/python
+__author__ = 'Bart Oevering & Mike Slotboom'
 
 """
 Usage:

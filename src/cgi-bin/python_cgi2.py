@@ -1,4 +1,5 @@
-#!C:\Python27\python.exe
+#! /usr/bin/python
+__author__ = 'Bart Oevering & Mike Slotboom'
 
 # Import modules for CGI handling 
 import cgi, cgitb 
