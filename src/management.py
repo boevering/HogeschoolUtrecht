@@ -3,6 +3,7 @@ __author__ = 'Bart Oevering & Mike Slotboom'
 
 from pysimplesoap.client import SoapClient, SoapFault
 from lxml import etree
+import sys
 
 def valueToGet(client):
 
@@ -49,8 +50,15 @@ def valueToGet(client):
 
 def getClientsIP():
     # get server from xmlfile
-    xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
-    #xmlFile = 'servers.xml' ## voor Windows
+    os = sys.platform
+    if os == 'linux2':
+        xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
+    elif os == 'win32':
+        xmlFile = 'servers.xml' ## voor Windows
+    else:
+        print 'Het OS is niet herkent en het script is afgebroken!'
+        exit()
+
     serverPath = '/data/servers/server'
 
     tree = etree.parse(xmlFile)
