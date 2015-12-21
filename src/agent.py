@@ -7,17 +7,21 @@ import sys,subprocess
 import psutil
 import os.path
 
-BS = sys.platform
-if BS == 'win32':
-    pathToCheck = 'C:\\HogeschoolUtrecht\\src\\'
-    if not os.path.exists(pathToCheck):
-        os.makedirs(pathToCheck)
+pathToDirPS = 'C:\\HogeschoolUtrecht\\src\\'
+pathToFilePS = 'agent_info.ps1'
 
-    fileToCheck = 'agent_info.ps1'
-    test = pathToCheck + fileToCheck
-    if not os.path.isfile(test):
-        createFile = open(test, 'w')
-        createFile.write('''function Get-CountPS {
+def checkFile(pathToCheck, fileToCheck):
+    BS = sys.platform
+    if BS == 'win32':
+        pathToCheck = 'C:\\HogeschoolUtrecht\\src\\'
+        if not os.path.exists(pathToCheck):
+            os.makedirs(pathToCheck)
+
+        fileToCheck = 'agent_info.ps1'
+        test = pathToCheck + fileToCheck
+        if not os.path.isfile(test):
+            createFile = open(test, 'w')
+            createFile.write('''function Get-CountPS {
 ps | measure-object | select -expandproperty count
 }
 
@@ -68,9 +72,10 @@ function Get-Uptime {
    Write-Output $Display
 }'''
                          )
-        createFile.close()
-        print 'File created!'
+            createFile.close()
+            print 'File created!'
 
+checkFile(pathToDirPS, pathToFilePS)
 # ---------------------------------------------------------
 
 # List of all your agent functions that can be called from within the management script.
@@ -98,7 +103,7 @@ def get_value(number):
     if number == 4:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToCheck + fileToCheck + '; Get-CountPS }'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToDirPS + pathToFilePS + '; Get-CountPS }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -106,7 +111,7 @@ def get_value(number):
     if number == 5:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToCheck + fileToCheck + '; Get-Memory }'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToDirPS + pathToFilePS + '; Get-Memory }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -114,7 +119,7 @@ def get_value(number):
     if number == 6:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToCheck + fileToCheck + '; Get-FreeSpace }'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToDirPS + pathToFilePS + '; Get-FreeSpace }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -122,7 +127,7 @@ def get_value(number):
     if number == 7:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToCheck + fileToCheck + '; Get-IPAddress -first }'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToDirPS + pathToFilePS + '; Get-IPAddress -first }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -130,7 +135,7 @@ def get_value(number):
     if number == 8:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToCheck + fileToCheck + '; Get-Uptime }'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToDirPS + pathToFilePS + '; Get-Uptime }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
