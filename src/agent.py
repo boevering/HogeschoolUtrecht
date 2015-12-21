@@ -1,3 +1,6 @@
+#! /usr/bin/python
+__author__ = 'Bart Oevering & Mike Slotboom'
+
 """
 Usage:
 Portable Python installed in c:\P2.7.6.1 and agent script in c:\scripts\agent.py

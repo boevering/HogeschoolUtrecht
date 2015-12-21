@@ -1,3 +1,6 @@
+#! /usr/bin/python
+__author__ = 'Bart Oevering & Mike Slotboom'
+
 from pysimplesoap.client import SoapClient, SoapFault
 from lxml import etree
 
