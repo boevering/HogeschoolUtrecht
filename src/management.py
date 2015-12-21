@@ -18,7 +18,7 @@ else:
     print 'Het OS is niet herkent en het script is afgebroken!'
     exit()
 
-def valueToGet(client):
+def valueToGet(client, sID):
 
     # call a few remote methods
     r1=str(client.get_value(number=1).resultaat)
@@ -27,37 +27,36 @@ def valueToGet(client):
     r2=str(client.get_value(number=2).resultaat)
     print "sys.getdefaultencoding() =2 :", r2
 
-    r3=str(client.get_value(number=3).resultaat)
-    print "Doet helemaal niks =3 :", int(r3) # r3 is a number!
+    r3=int(client.get_value(number=3).resultaat)
+    print "Doet helemaal niks =3 :", r3
 
-    r4=str(client.get_value(number=4).resultaat)
-    print "Aantal processen =4 :", r4.rstrip() # This is a multiline: strip the newline from the result!
+    r4=str(client.get_value(number=4).resultaat).rstrip()
+    print "Aantal processen =4 :", r4 # This is a multiline: strip the newline from the result!
 
-    r5=str(client.get_value(number=5).resultaat)
-    print "Get-Memory =5 :", r5.rstrip()
+    r5=str(client.get_value(number=5).resultaat).rstrip()
+    print "Get-Memory =5 :", r5
 
-    r6=str(client.get_value(number=6).resultaat)
-    print "Get-FreeSpace =6 :", r6.rstrip()
+    r6=str(client.get_value(number=6).resultaat).rstrip()
+    print "Get-FreeSpace =6 :", r6
 
-    r7=str(client.get_value(number=7).resultaat)
-    print "Get-IPAddress -first =7 :", r7.rstrip()
+    r7=str(client.get_value(number=7).resultaat).rstrip()
+    print "Get-IPAddress -first =7 :", r7
 
-    r8=str(client.get_value(number=8).resultaat)
-    print "Get-Uptime =8 :", r8.rstrip()
+    r8=str(client.get_value(number=8).resultaat).rstrip()
+    print "Get-Uptime =8 :", r8
 
     r9=str(client.get_value(number=9).resultaat)
-    lijst = r9.split(';')
-    print "psutil.disk_usage('c:\\') =9 :", lijst
+    print "psutil.disk_usage('c:\\') =9 :", r9
 
     r10=str(client.get_value(number=10).resultaat)
-    lijst = r10.split(';')
-    print "psutil.cpu_times() =10 :", lijst
+    print "psutil.cpu_times() =10 :", r10
 
     r11=str(client.get_value(number=11).resultaat)
-    lijst = r11.split(';')
-    print "psutil.virtual_memory() =11 :", lijst
+    print "psutil.virtual_memory() =11 :", r11
 
-def putValueInDB():
+    putValueInDB(sID, r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11)
+
+def putValueInDB(*args):
     st = strftime("%Y-%m-%d %H:%M:%S")
 
     databasePath = '/data/database'
@@ -69,11 +68,10 @@ def putValueInDB():
     conn.autocommit(True)
     cur = conn.cursor()
 
-    cur.execute('INSERT INTO `Logs`(`lID`, `sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`, `r10`, `r11`) '
-                'VALUES ("",1,'+ st +',"","","","",,,,,,,,)')
-    print cur.fetchall()
+    cur.execute('INSERT INTO Logs'
+                '(`lID`, `sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`, `r10`, `r11`)'
+                "VALUES ('',"+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"','"+ str(args[9]) +"','"+ str(args[10]) +"','"+ str(args[11]) +"');")
 
-putValueInDB()
 
 def getClientsIP():
     serverPath = '/data/servers/server'
@@ -85,6 +83,7 @@ def getClientsIP():
     count = int(tree.xpath('count(//server)'))
 
     for i in range(count):
+        sID = servers[i][0].text
         serverIPAdress =  servers[i][1].text
         serverIPPort = servers[i][2].text
 
@@ -95,6 +94,6 @@ def getClientsIP():
             namespace = "http://example.com/sample.wsdl",
             soap_ns='soap',
             ns = False)
-        valueToGet(client)
+        valueToGet(client, sID)
 
 getClientsIP()
