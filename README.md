@@ -8,8 +8,16 @@ There are tree main comonentens.
     2. management.py
     3. agent_info.ps1
 
+## agent.py
+some more text
 
 
+## management.py
+some more text
+
+
+## agent_info.ps1
+some more text
 
 
 
