@@ -7,7 +7,8 @@ import sys,subprocess
 import psutil
 import os.path
 
-def checkPowerShell():
+BS = sys.platform
+if BS == 'win32':
     pathToCheck = 'C:\\HogeschoolUtrecht\\src\\'
     if not os.path.exists(pathToCheck):
         os.makedirs(pathToCheck)
@@ -26,7 +27,8 @@ def checkPowerShell():
 ps | measure-object | select -expandproperty count'''
                          )
         createFile.close()
-checkPowerShell()
+        print 'File created!'
+
 # ---------------------------------------------------------
 
 # List of all your agent functions that can be called from within the management script.
