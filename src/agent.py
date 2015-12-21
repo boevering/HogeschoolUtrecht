@@ -49,14 +49,13 @@ function Get-IPAddress {
 
 function Get-Memory{
     $SysMem = Get-WmiObject Win32_OperatingSystem
-    ($SysMem.FreePhysicalMemory/(1024*1024)),
-    ($SysMem.FreeVirtualMemory/(1024*1024)),
-    ($SysMem.TotalVisibleMemorySize/(1024*1024)) | Write-Host
+    $Display = "" + ($SysMem.FreePhysicalMemory/(1024*1024)) + ";" + ($SysMem.FreeVirtualMemory/(1024*1024)) + ";" + ($SysMem.TotalVisibleMemorySize/(1024*1024)) + ""
+   Write-Output $Display
 }
 
 function Get-FreeSpace {
     Get-CimInstance win32_logicaldisk| where caption -eq "C:" |
-    foreach-object {write " $($_.caption) $('{0:N2}' -f ($_.Size/1gb)) GB total, $('{0:N2}' -f ($_.FreeSpace/1gb)) GB free "}
+    foreach-object {write "$('{0:N2}' -f ($_.FreeSpace/1gb));$('{0:N2}' -f (($_.Size-$_.FreeSpace)/1gb));$('{0:N2}' -f ($_.Size/1gb))"}
 }
 
 function Get-Uptime {
