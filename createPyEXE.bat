@@ -1,1 +1,1 @@
-C:\Python\Python27\python.exe C:\HogeschoolUtrecht\src\convertToEXE.py py2exe
+C:\Python\Python27\python.exe C:\HogeschoolUtrecht\convertToEXE.py py2exe
