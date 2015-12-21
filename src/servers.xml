@@ -12,4 +12,10 @@
                 <ipPoort>8008</ipPoort>
             </server>
         </servers>
+        <database>
+            <dbipAdress>10.0.0.14</dbipAdress>
+            <dbUser>monitor</dbUser>
+            <dbPassword>raspberry</dbPassword>
+            <dbDatabase>Monitor</dbDatabase>
+        </database>
     </data>

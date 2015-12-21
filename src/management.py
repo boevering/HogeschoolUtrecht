@@ -6,6 +6,17 @@ from lxml import etree
 import sys
 import pymysql
 
+
+# Know the system platform from witch management.py is running so we use the correct path to servers.xml
+OperatingSystem = sys.platform
+if OperatingSystem == 'linux2':
+    xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
+elif OperatingSystem == 'win32':
+    xmlFile = 'servers.xml' ## voor Windows
+else:
+    print 'Het OS is niet herkent en het script is afgebroken!'
+    exit()
+
 def valueToGet(client):
 
     # call a few remote methods
@@ -45,18 +56,21 @@ def valueToGet(client):
     lijst = r11.split(';')
     print "psutil.virtual_memory() =11 :", lijst
 
+def putValueInDB():
+    databasePath = '/data/database'
 
+    tree = etree.parse(xmlFile)
+    database = tree.xpath(databasePath)
+
+    conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
+    conn.autocommit(True)
+    cur = conn.cursor()
+
+    cur.execute('SELECT * FROM Server;')
+    print cur.fetchall()
+
+putValueInDB()
 def getClientsIP():
-    # Know the system platform from witch management.py is running so we use the correct path to servers.xml
-    os = sys.platform
-    if os == 'linux2':
-        xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
-    elif os == 'win32':
-        xmlFile = 'servers.xml' ## voor Windows
-    else:
-        print 'Het OS is niet herkent en het script is afgebroken!'
-        exit()
-
     serverPath = '/data/servers/server'
 
     tree = etree.parse(xmlFile)
