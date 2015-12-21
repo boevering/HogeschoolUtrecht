@@ -15,7 +15,7 @@ if OperatingSystem == 'linux2':
 elif OperatingSystem == 'win32':
     xmlFile = 'servers.xml' ## voor Windows
 else:
-    print 'Het OS is niet herkent en het script is afgebroken!'
+    print 'Het OS is niet herkend en het script is afgebroken!'
     exit()
 
 def valueToGet(client, sID):
