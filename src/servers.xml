@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+    <data>
+        <servers>
+            <server name="laptopBart">
+                <ipAdress>10.0.0.10</ipAdress>
+                <ipPoort>8008</ipPoort>
+            </server>
+            <server name="vastePC">
+                <ipAdress>10.0.0.13</ipAdress>
+                <ipPoort>8008</ipPoort>
+            </server>
+        </servers>
+    </data>
