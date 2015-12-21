@@ -19,6 +19,12 @@ some more text
 ## agent_info.ps1
 some more text
 
+###Get-CountPS
+###Get-IPAddress -first
+###Get-Memory
+###Get-FreeSpace
+###Get-Uptime
+
 
 
 Please do not copy from this project if you are a student also working on the project for TCSB-V2SYS6-10 or TCSB-V2THO6-12
