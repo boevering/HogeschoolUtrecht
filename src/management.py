@@ -3,6 +3,7 @@ __author__ = 'Bart Oevering & Mike Slotboom'
 
 from pysimplesoap.client import SoapClient, SoapFault
 from lxml import etree
+from time import strftime
 import sys
 import pymysql
 
@@ -57,6 +58,8 @@ def valueToGet(client):
     print "psutil.virtual_memory() =11 :", lijst
 
 def putValueInDB():
+    st = strftime("%Y-%m-%d %H:%M:%S")
+
     databasePath = '/data/database'
 
     tree = etree.parse(xmlFile)
@@ -66,10 +69,12 @@ def putValueInDB():
     conn.autocommit(True)
     cur = conn.cursor()
 
-    cur.execute('SELECT * FROM Server;')
+    cur.execute('INSERT INTO `Logs`(`lID`, `sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`, `r10`, `r11`) '
+                'VALUES ("",1,'+ st +',"","","","",,,,,,,,)')
     print cur.fetchall()
 
 putValueInDB()
+
 def getClientsIP():
     serverPath = '/data/servers/server'
 
