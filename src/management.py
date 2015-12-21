@@ -49,7 +49,8 @@ def valueToGet(client):
 
 def getClientsIP():
     # get server from xmlfile
-    xmlFile = 'servers.xml'
+    xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
+    #xmlFile = 'servers.xml' ## voor Windows
     serverPath = '/data/servers/server'
 
     tree = etree.parse(xmlFile)
