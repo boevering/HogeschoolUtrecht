@@ -26,9 +26,8 @@ function Get-IPAddress {
 
 function Get-Memory{
     $SysMem = Get-WmiObject Win32_OperatingSystem
-    ($SysMem.FreePhysicalMemory/(1024*1024)),
-    ($SysMem.FreeVirtualMemory/(1024*1024)),
-    ($SysMem.TotalVisibleMemorySize/(1024*1024)) | Write-Host
+    $Display = "" + ($SysMem.FreePhysicalMemory/(1024*1024)) + ";" + ($SysMem.FreeVirtualMemory/(1024*1024)) + ";" + ($SysMem.TotalVisibleMemorySize/(1024*1024)) + ""
+   Write-Output $Display
 }
 
 function Get-FreeSpace {
