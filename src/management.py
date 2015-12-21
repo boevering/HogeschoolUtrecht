@@ -69,7 +69,7 @@ def putValueInDB():
     cur.execute('SELECT * FROM Server;')
     print cur.fetchall()
 
-putValueInDB()
+# putValueInDB()
 def getClientsIP():
     serverPath = '/data/servers/server'
 
