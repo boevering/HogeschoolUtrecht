@@ -89,20 +89,14 @@ def getPowerShell(whattoget):
 # List of all your agent functions that can be called from within the management script.
 # A real developer should do this differently, but this is more easy.
 def get_value(number):
-    "return the result of one of the pre-define numbers"
     print "get_value, of of item with number=",number
 
-    # An example of a value that is acquired using Python only.
-    # returns a string
     if number == 1:
         return sys.platform
 
-    # Another example of a value that is acquired using Python only.
-    # returns a string
     if number == 2:
         return sys.getdefaultencoding()
 
-    # Useless of course but returning an int
     if number == 3:
         return 8888
 
