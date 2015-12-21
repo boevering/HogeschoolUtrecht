@@ -66,8 +66,8 @@ def getClientsIP():
     count = int(tree.xpath('count(//server)'))
 
     for i in range(count):
-        serverIPAdress =  servers[i][0].text
-        serverIPPort = servers[i][1].text
+        serverIPAdress =  servers[i][1].text
+        serverIPPort = servers[i][2].text
 
         # create a simple consumer
         client = SoapClient(
