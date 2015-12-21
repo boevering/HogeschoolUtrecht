@@ -9,6 +9,9 @@ import os.path
 
 def checkPowerShell():
     pathToCheck = 'C:\\HogeschoolUtrecht\\src\\'
+    if not os.path.exists(pathToCheck):
+        os.makedirs(pathToCheck)
+
     fileToCheck = 'agent_counters.ps1'
     test = pathToCheck + fileToCheck
     if not os.path.isfile(test):
