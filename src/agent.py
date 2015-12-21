@@ -76,7 +76,15 @@ function Get-Uptime {
             print 'File created!'
 
 checkFile(pathToDirPS, pathToFilePS)
-# ---------------------------------------------------------
+
+
+def getPowerShell(whattoget):
+        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
+            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
+            '& { . ' + pathToDirPS + pathToFilePS + '; ' + whattoget + ' }'],  # Naam van en pad naar je PowerShell script
+            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
+        output = p.stdout.read()                 # De stdout
+        return output
 
 # List of all your agent functions that can be called from within the management script.
 # A real developer should do this differently, but this is more easy.
@@ -98,47 +106,20 @@ def get_value(number):
     if number == 3:
         return 8888
 
-    # Example in which a PowerShell script is used. The STDOUT is used to pass results back to python.
-    # Exporting with export-csv and reading the CSV using Python is also possible of course.
     if number == 4:
-        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
-            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToDirPS + pathToFilePS + '; Get-CountPS }'],  # Naam van en pad naar je PowerShell script
-            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-        output = p.stdout.read()                 # De stdout
-        return output
+        return getPowerShell('Get-CountPS')
 
     if number == 5:
-        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
-            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToDirPS + pathToFilePS + '; Get-Memory }'],  # Naam van en pad naar je PowerShell script
-            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-        output = p.stdout.read()                 # De stdout
-        return output
+        return getPowerShell('Get-Memory')
 
     if number == 6:
-        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
-            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToDirPS + pathToFilePS + '; Get-FreeSpace }'],  # Naam van en pad naar je PowerShell script
-            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-        output = p.stdout.read()                 # De stdout
-        return output
+        return getPowerShell('Get-FreeSpace')
 
     if number == 7:
-        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
-            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToDirPS + pathToFilePS + '; Get-IPAddress -first }'],  # Naam van en pad naar je PowerShell script
-            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-        output = p.stdout.read()                 # De stdout
-        return output
+        return getPowerShell('Get-IPAddress -first')
 
     if number == 8:
-        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
-            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToDirPS + pathToFilePS + '; Get-Uptime }'],  # Naam van en pad naar je PowerShell script
-            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-        output = p.stdout.read()                 # De stdout
-        return output
+        return getPowerShell('Get-Uptime')
 
     if number == 9:
         p = psutil.disk_usage('c:\\')
