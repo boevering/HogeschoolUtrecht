@@ -39,7 +39,13 @@ function Get-FreeSpace {
 function Get-Uptime {
    $os = Get-WmiObject win32_operatingsystem
    $uptime = (Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime))
-   $Display = "Uptime: " + $Uptime.Days + " days, " + $Uptime.Hours + " hours, " + $Uptime.Minutes + " minutes"
+   if ($Uptime.Hours -le 9) {
+    $Hours = "0" + $Uptime.Hours
+    }
+    else {
+    $Hours = $Uptime.Hours
+    }
+   $Display = "" + $Uptime.Days + ":" + $Hours + ":" + $Uptime.Minutes + ":" + $Uptime.Seconds + "." + $Uptime.Milliseconds + ""
    Write-Output $Display
 }
 
