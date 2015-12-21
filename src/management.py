@@ -4,6 +4,7 @@ __author__ = 'Bart Oevering & Mike Slotboom'
 from pysimplesoap.client import SoapClient, SoapFault
 from lxml import etree
 import sys
+import pymysql
 
 def valueToGet(client):
 
