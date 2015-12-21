@@ -13,18 +13,61 @@ if BS == 'win32':
     if not os.path.exists(pathToCheck):
         os.makedirs(pathToCheck)
 
-    fileToCheck = 'agent_counters.ps1'
+    fileToCheck = 'agent_info.ps1'
     test = pathToCheck + fileToCheck
     if not os.path.isfile(test):
         createFile = open(test, 'w')
-        createFile.write('''# Some examples below...
+        createFile.write('''function Get-CountPS {
+ps | measure-object | select -expandproperty count
+}
 
-#ps | measure-object | select count | Out-File C:\\scripts\log\\agent_counters.txt
-#ps | Export-Clixml c:\\scripts\\log\\magweg.xml
-#ps | Export-Csv C:\\scripts\\log\\magweg.csv -Force -NoTypeInformation
-#$a = ps | measure-object
-#$a.Count
-ps | measure-object | select -expandproperty count'''
+function Get-IPAddress {
+    param(
+        [switch]
+        $first,
+        [Parameter(ParameterSetName='IPV4')]
+        [switch]
+        $IPv4,
+        [Parameter(ParameterSetName='IPV4')]
+        [switch]
+        $IPv6
+    )
+    $ip = @(Get-WmiObject -Filter 'IPEnabled=true' Win32_NetworkAdapterConfiguration | Select-Object -ExpandProperty IPAddress)
+    if ($IPv4) { $ip = $ip | Where-Object { $_ -like '*.*' }}
+    if ($IPv6) { $ip = $ip | Where-Object { $_ -like '*:*' }}
+
+    if ($ip.Count -gt 1 -and $first) {
+        $ip[0]
+    } else {
+        $ip
+    }
+}
+
+function Get-Memory{
+    $SysMem = Get-WmiObject Win32_OperatingSystem
+    ($SysMem.FreePhysicalMemory/(1024*1024)),
+    ($SysMem.FreeVirtualMemory/(1024*1024)),
+    ($SysMem.TotalVisibleMemorySize/(1024*1024)) | Write-Host
+}
+
+function Get-FreeSpace {
+    Get-CimInstance win32_logicaldisk| where caption -eq "C:" |
+    foreach-object {write " $($_.caption) $('{0:N2}' -f ($_.Size/1gb)) GB total, $('{0:N2}' -f ($_.FreeSpace/1gb)) GB free "}
+}
+
+function Get-Uptime {
+   $os = Get-WmiObject win32_operatingsystem
+   $uptime = (Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime))
+   $Display = "Uptime: " + $Uptime.Days + " days, " + $Uptime.Hours + " hours, " + $Uptime.Minutes + " minutes"
+   Write-Output $Display
+}
+
+
+#Get-CountPS
+#Get-IPAddress -first
+#Get-Memory
+#Get-FreeSpace
+#Get-Uptime'''
                          )
         createFile.close()
         print 'File created!'
@@ -56,23 +99,15 @@ def get_value(number):
     if number == 4:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            'C:\\HogeschoolUtrecht\\src\\agent_counters.ps1'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToCheck + fileToCheck + '; Get-CountPS }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
 
-    # # Example of sing a PowerShell oneliner. Useful for simple PowerShell commands.
-    # if number == 5:
-    #     p=subprocess.Popen(['powershell',
-    #         "get-service | measure-object | select -expandproperty count"],
-    #         stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-    #     output = p.stdout.read()                 # De stdout
-    #     return output
-
     if number == 5:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            'C:\\HogeschoolUtrecht\\src\\free_memory.ps1'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToCheck + fileToCheck + '; Get-Memory }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -80,7 +115,7 @@ def get_value(number):
     if number == 6:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            'C:\\HogeschoolUtrecht\\src\\free_space.ps1'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToCheck + fileToCheck + '; Get-FreeSpace }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -88,7 +123,7 @@ def get_value(number):
     if number == 7:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            'C:\\HogeschoolUtrecht\\src\\first_ip.ps1'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToCheck + fileToCheck + '; Get-IPAddress -first }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
@@ -96,7 +131,7 @@ def get_value(number):
     if number == 8:
         p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            'C:\\HogeschoolUtrecht\\src\\uptime.ps1'],  # Naam van en pad naar je PowerShell script
+            '& { . ' + pathToCheck + fileToCheck + '; Get-Uptime }'],  # Naam van en pad naar je PowerShell script
             stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
         output = p.stdout.read()                 # De stdout
         return output
