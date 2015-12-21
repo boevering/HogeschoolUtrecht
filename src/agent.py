@@ -1,19 +1,29 @@
 #! /usr/bin/python
 __author__ = 'Bart Oevering & Mike Slotboom'
 
-"""
-Usage:
-Portable Python installed in c:\P2.7.6.1 and agent script in c:\scripts\agent.py
-Open the firewall if needed and start this agent:
-<cmd>
-c:\\P2\App\python.exe c:\scripts\agent.py
-"""
-
 from pysimplesoap.server import SoapDispatcher, SOAPHandler
 from BaseHTTPServer import HTTPServer
 import sys,subprocess
 import psutil
+import os.path
 
+def checkPowerShell():
+    pathToCheck = 'C:\\HogeschoolUtrecht\\src\\'
+    fileToCheck = 'agent_counters.ps1'
+    test = pathToCheck + fileToCheck
+    if not os.path.isfile(test):
+        createFile = open(test, 'w')
+        createFile.write('''# Some examples below...
+
+#ps | measure-object | select count | Out-File C:\\scripts\log\\agent_counters.txt
+#ps | Export-Clixml c:\\scripts\\log\\magweg.xml
+#ps | Export-Csv C:\\scripts\\log\\magweg.csv -Force -NoTypeInformation
+#$a = ps | measure-object
+#$a.Count
+ps | measure-object | select -expandproperty count'''
+                         )
+        createFile.close()
+checkPowerShell()
 # ---------------------------------------------------------
 
 # List of all your agent functions that can be called from within the management script.

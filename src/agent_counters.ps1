@@ -1,6 +1,6 @@
-﻿# Some examples below...
+# Some examples below...
 
-#ps | measure-object | select count | Out-File C:\scripts\log\agent_counters.txt
+#ps | measure-object | select count | Out-File C:\scripts\loggent_counters.txt
 #ps | Export-Clixml c:\scripts\log\magweg.xml
 #ps | Export-Csv C:\scripts\log\magweg.csv -Force -NoTypeInformation
 #$a = ps | measure-object

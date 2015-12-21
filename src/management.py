@@ -49,7 +49,7 @@ def valueToGet(client):
 
 
 def getClientsIP():
-    # get server from xmlfile
+    # Know the system platform from witch management.py is running so we use the correct path to servers.xml
     os = sys.platform
     if os == 'linux2':
         xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
@@ -64,7 +64,7 @@ def getClientsIP():
     tree = etree.parse(xmlFile)
     servers = tree.xpath(serverPath)
 
-    ## count the amount of servers in the file so we know how often we need to ask divertent servers.
+    ## count the amount of servers in the xmlfile so we know how often we need to ask divertent servers.
     count = int(tree.xpath('count(//server)'))
 
     for i in range(count):
@@ -74,11 +74,10 @@ def getClientsIP():
         # create a simple consumer
         client = SoapClient(
             location = "http://" + serverIPAdress + ":" + serverIPPort + "/",
-            action = 'http://localhost:8008/', # SOAPAction
+            action = "http://" + serverIPAdress + ":" + serverIPPort + "/", # SOAPAction
             namespace = "http://example.com/sample.wsdl",
             soap_ns='soap',
             ns = False)
-
         valueToGet(client)
 
 getClientsIP()
