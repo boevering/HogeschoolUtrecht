@@ -25,6 +25,10 @@ some more text
 ###Get-FreeSpace
 ###Get-Uptime
 
+## Computer toevoegen
+### Database
+- Voeg computer toe in database in het tabel Monitor.Server.
+- Voeg computer toe in het XML-bestand.
 
 
 Please do not copy from this project if you are a student also working on the project for TCSB-V2SYS6-10 or TCSB-V2THO6-12
