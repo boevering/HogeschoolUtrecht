@@ -64,14 +64,17 @@ def putValueInDB(*args):
     tree = etree.parse(xmlFile)
     database = tree.xpath(databasePath)
 
-    conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
-    conn.autocommit(True)
-    cur = conn.cursor()
+    try:
+        conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
+        conn.autocommit(True)
+        cur = conn.cursor()
 
-    cur.execute('INSERT INTO Logs'
-                '(`lID`, `sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`, `r10`, `r11`)'
-                "VALUES ('',"+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"','"+ str(args[9]) +"','"+ str(args[10]) +"','"+ str(args[11]) +"');")
-
+        cur.execute('INSERT INTO Logs'
+                    '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`, `r10`, `r11`)'
+                    "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"','"+ str(args[9]) +"','"+ str(args[10]) +"','"+ str(args[11]) +"');")
+    except:
+        print 'Er is iets verkeerd gegaan! ERROR!!!! bel +31 (0)6 33933808'
+        exit()
 
 def getClientsIP():
     serverPath = '/data/servers/server'
