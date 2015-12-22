@@ -17,7 +17,7 @@ if (isset($_POST["knop"])) {
 	if(! $retval ) {
       	die('Could not enter data: ' . mysql_error());
    	 }
-   	echo "Data is succesvol in de database geplaatst";
+   	echo "Gefeliciteerd! De data is succesvol in de database geplaatst! Gebruik het script om deze nieuwe server te ontdekken!";
    mysql_close($pi);
 }
 else {
