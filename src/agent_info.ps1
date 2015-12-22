@@ -40,11 +40,17 @@ function Get-Uptime {
    $uptime = (Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime))
    if ($Uptime.Hours -le 9) {
     $Hours = "0" + $Uptime.Hours
-    }
+   }
     else {
     $Hours = $Uptime.Hours
-    }
-   $Display = "" + $Uptime.Days + ":" + $Hours + ":" + $Uptime.Minutes + ":" + $Uptime.Seconds + "." + $Uptime.Milliseconds + ""
+   }
+   if ($Uptime.Minutes -le 9) {
+    $Minutes = "0" + $Uptime.Minutes
+   }
+    else {
+    $Minutes = $Uptime.Minutes
+   }
+   $Display = "" + $Uptime.Days + ":" + $Hours + ":" + $Minutes + ":" + $Uptime.Seconds + "." + $Uptime.Milliseconds + ""
    Write-Output $Display
 }
 
