@@ -1,5 +1,5 @@
 <?php
-	include_once 'Connections/RaspberryPi.php';
+	include_once './Connections/RaspberryPi.php';
 ?>
 
 <!doctype html>
@@ -13,10 +13,15 @@
 
 <?php
 if (isset($_POST["knop"])) {
-
-
+	print 'kaas';
+	$sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'.$_POST['IPAdres'].'","'.$_POST['IPPort'].'","'.$_POST['MACAdres'].'","'.$_POST['OperatingSystem'].'","'.$_POST['Name'].'");';
+	print $sql;
+	print '<br>';
+	print $pi;
+	mysql_query( $sql, $pi );
+}
+else {
 ?>
-
 
 <table>
 <form action="#" method="post">
@@ -28,10 +33,8 @@ if (isset($_POST["knop"])) {
 <tr><td> <input type="submit" value="Toevoegen" name="knop" /> </td></tr>
 </form>
 <table>
-
-
-
-
-
+<?php
+}
+?>
 </body>
 </html>
