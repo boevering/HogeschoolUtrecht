@@ -16,7 +16,6 @@ $xml->startElement('servers');
 while ($row = mysql_fetch_assoc($res)) {
   $xml->startElement("server");
 
-//  $xml->writeAttribute('name', $row['udid']);
   $xml->startElement("sID");
   $xml->writeRaw($row['sID']);
   $xml->endElement();
@@ -35,3 +34,4 @@ $xml->endElement();
 header('Content-type: text/xml');
 $xml->flush();
 ?>
+<!--  $xml->writeAttribute('name', $row['udid']); -->
