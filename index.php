@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Placeholder</title>
+    <meta http-equiv="refresh" content="10">
 </head>
 
 <body>
