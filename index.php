@@ -5,39 +5,54 @@
 
 <body>
 <h1>Welkom op de management pagina van THO6 en Scripting2</h1>
-<?php
+<?PHP
 
-$servername = "10.0.0.14";
-$username = "monitor";
+$user_name = "monitor";
 $password = "raspberry";
+$database = "Monitor";
+$server = "10.0.0.14";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password);
+$db_handle = mysql_connect($server, $user_name, $password);
+$db_found = mysql_select_db($database, $db_handle);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($db_found) {
+
+$SQL = "SELECT * FROM Logs";
+$result = mysql_query($SQL);
+
+echo '<table>';
+echo '<th>LogID</th><th>ServerID</th><th>Time Stamp</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>R6</th><th>R7</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th>';
+while ($db_field = mysql_fetch_assoc($result) ) {
+
+print '<tr><td>' . $db_field['lID'] . "</td>";
+print '<td>' . $db_field['sID'] . "</td>";
+print '<td>' . $db_field['TimeStamp'] . "</td>";
+print '<td>' . $db_field['r1'] . "</td>";
+print '<td>' . $db_field['r2'] . "</td>";
+print '<td>' . $db_field['r3'] . "</td>";
+print '<td>' . $db_field['r4'] . "</td>";
+print '<td>' . $db_field['r5'] . "</td>";
+print '<td>' . $db_field['r6'] . "</td>";
+print '<td>' . $db_field['r7'] . "</td>";
+print '<td>' . $db_field['r8'] . "</td>";
+print '<td>' . $db_field['r9'] . "</td>";
+print '<td>' . $db_field['r10'] . "</td>";
+print '<td>' . $db_field['r11'] . "</td></tr>";
 }
-echo "Connected successfully";
 
+echo '</table>';
 
-$query = "SELECT * FROM Logs";
-$results=mysql_query($query);
-$row_count=mysql_num_rows($results);
-$row_users = mysql_fetch_array($results);
+mysql_close($db_handle);
 
-echo "<table>";
-
-while ($row_users = mysql_fetch_array($results)) {
-    //output a row here
-    echo "<tr><td>".($row_users['email'])."</td></tr>";
 }
+else {
 
-echo "</table>";
+print "Database NOT Found ";
+mysql_close($db_handle);
+
+}
 
 ?>
 
 </body>
-
-
 </html>
