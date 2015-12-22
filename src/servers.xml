@@ -11,6 +11,11 @@
                 <ipAdress>10.0.0.13</ipAdress>
                 <ipPoort>8008</ipPoort>
             </server>
+            <server name="RDP_PC">
+                <sID>3</sID>
+                <ipAdress>10.0.0.26</ipAdress>
+                <ipPoort>8008</ipPoort>
+            </server>
         </servers>
         <database>
             <dbipAdress>10.0.0.14</dbipAdress>
