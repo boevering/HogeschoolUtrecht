@@ -28,7 +28,7 @@ while ($row = mysql_fetch_assoc($res)) {
   
   $xml->endElement();
 }
-
+$xml->endElement();
 $xml->endElement();
 
 header('Content-type: text/xml');
