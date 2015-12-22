@@ -1,24 +1,24 @@
 <?php
 	include_once './Connections/RaspberryPi.php';
 ?>
-
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Server Toevoegen</title>
+	<meta charset="utf-8">
+	<title>Server Toevoegen</title>
 </head>
 
 <body>
 
 <?php
 if (isset($_POST["knop"])) {
-	print 'kaas';
 	$sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'.$_POST['IPAdres'].'","'.$_POST['IPPort'].'","'.$_POST['MACAdres'].'","'.$_POST['OperatingSystem'].'","'.$_POST['Name'].'");';
-	print $sql;
-	print '<br>';
-	print $pi;
-	mysql_query( $sql, $pi );
+	$retval = mysql_query( $sql, $pi );
+	if(! $retval ) {
+      	die('Could not enter data: ' . mysql_error());
+   	 }
+   	echo "Data is succesvol in de database geplaatst";
+   mysql_close($pi);
 }
 else {
 ?>
