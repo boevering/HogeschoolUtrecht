@@ -8,16 +8,6 @@ import sys
 import pymysql
 
 
-# Know the system platform from witch management.py is running so we use the correct path to servers.xml
-OperatingSystem = sys.platform
-if OperatingSystem == 'linux2':
-    xmlFile = '/var/www/test/HogeschoolUtrecht/src/servers.xml' ## voor Pi
-elif OperatingSystem == 'win32':
-    xmlFile = 'servers.xml' ## voor Windows
-else:
-    print 'Het OS is niet herkend en het script is afgebroken!'
-    exit()
-
 def valueToGet(client, sID):
 
     # call a few remote methods
@@ -57,6 +47,7 @@ def valueToGet(client, sID):
     putValueInDB(sID, r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11)
 
 def putValueInDB(*args):
+    xmlFile = 'http://10.0.0.14/XMLCreate.php'
     st = strftime("%Y-%m-%d %H:%M:%S")
 
     databasePath = '/data/database'
@@ -77,6 +68,7 @@ def putValueInDB(*args):
         exit()
 
 def getClientsIP():
+    xmlFile = 'http://10.0.0.14/XMLCreate.php'
     serverPath = '/data/servers/server'
 
     tree = etree.parse(xmlFile)
