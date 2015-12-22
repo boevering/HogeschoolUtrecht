@@ -34,4 +34,3 @@ $xml->endElement();
 header('Content-type: text/xml');
 $xml->flush();
 ?>
-<!--  $xml->writeAttribute('name', $row['udid']); -->
