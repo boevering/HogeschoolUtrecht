@@ -1,10 +1,13 @@
 <?php
-# FileName="Connection_php_mysql.htm"
-# Type="MYSQL"
-# HTTP="true"
-$hostname_pi = "localhost";
-$database_pi = "Monitor";
-$username_pi = "monitor";
-$password_pi = "raspberry";
-$pi = mysql_pconnect($hostname_pi, $username_pi, $password_pi) or trigger_error(mysql_error(),E_USER_ERROR);
+$servername = "localhost";
+$username = "monitor";
+$password = "raspberry";
+$dbname = "Monitor";
+
+// Create connection
+$pi = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($pi->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
