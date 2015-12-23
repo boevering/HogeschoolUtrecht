@@ -13,7 +13,7 @@ pathToFilePS = 'agent_info.ps1'
 def checkFile(pathToCheck, fileToCheck):
     BS = sys.platform
     if BS == 'win32':
-        pathToCheck = 'C:\\HogeschoolUtrecht\\src\\'
+        pathToCheck = 'C:\\HogeschoolUtrecht\\python\\'
         if not os.path.exists(pathToCheck):
             os.makedirs(pathToCheck)
 
