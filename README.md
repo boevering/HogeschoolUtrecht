@@ -25,6 +25,16 @@ some more text
 ###Get-FreeSpace
 ###Get-Uptime
 
+## Webserver
+nano /etc/apache2/sites-enabled/000-default.conf
+
+<Directory /var/www/test/HogeschoolUtrecht/web>
+    Options +ExecCGI
+    DirectoryIndex index.php
+</Directory>
+AddHandler cgi-script .py
+
+
 ## Computer toevoegen
 ### Database
 - Voeg computer toe in database in het tabel Monitor.Server.
