@@ -3,7 +3,7 @@ This is a project for the university of applied sciences "Hogeschool Utrecht"
 
 For this project there is a need for a monitoring system witch needs to be created with the use of python.
 
-There are tree main comonentens.
+There are tree main components:
     1. agent.py
     2. management.py
     3. agent_info.ps1
@@ -37,11 +37,11 @@ AddHandler cgi-script .py
 
 ## Server beheer
 Natuurlijk is het belangrijk om de server makkelijk te kunnen beheren.
-Hiervoor is een webpagina opgebouw die kan worden gevonden op de webserver /servers.php
+Hiervoor is een webpagina opgebouwd die kan worden gevonden op de webserver /servers.php
 
-Hier is het mogelijk om een 3-tal taken uit te voeren.
+Hier is het mogelijk om een drietal taken uit te voeren.
 Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
-Deze kunnen hier worden aangepast via de knop edit.
+Deze kunnen hier worden aangepast via de knop 'edit'.
 Ook kan hier een server worden toegevoegd.
     De toegevoegde server wordt gelijk in de MySQL database geplaatst.
     Ook komt deze server dan gelijk terug in het XML overzicht wat op /XMLCreate.php kan worden gevonden.
