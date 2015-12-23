@@ -95,6 +95,7 @@ if (($_POST["knop"] == "edit") or ($_POST["knop"] == "toevoegen")) {
 
 <?php
 }
+$pi->close();
 ?>
 </body>
 </html>
