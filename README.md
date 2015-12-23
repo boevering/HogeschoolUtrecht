@@ -39,11 +39,11 @@ AddHandler cgi-script .py
 Natuurlijk is het belangrijk om de server makkelijk te kunnen beheren.
 Hiervoor is een webpagina opgebouw die kan worden gevonden op de webserver /servers.php
 
-Hier is het mogelijk om een 3-tal taken uit te voeren.\n
-Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py\n
-Deze kunnen hier worden aangepast via de knop edit.\n
-Ook kan hier een server worden toegevoegd.\n
-    De toegevoegde server wordt gelijk in de MySQL database geplaatst.\n
-    Ook komt deze server dan gelijk terug in het XML overzicht wat op /XMLCreate.php kan worden gevonden.\n
+Hier is het mogelijk om een 3-tal taken uit te voeren.
+Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
+Deze kunnen hier worden aangepast via de knop edit.
+Ook kan hier een server worden toegevoegd.
+    De toegevoegde server wordt gelijk in de MySQL database geplaatst.
+    Ook komt deze server dan gelijk terug in het XML overzicht wat op /XMLCreate.php kan worden gevonden.
 
 Please do not copy from this project if you are a student also working on the project for TCSB-V2SYS6-10 or TCSB-V2THO6-12
