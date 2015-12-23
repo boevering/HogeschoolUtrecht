@@ -7,17 +7,15 @@ import sys,subprocess
 import psutil
 import os.path
 
-pathToDirPS = 'C:\\HogeschoolUtrecht\\src\\'
+pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
 pathToFilePS = 'agent_info.ps1'
 
 def checkFile(pathToCheck, fileToCheck):
     BS = sys.platform
     if BS == 'win32':
-        pathToCheck = 'C:\\HogeschoolUtrecht\\python\\'
         if not os.path.exists(pathToCheck):
             os.makedirs(pathToCheck)
 
-        fileToCheck = 'agent_info.ps1'
         test = pathToCheck + fileToCheck
         if not os.path.isfile(test):
             createFile = open(test, 'w')
