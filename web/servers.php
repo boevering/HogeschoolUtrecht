@@ -28,7 +28,7 @@ if (!isset($_POST["knop"])) {
 		print '<td><form action="" method="post"><input type="hidden" name="sID" value="'. $row['sID'] .'"  /><input type="submit" value="edit" name="knop" /></form></td></tr>';
 	}
 	echo '</table>';
-	print '<form action="#" method="post"><input type="submit" value="toevoegen" name="knop" /></form></td></tr>';
+	print '<form action="" method="post"><input type="submit" value="toevoegen" name="knop" /></form></td></tr>';
 }
 
 if ($_POST["knop"] == "Server toevoegen") {
