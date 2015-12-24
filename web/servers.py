@@ -38,7 +38,7 @@ print ("<h1> Welkom op de beheer pagina voor de servers. </h1>")
 
 if not knop:
     sql = "SELECT * FROM Server;"
-    row = cur.execute(sql)
+    cur.execute(sql)
     nrrow= cur.rowcount
 
 
@@ -104,8 +104,8 @@ if ((knop == "edit") or (knop == "toevoegen")):
     sql = "SELECT * FROM Server "+sqlToevoeging+";"
     row = cur.execute(sql)
     row = cur.fetchone()
-
-    print '''<table>'
+    print row
+    print '''<table>
     <form action="" method="post">
     <tr><td> Name: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''"/> </td></tr>
     <tr><td> IP adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" /> </td></tr>
