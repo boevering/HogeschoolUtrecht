@@ -17,7 +17,7 @@ def valueToGet(client, sID):
     r2=str(client.get_value(number=2).resultaat)
     print "sys.getdefaultencoding() =2 :", r2
 
-    r3=int(client.get_value(number=3).resultaat)
+    r3=float(client.get_value(number=3).resultaat)
     print "Doet helemaal niks =3 :", r3
 
     r4=str(client.get_value(number=4).resultaat).rstrip()

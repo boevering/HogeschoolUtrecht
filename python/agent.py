@@ -6,6 +6,7 @@ from BaseHTTPServer import HTTPServer
 import sys,subprocess
 import psutil
 import os.path
+from uptime import uptime
 
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
 pathToFilePS = 'agent_info.ps1'
@@ -95,7 +96,7 @@ def get_value(number):
         return sys.getdefaultencoding()
 
     if number == 3:
-        return 8888
+        return uptime()
 
     if number == 4:
         return getPowerShell('Get-CountPS')
