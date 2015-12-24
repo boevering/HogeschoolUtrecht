@@ -122,7 +122,7 @@ if (knop == "update"):
         sql = 'UPDATE `Server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
-            print "New record created successfully"
+            print "Record updated successfully"
         except:
             print "Error: " + sql + "<br>" . cur.error
     else:
