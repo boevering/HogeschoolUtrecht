@@ -11,7 +11,6 @@ form = cgi.FieldStorage()
 
 # Get data from fields
 knop = form.getvalue('knop')
-last_name = form.getvalue('last_name')
 
 
 #Database Connection
@@ -51,15 +50,28 @@ if not knop:
     for x in xrange(0,nrrow):
         row = cur.fetchone()
         print '<tr><td>'+ str(row[0]) + '</td>'
+        print '<td>'+ str(row[5]) + '</td>'
         print '<td>'+ str(row[1]) + '</td>'
         print '<td>'+ str(row[2]) + '</td>'
         print '<td>'+ str(row[3]) + '</td>'
         print '<td>'+ str(row[4]) + '</td>'
-        print '<td>'+ str(row[5]) + '</td>'
         print '<td><form action="" method="post"><input type="hidden" name="sID" value="' + str(row[0]) + '"  /><input type="submit" value="edit" name="knop" /></form></td></tr>'
     print '</table>'
     print '<form action="" method="post"><input type="submit" value="toevoegen" name="knop" /></form></td></tr>'
 
+# if (knop == "Server toevoegen") {
+# 	sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'.$_POST['IPAdres'].'","'.$_POST['IPPort'].'","'.$_POST['MACAdres'].'","'.$_POST['OperatingSystem'].'","'.$_POST['Name'].'");';
+#
+#
+# 	if ($pi->query($sql) === TRUE) {
+# 		echo "New record created successfully";
+# 	}
+# 	else {
+# 		echo "Error: " . $sql . "<br>" . $pi->error;
+# 	}
+# 	$_POST["knop"] == NULL;
+# 	header("Refresh:5");
+# }
 
 
 print("</body>")
