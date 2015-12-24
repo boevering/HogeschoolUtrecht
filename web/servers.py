@@ -4,13 +4,38 @@ __author__ = 'Bart Oevering & Mike Slotboom'
 from lxml import etree
 import pymysql
 import cgi, cgitb
-import webbrowser
+import re
 
 cgitb.enable()
 form = cgi.FieldStorage()
 
 # Get data from fields
 knop = form.getvalue('knop')
+
+
+# function for the checking of the value that has been given by the user.
+class check():
+
+    def __init__(self, ip, port, mac, os):
+        self.ip     = ip
+        self.port   = port
+        self.mac    = mac
+        self.os     = os
+
+    def ip(self, ip):
+        regxp = r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}" \
+                r"(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        return bool(re.match(regxp,self.ip))
+
+    def port(self, port):
+        pass
+
+    def mac(self, mac):
+        pass
+
+    def os(self, os):
+        pass
+
 
 #Database Connection
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
@@ -64,17 +89,20 @@ if (knop == "Server toevoegen"):
     os = str(form.getvalue('OperatingSystem'))
     name = str(form.getvalue('Name'))
 
-    sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
+    regCheck = check(ip, port, mac, os)
 
-    try:
-        cur.execute(sql)
-        print "New record created successfully"
-    except:
-        print "Error: " + sql + "<br>" . cur.error
-    knop = None
-    print '<head>'
-    print '<meta http-equiv="refresh" content="5">'
-    print '</head>'
+    if regCheck.ip == True:
+        sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
+
+        try:
+            cur.execute(sql)
+            print "New record created successfully"
+        except:
+            print "Error: " + sql + "<br>" . cur.error
+        knop = None
+        print '<head>'
+        print '<meta http-equiv="refresh" content="5">'
+        print '</head>'
 
 if (knop == "update"):
     sID = str(form.getvalue('sID'))
@@ -84,13 +112,16 @@ if (knop == "update"):
     os = str(form.getvalue('OperatingSystem'))
     name = str(form.getvalue('Name'))
 
-    sql = 'UPDATE `Server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
-
-    try:
-        cur.execute(sql)
-        print "New record created successfully"
-    except:
-        print "Error: " + sql + "<br>" . cur.error
+    regCheck = check(ip, port, mac, os)
+    if regCheck.ip == True:
+        sql = 'UPDATE `Server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
+        try:
+            cur.execute(sql)
+            print "New record created successfully"
+        except:
+            print "Error: " + sql + "<br>" . cur.error
+    else:
+        print 'Er is iets verkeerd gegaan!'
     knop = None
     print '<head>'
     print '<meta http-equiv="refresh" content="5">'
