@@ -6,16 +6,13 @@ import pymysql
 import cgi, cgitb
 
 cgitb.enable()
-
 form = cgi.FieldStorage()
 
 # Get data from fields
 knop = form.getvalue('knop')
 
-
 #Database Connection
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
-
 databasePath = '/data/database'
 
 tree = etree.parse(xmlFile)
@@ -27,7 +24,7 @@ try:
     cur = conn.cursor()
 
 except:
-    pass
+    print "Error, de database was niet bereikbaar!!!"
 
 
 print("Content-type:text/html\r\n\r\n")
@@ -59,20 +56,75 @@ if not knop:
     print '</table>'
     print '<form action="" method="post"><input type="submit" value="toevoegen" name="knop" /></form></td></tr>'
 
-# if (knop == "Server toevoegen") {
-# 	sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'.$_POST['IPAdres'].'","'.$_POST['IPPort'].'","'.$_POST['MACAdres'].'","'.$_POST['OperatingSystem'].'","'.$_POST['Name'].'");';
-#
-#
-# 	if ($pi->query($sql) === TRUE) {
-# 		echo "New record created successfully";
-# 	}
-# 	else {
-# 		echo "Error: " . $sql . "<br>" . $pi->error;
-# 	}
-# 	$_POST["knop"] == NULL;
-# 	header("Refresh:5");
-# }
+if (knop == "Server toevoegen"):
+    ip = str(form.getvalue('IPAdres'))
+    port = str(form.getvalue('IPPort'))
+    mac = str(form.getvalue('MACAdres'))
+    os = str(form.getvalue('OperatingSystem'))
+    name = str(form.getvalue('Name'))
 
+    sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
 
+    try:
+        cur.execute(sql)
+        print "New record created successfully"
+    except:
+        print "Error: " + sql + "<br>" . cur.error
+    del knop
+    print 'header("Refresh:5")'
+
+if (knop == "update"):
+    sID = str(form.getvalue('sID'))
+    ip = str(form.getvalue('IPAdres'))
+    port = str(form.getvalue('IPPort'))
+    mac = str(form.getvalue('MACAdres'))
+    os = str(form.getvalue('OperatingSystem'))
+    name = str(form.getvalue('Name'))
+
+    sql = 'UPDATE `Server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
+
+    try:
+        cur.execute(sql)
+        print "New record created successfully"
+    except:
+        print "Error: " + sql + "<br>" . cur.error
+    del knop
+    print 'header("Refresh:5")'
+
+if ((knop == "edit") or (knop == "toevoegen")):
+    sID = str(form.getvalue('sID'))
+
+    if (knop == "edit"):
+        sqlToevoeging = "WHERE sID = "+ sID
+        knop = "update"
+    else:
+        sqlToevoeging = "WHERE sID = NULL"
+        knop = "Server toevoegen"
+
+    sql = "SELECT * FROM Server "+sqlToevoeging+";"
+    row = cur.execute(sql)
+
+    print '''<table>
+    <form action="" method="post">
+    <tr><td> Name: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''"/> </td></tr>
+    <tr><td> IP adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" /> </td></tr>
+    <tr><td> IP Port: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" /> </td></tr>
+    <tr><td> MAC Adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''"/> </td></tr>
+    <tr><td> Operating System: </td><td>
+    <select name="OperatingSystem">
+          <option value="win32">Windows 10</option>
+          <option value="win32">Windows 8.1</option>
+          <option value="win32">Windows 8</option>
+          <option value="win32">Windows 7</option>
+          <option value="win32">Windows XP</option>
+          <option value="linux2">Ubuntu</option>
+          <option value="linux2">Debian</option>
+          <option value="linux2">Other</option>
+    </select> </td></tr>
+    <tr><td><input type="hidden" name="sID" value="<?php echo $row['sID']; ?>"  /><input type="submit" value="<?php echo $needToDo; ?>" name="knop" /> </td></tr>
+    </form>
+    <table>'''
+
+conn.close()
 print("</body>")
 print("</html>")
