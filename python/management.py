@@ -64,7 +64,7 @@ def putValueInDB(*args):
                     '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`, `r10`, `r11`)'
                     "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"','"+ str(args[9]) +"','"+ str(args[10]) +"','"+ str(args[11]) +"');")
     except:
-        print 'Er is iets verkeerd gegaan! ERROR!!!! bel +31 (0)6 33933808'
+        print 'Er is iets verkeerd gegaan! ERROR!!!! bel +31 (0)6 49493809'
         exit()
 
 def getClientsIP():
