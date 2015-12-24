@@ -95,16 +95,14 @@ if ((knop == "edit") or (knop == "toevoegen")):
     sID = str(form.getvalue('sID'))
 
     if (knop == "edit"):
-        sqlToevoeging = "WHERE sID = "+ sID
         knop = "update"
+        sql = "SELECT * FROM Server WHERE sID = "+ sID+";"
+        row = cur.execute(sql)
+        row = cur.fetchone()
     else:
-        sqlToevoeging = "WHERE sID = NULL"
+        row = ["","","","","",""]
         knop = "Server toevoegen"
 
-    sql = "SELECT * FROM Server "+sqlToevoeging+";"
-    row = cur.execute(sql)
-    row = cur.fetchone()
-    print sql
     print '''<table>
     <form action="" method="post">
     <tr><td> Name: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''"/> </td></tr>
