@@ -110,7 +110,7 @@ if ((knop == "edit") or (knop == "toevoegen")):
     <tr><td> Name: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''"/> </td></tr>
     <tr><td> IP adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" /> </td></tr>
     <tr><td> IP Port: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" /> </td></tr>
-    <tr><td> MAC Adres: </td><td> <input type="text" name="MACAdres" value=""/> </td></tr>
+    <tr><td> MAC Adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''"/> </td></tr>
     <tr><td> Operating System: </td><td>
     <select name="OperatingSystem">
           <option value="win32">Windows 10</option>
@@ -122,7 +122,7 @@ if ((knop == "edit") or (knop == "toevoegen")):
           <option value="linux2">Debian</option>
           <option value="linux2">Other</option>
     </select> </td></tr>
-    <tr><td><input type="hidden" name="sID" value="<?php echo $row['sID']; ?>"  /><input type="submit" value="<?php echo $needToDo; ?>" name="knop" /> </td></tr>
+    <tr><td><input type="hidden" name="sID" value="'''+str(row[0])+'''"  /><input type="submit" value="'''+str(knop)+'''" name="knop" /> </td></tr>
     </form>
     <table>'''
 
