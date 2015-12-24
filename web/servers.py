@@ -4,6 +4,7 @@ __author__ = 'Bart Oevering & Mike Slotboom'
 from lxml import etree
 import pymysql
 import cgi, cgitb
+import webbrowser
 
 cgitb.enable()
 form = cgi.FieldStorage()
@@ -71,7 +72,7 @@ if (knop == "Server toevoegen"):
     except:
         print "Error: " + sql + "<br>" . cur.error
     knop = None
-    print 'header("Refresh:5")'
+    webbrowser.open("/", new=5 )
 
 if (knop == "update"):
     sID = str(form.getvalue('sID'))
@@ -89,7 +90,7 @@ if (knop == "update"):
     except:
         print "Error: " + sql + "<br>" . cur.error
     knop = None
-    print 'header("Refresh:5")'
+    webbrowser.open("/", new=5 )
 
 if ((knop == "edit") or (knop == "toevoegen")):
     sID = str(form.getvalue('sID'))
