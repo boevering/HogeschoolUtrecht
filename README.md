@@ -37,7 +37,7 @@ AddHandler cgi-script .py
 
 ## Server beheer
 Natuurlijk is het belangrijk om de server makkelijk te kunnen beheren.
-Hiervoor is een webpagina opgebouwd die kan worden gevonden op de webserver /servers.php
+Hiervoor is een webpagina opgebouwd die kan worden gevonden op de webserver /servers.py
 
 Hier is het mogelijk om een drietal taken uit te voeren.
 Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
