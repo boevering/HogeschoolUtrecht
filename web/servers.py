@@ -17,25 +17,29 @@ knop = form.getvalue('knop')
 class check():
 
     def __init__(self, ip, port, mac, os):
-        self.ip     = ip
-        self.port   = port
-        self.mac    = mac
-        self.os     = os
+        self.ipCheck     = self.ipCheck(ip)
+        self.portCheck   = self.portCheck(port)
+        self.macCheck    = self.macCheck(mac)
+        self.osCheck     = self.osCheck(os)
 
-    def ip(self, ip):
+    def ipCheck(self, ip):
         regxp = r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}" \
                 r"(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
-        return bool(re.match(regxp,self.ip))
+        return bool(re.match(regxp,ip))
 
-    def port(self, port):
-        pass
+    def portCheck(self, port):
+        regxp = r"^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$"
+        return bool(re.match(regxp,port))
 
-    def mac(self, mac):
-        pass
+    def macCheck(self, mac):
+        regxp = r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+        return bool(re.match(regxp,mac))
 
-    def os(self, os):
-        pass
-
+    def osCheck(self, os):
+        if os == "win32" or os == "linux2":
+            return True
+        else:
+            return False
 
 #Database Connection
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
@@ -89,9 +93,8 @@ if (knop == "Server toevoegen"):
     os = str(form.getvalue('OperatingSystem'))
     name = str(form.getvalue('Name'))
 
-    regCheck = check(ip, port, mac, os)
-
-    if regCheck.ip == True:
+    r = check(ip, port, mac, os)
+    if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
         sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
 
         try:
@@ -99,10 +102,12 @@ if (knop == "Server toevoegen"):
             print "New record created successfully"
         except:
             print "Error: " + sql + "<br>" . cur.error
-        knop = None
-        print '<head>'
-        print '<meta http-equiv="refresh" content="5">'
-        print '</head>'
+    else:
+        print 'Er is iets verkeerd gegaan!'
+    knop = None
+    print '<head>'
+    print '<meta http-equiv="refresh" content="5">'
+    print '</head>'
 
 if (knop == "update"):
     sID = str(form.getvalue('sID'))
@@ -112,8 +117,8 @@ if (knop == "update"):
     os = str(form.getvalue('OperatingSystem'))
     name = str(form.getvalue('Name'))
 
-    regCheck = check(ip, port, mac, os)
-    if regCheck.ip == True:
+    r = check(ip, port, mac, os)
+    if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
         sql = 'UPDATE `Server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
