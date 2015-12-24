@@ -72,7 +72,9 @@ if (knop == "Server toevoegen"):
     except:
         print "Error: " + sql + "<br>" . cur.error
     knop = None
-    webbrowser.open("/", new=5 )
+    print '<head>'
+    print '<meta http-equiv="refresh" content="5">'
+    print '</head>'
 
 if (knop == "update"):
     sID = str(form.getvalue('sID'))
@@ -90,7 +92,9 @@ if (knop == "update"):
     except:
         print "Error: " + sql + "<br>" . cur.error
     knop = None
-    webbrowser.open("/", new=5 )
+    print '<head>'
+    print '<meta http-equiv="refresh" content="5">'
+    print '</head>'
 
 if ((knop == "edit") or (knop == "toevoegen")):
     sID = str(form.getvalue('sID'))
