@@ -70,7 +70,7 @@ if (knop == "Server toevoegen"):
         print "New record created successfully"
     except:
         print "Error: " + sql + "<br>" . cur.error
-    del knop
+    knop = None
     print 'header("Refresh:5")'
 
 if (knop == "update"):
@@ -88,7 +88,7 @@ if (knop == "update"):
         print "New record created successfully"
     except:
         print "Error: " + sql + "<br>" . cur.error
-    del knop
+    knop = None
     print 'header("Refresh:5")'
 
 if ((knop == "edit") or (knop == "toevoegen")):
