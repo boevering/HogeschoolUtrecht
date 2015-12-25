@@ -29,16 +29,19 @@ print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
 print("<meta charset='utf-8'>")
-print("<title>Server Beheer</title>")
+print("<title>Logbeheer</title>")
 print("</head>")
 print("<body>")
-print ("<h1> Welkom op de beheer pagina voor de servers. </h1>")
+print ("<h1> Welkom op de logpagina voor de servers. </h1>")
 
 if not knop:
     sql = "SELECT * FROM Logs;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
+    for x in xrange(0,nrrow):
+        row = cur.fetchone()
+        print '<form action="" method="post"><input type="submit" value="' + str(row[1][x]) + '" name="knop" /></form></td></tr>'
 
     print '<table border="1">'
     print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>r1</th><th>r2</th><th>r3</th><th>r4</th><th>r5</th><th>r6</th><th>r7</th><th>r8</th><th>r9</th><th>r10</th><th>r11</th>'
@@ -58,6 +61,7 @@ if not knop:
         print '<td>'+ str(row[11]) + '</td></tr>'
     # print '<form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td>'
     print '</table>'
-    for x in xrange(0,nrrow):
-        row = cur.fetchone()
-        print '<form action="" method="post"><input type="submit" value="' + str(row[x]) + '" name="knop" /></form></td></tr>'
+
+conn.close()
+print("</body>")
+print("</html>")
