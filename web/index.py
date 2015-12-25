@@ -1,3 +1,6 @@
+#! /usr/bin/python
+__author__ = 'Bart Oevering & Mike Slotboom'
+
 from lxml import etree
 import pymysql
 import cgi, cgitb
