@@ -55,7 +55,9 @@ if not knop:
         print '<td>'+ str(row[8]) + '</td>'
         print '<td>'+ str(row[9]) + '</td>'
         print '<td>'+ str(row[10]) + '</td>'
-        print '<td>'+ str(row[11]) + '</td>'
-        print '<td><form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td></tr>'
+        print '<td>'+ str(row[11]) + '</td></tr>'
+    # print '<form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td>'
     print '</table>'
-    print '<form action="" method="post"><input type="submit" value="toevoegen" name="knop" /></form></td></tr>'
+    for x in xrange(0,nrrow):
+        row = cur.fetchone()
+        print '<form action="" method="post"><input type="submit" value="' + str(row[x]) + '" name="knop" /></form></td></tr>'
