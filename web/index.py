@@ -11,7 +11,6 @@ form = cgi.FieldStorage()
 
 # Get data from fields
 knop = form.getvalue('knop')
-view = form.getvalue('view')
 
 #Database Connection
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
