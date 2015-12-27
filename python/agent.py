@@ -112,16 +112,30 @@ def get_value(number):
             return str(subprocess.check_output(toDo))
 
     if number == 5:
-        return getPowerShell('Get-Memory')
+        if BS == "win32":
+            return getPowerShell('Get-Memory')
+        else:
+            print 'kaas'
+
 
     if number == 6:
-        return getPowerShell('Get-FreeSpace')
+        if BS == "win32":
+            return getPowerShell('Get-FreeSpace')
+        else:
+            print 'kaas'
 
     if number == 7:
-        return getPowerShell('Get-IPAddress -first')
+        if BS == "win32":
+            return getPowerShell('Get-IPAddress -first')
+        else:
+            print 'kaas'
+        return
 
     if number == 8:
-        return getPowerShell('Get-Uptime')
+        if BS == "win32":
+            return getPowerShell('Get-Uptime')
+        else:
+            print 'kaas'
 
     if number == 9:
         p = psutil.disk_usage('c:\\')
