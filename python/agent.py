@@ -6,6 +6,7 @@ from BaseHTTPServer import HTTPServer
 import sys,subprocess
 import psutil
 import os.path
+import os.system
 from uptime import uptime
 
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
