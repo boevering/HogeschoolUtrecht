@@ -22,7 +22,7 @@ $SQL = "SELECT * FROM Logs";
 $result = mysql_query($SQL);
 
 echo '<table>';
-echo '<th>LogID</th><th>ServerID</th><th>Time Stamp</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>R6</th><th>R7</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th>';
+echo '<th>LogID</th><th>ServerID</th><th>Time Stamp</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>R6</th><th>R7</th><th>R8</th>';
 while ($db_field = mysql_fetch_assoc($result) ) {
 
 print '<tr><td>' . $db_field['lID'] . "</td>";
