@@ -122,7 +122,9 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-FreeSpace')
         else:
-            print 'kaas'
+            p = psutil.disk_usage('/')
+            waardes = str(p.free) + ';' + str(p.used)  + ';' + str(p.total)
+            return waardes
 
     if number == 7:
         if BS == "win32":
@@ -138,9 +140,7 @@ def get_value(number):
             print 'kaas'
 
     if number == 9:
-        p = psutil.disk_usage('c:\\')
-        waardes = str(p.free) + ';' + str(p.used)  + ';' + str(p.total)
-        return waardes
+        return '0'
 
     if number == 10:
         p = psutil.cpu_times()
