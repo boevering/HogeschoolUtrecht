@@ -61,16 +61,19 @@ if not knop:
         print '<td>'+ str(row[11]) + '</td>'
         print '<td>'+ str(row[12]) + '</td>'
         print '<td>'+ str(row[13]) + '</td></tr>'
+
+    sql1 = "SELECT * FROM Server;"
+    cur.execute(sql1)
+    nrrow1= cur.rowcount
+
+    for x in xrange(0,nrrow1):
+        row = cur.fetchone()
+        print '<form action="" method="post"><input type="submit" value="' + str(row[0][x]) + '" name="knop" /></form></td>'
+
     print '<form action="" method="post"><input type="submit" value="1" name="knop" /></form></td>'
     print '</table>'
 
-    # sql1 = "SELECT * FROM Server;"
-    # cur.execute(sql1)
-    # nrrow1= cur.rowcount
-    #
-    # for x in xrange(0,nrrow1):
-    #     row = cur.fetchone()
-    #     print '<form action="" method="post"><input type="submit" value="' + str(row[1][x]) + '" name="view" /></form>'
+
 
 if (knop == '1'):
     sql = "SELECT * FROM Logs WHERE sID = 1;"
