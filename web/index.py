@@ -46,7 +46,6 @@ if not knop:
     for x in xrange(0,nrrow1):
         row = cur.fetchone()
         print '<tr><td><form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" /></form></td></tr>'
-
     print '<form action="" method="post"><input type="submit" value="Alle Servers" name="knop" /></form></td>'
 
 if (knop == 'Alle Servers'):
