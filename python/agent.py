@@ -104,7 +104,10 @@ def get_value(number):
             return uptime()
 
     if number == 4:
-        return getPowerShell('Get-CountPS')
+        if BS == "win32":
+            return getPowerShell('Get-CountPS')
+        else:
+            return os.system("ps -aux | wc -l")
 
     if number == 5:
         return getPowerShell('Get-Memory')
