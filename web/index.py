@@ -65,7 +65,7 @@ if not knop:
         print '<td>'+ str(row[11]) + '</td>'
         print '<td>'+ str(row[12]) + '</td>'
         print '<td>'+ str(row[13]) + '</td>'
-        print '<td>'+ str(row[14]) + '</td></tr>'
+        # print '<td>'+ str(row[14]) + '</td></tr>'
     # print '<form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td>'
     print '</table>'
 
