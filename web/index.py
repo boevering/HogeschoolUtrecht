@@ -43,9 +43,9 @@ if not knop:
     cur.execute(sql)
     nrrow= cur.rowcount
 
-    for x in xrange(0,nrrow):
-        row = cur.fetchone()
-        print '<form action="" method="post"><input type="submit" value="' + str(row[1][0]) + '" name="view" /></form>'
+    # for x in xrange(0,nrrow):
+    #     row = cur.fetchone()
+    #     print '<form action="" method="post"><input type="submit" value="' + str(row[1][0]) + '" name="view" /></form>'
 
     print '<table border="1">'
     print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>r1</th><th>r2</th><th>r3</th><th>r4</th><th>r5</th><th>r6</th><th>r7</th><th>r8</th><th>r9</th><th>r10</th><th>r11</th>'
