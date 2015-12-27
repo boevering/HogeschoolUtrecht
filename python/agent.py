@@ -3,11 +3,11 @@ __author__ = 'Bart Oevering & Mike Slotboom'
 
 from pysimplesoap.server import SoapDispatcher, SOAPHandler
 from BaseHTTPServer import HTTPServer
-import sys,subprocess
+from uptime import uptime
+import sys, subprocess
 import psutil
 import os.path
-import os.system
-from uptime import uptime
+
 
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
 pathToFilePS = 'agent_info.ps1'
@@ -108,7 +108,9 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-CountPS')
         else:
-            return os.system("ps -aux | wc -l")
+            process = subprocess.Popen("ps -aux | wc -l".split(), stdout=subprocess.PIPE)
+            return process.communicate()[0]
+            #os.system("ps -aux | wc -l")
 
     if number == 5:
         return getPowerShell('Get-Memory')
