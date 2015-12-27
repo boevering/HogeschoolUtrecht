@@ -35,10 +35,7 @@ print '<td>' . $db_field['r4'] . "</td>";
 print '<td>' . $db_field['r5'] . "</td>";
 print '<td>' . $db_field['r6'] . "</td>";
 print '<td>' . $db_field['r7'] . "</td>";
-print '<td>' . $db_field['r8'] . "</td>";
-print '<td>' . $db_field['r9'] . "</td>";
-print '<td>' . $db_field['r10'] . "</td>";
-print '<td>' . $db_field['r11'] . "</td></tr>";
+print '<td>' . $db_field['r8'] . "</td></tr>";
 }
 
 echo '</table>';
