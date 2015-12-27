@@ -89,6 +89,8 @@ def getPowerShell(whattoget):
 def get_value(number):
     print "get_value, of of item with number=",number
 
+    BS = sys.platform
+
     if number == 1:
         return sys.platform
 
@@ -96,7 +98,10 @@ def get_value(number):
         return sys.getdefaultencoding()
 
     if number == 3:
-        return uptime()
+        if BS == "win32":
+            return getPowerShell('Get-Uptime')
+        else:
+            return uptime()
 
     if number == 4:
         return getPowerShell('Get-CountPS')
