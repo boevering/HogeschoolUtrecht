@@ -115,8 +115,9 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-Memory')
         else:
-            print 'kaas'
-
+            p = psutil.virtual_memory()
+            waardes = str(p.used) + ';' + str(p.available)  + ';' + str(p.total)
+            return waardes
 
     if number == 6:
         if BS == "win32":
@@ -131,13 +132,9 @@ def get_value(number):
             return getPowerShell('Get-IPAddress -first')
         else:
             print 'kaas'
-        return
 
     if number == 8:
-        if BS == "win32":
-            return getPowerShell('Get-Uptime')
-        else:
-            print 'kaas'
+        return '0'
 
     if number == 9:
         return '0'
@@ -148,9 +145,7 @@ def get_value(number):
         return waardes
 
     if number == 11:
-        p = psutil.virtual_memory()
-        waardes = str(p.used) + ';' + str(p.available)  + ';' + str(p.total)
-        return waardes
+        return '0'
 
     # Last value
     return None
