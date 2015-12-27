@@ -2,10 +2,11 @@
 __author__ = 'Bart Oevering & Mike Slotboom'
 
 from pysimplesoap.client import SoapClient, SoapFault
+from socket import *
 from lxml import etree
 from time import strftime
 import pymysql
-from socket import *
+
 
 
 ### Set of very important variables, don't change if you're not sure what your doing!
