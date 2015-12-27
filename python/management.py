@@ -9,7 +9,7 @@ import pymysql
 
 
 
-### Set of very important variables, don't change if you're not sure what your doing!
+### Set of very important variables, don't change if you're not sure what you're doing!
 LevelOfDebug = 1                                    # Use 0 or 1 to set debugging
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
 serverPath = '/data/servers/server'
