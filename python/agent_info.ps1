@@ -38,22 +38,8 @@ function Get-FreeSpace {
 function Get-Uptime {
    $os = Get-WmiObject win32_operatingsystem
    $uptime = (Get-Date) - ($os.ConvertToDateTime($os.lastbootuptime))
-   if ($Uptime.Hours -le 9) {
-    $Hours = "0" + $Uptime.Hours
-   }
-    else {
-    $Hours = $Uptime.Hours
-   }
-   if ($Uptime.Minutes -le 9) {
-    $Minutes = "0" + $Uptime.Minutes
-   }
-    else {
-    $Minutes = $Uptime.Minutes
-   }
-   $Display = "" + $Uptime.Days + ":" + $Hours + ":" + $Minutes + ":" + $Uptime.Seconds + "." + $Uptime.Milliseconds + ""
-   Write-Output $Display
+   Write-Output $uptime.TotalSeconds
 }
-
 
 #Get-CountPS
 #Get-IPAddress -first
