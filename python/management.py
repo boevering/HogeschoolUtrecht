@@ -41,6 +41,7 @@ def valueSoap(client, sID,  nummer):
 def pingit(host, port):
 
     s = socket(AF_INET, SOCK_STREAM)            # Creates socket
+    s.settimeout(5)                             # set timeout to 5 seconds, server should always respons within this time
     try:
         s.connect((host, int(port)))            # tries to connect to the host
     except:                                     # if failed to connect
