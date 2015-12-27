@@ -44,8 +44,8 @@ nrrow1= cur.rowcount
 print '<form action="" method="post"><input type="submit" value="Alle Servers" name="knop" />'
 for x in xrange(0,nrrow1):
     row = cur.fetchone()
-    print '<input type="submit" value="' + str(row[0]) + '" name="knop" /> </form>'
-print '\n'
+    print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
+print '</form>\n'
 
 if (knop):
     if knop == "Alle Servers":
