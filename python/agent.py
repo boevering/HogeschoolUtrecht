@@ -134,18 +134,9 @@ def get_value(number):
             print 'kaas'
 
     if number == 8:
-        return '0'
-
-    if number == 9:
-        return '0'
-
-    if number == 10:
         p = psutil.cpu_times()
         waardes = str(p.user) + ';' + str(p.system)  + ';' + str(p.idle)
         return waardes
-
-    if number == 11:
-        return '0'
 
     # Last value
     return None
