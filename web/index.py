@@ -68,7 +68,7 @@ if not knop:
 
     for x in xrange(0,nrrow1):
         row = cur.fetchone()
-        print 'row[0]'
+        print row[0]
         # print '<form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" /></form></td>'
 
     print '<form action="" method="post"><input type="submit" value="1" name="knop" /></form></td>'
