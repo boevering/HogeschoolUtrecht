@@ -100,7 +100,8 @@ def get_value(number):
 
     if number == 3:
         if BS == "win32":
-            return getPowerShell('Get-Uptime')
+            upTimeList = getPowerShell('Get-Uptime').rstrip().split(',')
+            return float(upTimeList[0]+'.'+upTimeList[1])
         else:
             return uptime()
 
