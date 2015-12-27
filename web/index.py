@@ -37,16 +37,14 @@ print("</head>")
 print("<body>")
 print ("<h1> Welkom op de logpagina voor de servers. </h1>")
 
-if not knop:
-    sql1 = "SELECT sID FROM Server;"
-    cur.execute(sql1)
-    nrrow1= cur.rowcount
+sql1 = "SELECT sID FROM Server;"
+cur.execute(sql1)
+nrrow1= cur.rowcount
 
-    for x in xrange(0,nrrow1):
-        row = cur.fetchone()
-        print '<tr><td><form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" /></form></td></tr>'
-
-    print '<form action="" method="post"><input type="submit" value="Alle Servers" name="knop" /></form></td>'
+for x in xrange(0,nrrow1):
+    row = cur.fetchone()
+    print '<form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" />'
+print '<input type="submit" value="Alle Servers" name="knop" /></form>'
 
 if (knop):
     if knop == "Alle Servers":
