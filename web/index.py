@@ -62,7 +62,7 @@ if not knop:
         print '<td>'+ str(row[12]) + '</td>'
         print '<td>'+ str(row[13]) + '</td></tr>'
 
-    sql1 = "SELECT * FROM Server;"
+    sql1 = "SELECT sID FROM Server;"
     cur.execute(sql1)
     nrrow1= cur.rowcount
 
