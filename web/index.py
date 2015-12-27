@@ -43,10 +43,6 @@ if not knop:
     cur.execute(sql)
     nrrow= cur.rowcount
 
-    # for x in xrange(0,nrrow):
-    #     row = cur.fetchone()
-    #     print '<form action="" method="post"><input type="submit" value="' + str(row[1][0]) + '" name="view" /></form>'
-
     print '<table border="1">'
     print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>r1</th><th>r2</th><th>r3</th><th>r4</th><th>r5</th><th>r6</th><th>r7</th><th>r8</th><th>r9</th><th>r10</th><th>r11</th>'
     for x in xrange(0,nrrow):
@@ -68,6 +64,14 @@ if not knop:
         # print '<td>'+ str(row[14]) + '</td></tr>'
     # print '<form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td>'
     print '</table>'
+
+    sql1 = "SELECT * FROM Server;"
+    cur.execute(sql1)
+    nrrow1= cur.rowcount
+
+    for x in xrange(0,nrrow1):
+        row = cur.fetchone()
+        print '<form action="" method="post"><input type="submit" value="' + str(row[1][x]) + '" name="view" /></form>'
 
 if (view == '1'):
     sql = "SELECT * FROM Logs WHERE sID = 1;"
@@ -92,7 +96,7 @@ if (view == '1'):
         print '<td>'+ str(row[11]) + '</td>'
         print '<td>'+ str(row[12]) + '</td>'
         print '<td>'+ str(row[13]) + '</td>'
-        print '<td>'+ str(row[14]) + '</td></tr>'
+        # print '<td>'+ str(row[14]) + '</td></tr>'
     # print '<form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td>'
     print '</table>'
 
