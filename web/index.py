@@ -41,10 +41,11 @@ sql1 = "SELECT sID FROM Server;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 
+print '<input type="submit" value="Alle Servers" name="knop" /></form>'
 for x in xrange(0,nrrow1):
     row = cur.fetchone()
     print '<form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" />'
-print '<input type="submit" value="Alle Servers" name="knop" /></form>'
+print '\n'
 
 if (knop):
     if knop == "Alle Servers":
