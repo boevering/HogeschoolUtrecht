@@ -39,6 +39,19 @@ print("<body>")
 print ("<h1> Welkom op de logpagina voor de servers. </h1>")
 
 if not knop:
+    sql1 = "SELECT sID FROM Server;"
+    cur.execute(sql1)
+    nrrow1= cur.rowcount
+
+    for x in xrange(0,nrrow1):
+        row = cur.fetchone()
+        print '<tr><td><form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" /></form></td>'
+        print '<td><form action="" method="post"><input type="submit" value="' + str(row[1]) + '" name="knop" /></form></td>'
+        print '<td><form action="" method="post"><input type="submit" value="' + str(row[2]) + '" name="knop" /></form></td>'
+
+    print '<form action="" method="post"><input type="submit" value="Alle Servers" name="knop" /></form></td>'
+
+if (knop == 'Alle Servers'):
     sql = "SELECT * FROM Logs;"
     cur.execute(sql)
     nrrow= cur.rowcount
@@ -61,19 +74,8 @@ if not knop:
         print '<td>'+ str(row[11]) + '</td>'
         print '<td>'+ str(row[12]) + '</td>'
         print '<td>'+ str(row[13]) + '</td></tr>'
-
-    sql1 = "SELECT sID FROM Server;"
-    cur.execute(sql1)
-    nrrow1= cur.rowcount
-
-    for x in xrange(0,nrrow1):
-        row = cur.fetchone()
-        print row[0]
-        # print '<form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" /></form></td>'
-
     print '<form action="" method="post"><input type="submit" value="1" name="knop" /></form></td>'
     print '</table>'
-
 
 
 if (knop == '1'):
