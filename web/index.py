@@ -69,10 +69,7 @@ if (knop):
         print '<td>'+ str(row[7]) + '</td>'
         print '<td>'+ str(row[8]) + '</td>'
         print '<td>'+ str(row[9]) + '</td>'
-        print '<td>'+ str(row[10]) + '</td>'
-        print '<td>'+ str(row[11]) + '</td>'
-        print '<td>'+ str(row[12]) + '</td>'
-        print '<td>'+ str(row[13]) + '</td></tr>'
+        print '<td>'+ str(row[10]) + '</td></tr>'
     print '</table>'
 
 conn.close()
