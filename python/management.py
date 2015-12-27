@@ -9,10 +9,11 @@ from socket import *
 
 
 ### Set of very important variables, don't change if you're not sure what your doing!
-LevelOfDebug = 1
+LevelOfDebug = 1                                    # Use 0 or 1 to set debugging
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
+st = strftime("%Y-%m-%d %H:%M:%S")
 
 def valueToGet(client, sID):
     global LevelOfDebug
@@ -31,14 +32,18 @@ def valueToGet(client, sID):
     putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8],r[9],r[10])
 
 def valueSoap(client, sID,  nummer):
+    global LevelOfDebug
+
     value = str(client.get_value(number=nummer).resultaat)
     if not value:
-        logging(sID, "ERROR", str(nummer) + " value could not be retrieved.")
-        value = 0
+        logging(sID, "ERROR", "Value for nr:"+str(nummer)+" could not be retrieved.")
+        print sID, "ERROR", "Value for nr:"+str(nummer)+" could not be retrieved."
+        value = "0"
+        return value
     else:
         return value
 
-def pingit(host, port):
+def pingit(host, port, sID):
 
     s = socket(AF_INET, SOCK_STREAM)            # Creates socket
     s.settimeout(5)                             # set timeout to 5 seconds, server should always respons within this time
@@ -46,6 +51,9 @@ def pingit(host, port):
         s.connect((host, int(port)))            # tries to connect to the host
     except:                                     # if failed to connect
         s.close()                               # closes socket, so it can be re-used
+        logging(sID, "CRITICAL",  "Server could not be contacted, server offline!")
+        if LevelOfDebug == 1:
+            print "Server is offline!"
         return False                            # it retuns false
     if True:
         s.close()                               # closes socket, so it can be re-used
@@ -54,7 +62,7 @@ def pingit(host, port):
 def putValueInDB(*args):
     global xmlFile
     global databasePath
-    st = strftime("%Y-%m-%d %H:%M:%S")
+    global st
 
     tree = etree.parse(xmlFile)
     database = tree.xpath(databasePath)
@@ -80,10 +88,9 @@ def logging(sID, level, error):
     INFO
     DEBUG
     '''
-
     global xmlFile
     global databasePath
-    st = strftime("%Y-%m-%d %H:%M:%S")
+    global st
 
     tree = etree.parse(xmlFile)
     database = tree.xpath(databasePath)
@@ -104,15 +111,19 @@ def logging(sID, level, error):
 def getClientsIP():
     global xmlFile
     global serverPath
+    global LevelOfDebug
 
-    tree = etree.parse(xmlFile)
-    servers = tree.xpath(serverPath)
+    try:
+        tree = etree.parse(xmlFile)
+        servers = tree.xpath(serverPath)
+    except IOError:
+        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
 
     ## count the amount of servers in the xmlfile so we know how often we need to ask divertent servers.
     count = int(tree.xpath('count(//server)'))
 
     if count == 0:
-        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden bereikt!"
+        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
         exit()
 
     for i in range(count):
@@ -127,11 +138,9 @@ def getClientsIP():
             namespace = "http://example.com/sample.wsdl",
             soap_ns='soap',
             ns = False)
-        serverOnline = pingit(serverIPAdress, serverIPPort)
+        serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
             valueToGet(client, sID)
-        else:
-            logging(sID, "CRITICAL",  "Server could not be contacted, server offline!")
-            print "Server is offline!"
 
 getClientsIP()
+print "\n"+st+" - All done!"
