@@ -108,7 +108,7 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-CountPS')
         else:
-            process = subprocess.Popen("ps -aux | wc -l".split(), stdout=subprocess.PIPE)
+            process = subprocess.Popen("sudo ps -aux | wc -l".split(), stdout=subprocess.PIPE)
             return process.communicate()[0]
             #os.system("ps -aux | wc -l")
 
