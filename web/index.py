@@ -45,38 +45,14 @@ if not knop:
 
     for x in xrange(0,nrrow1):
         row = cur.fetchone()
-        print '<tr><td><form action="" method="post"><input type="submit" value="' + str(row[0]) + '" name="knop" /></form></td></tr>'
+        print '<tr><td><form action="" method="post"><input type="submit" value="Server ' + str(row[0]) + '" name="knop" /></form></td></tr>'
     print '<form action="" method="post"><input type="submit" value="Alle Servers" name="knop" /></form></td>'
 
-if (knop == 'Alle Servers'):
-    sql = "SELECT * FROM Logs;"
-    cur.execute(sql)
-    nrrow= cur.rowcount
-
-    print '<table border="1">'
-    print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>r1</th><th>r2</th><th>r3</th><th>r4</th><th>r5</th><th>r6</th><th>r7</th><th>r8</th><th>r9</th><th>r10</th><th>r11</th>'
-    for x in xrange(0,nrrow):
-        row = cur.fetchone()
-        print '<tr><td>'+ str(row[0]) + '</td>'
-        print '<td>'+ str(row[1]) + '</td>'
-        print '<td>'+ str(row[2]) + '</td>'
-        print '<td>'+ str(row[3]) + '</td>'
-        print '<td>'+ str(row[4]) + '</td>'
-        print '<td>'+ str(row[5]) + '</td>'
-        print '<td>'+ str(row[6]) + '</td>'
-        print '<td>'+ str(row[7]) + '</td>'
-        print '<td>'+ str(row[8]) + '</td>'
-        print '<td>'+ str(row[9]) + '</td>'
-        print '<td>'+ str(row[10]) + '</td>'
-        print '<td>'+ str(row[11]) + '</td>'
-        print '<td>'+ str(row[12]) + '</td>'
-        print '<td>'+ str(row[13]) + '</td></tr>'
-    print '<form action="" method="post"><input type="submit" value="1" name="knop" /></form></td>'
-    print '</table>'
-
-
-if (knop == '1'):
-    sql = "SELECT * FROM Logs WHERE sID = 1;"
+if (knop):
+    if knop == "Alle Servers":
+        sql = "SELECT * FROM Logs;"
+    else:
+        sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+";"
     cur.execute(sql)
     nrrow= cur.rowcount
 
