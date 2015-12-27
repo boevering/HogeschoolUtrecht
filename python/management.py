@@ -37,7 +37,8 @@ def valueSoap(client, sID,  nummer):
     value = str(client.get_value(number=nummer).resultaat)
     if not value:
         logging(sID, "ERROR", "Value for nr:"+str(nummer)+" could not be retrieved.")
-        print sID, "ERROR", "Value for nr:"+str(nummer)+" could not be retrieved."
+        if LevelOfDebug == 1:
+            print sID, "ERROR", "Value for nr:"+str(nummer)+" could not be retrieved."
         value = "0"
         return value
     else:
