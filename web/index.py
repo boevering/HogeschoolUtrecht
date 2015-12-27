@@ -11,6 +11,7 @@ form = cgi.FieldStorage()
 
 # Get data from fields
 knop = form.getvalue('knop')
+view = form.getvalue('view')
 
 #Database Connection
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
@@ -68,7 +69,7 @@ if not knop:
     # print '<form action="" method="post"><input type="hidden" name="sID" value="' + str(row[1]) + '"  /><input type="submit" value="edit" name="knop" /></form></td>'
     print '</table>'
 
-if (view == '1')
+if (view == '1'):
     sql = "SELECT * FROM Logs WHERE sID = 1;"
     cur.execute(sql)
     nrrow= cur.rowcount

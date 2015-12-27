@@ -6,6 +6,8 @@ from lxml import etree
 from time import strftime
 import sys
 import pymysql
+from socket import *
+
 
 
 def valueToGet(client, sID):
@@ -45,6 +47,20 @@ def valueToGet(client, sID):
     print "psutil.virtual_memory() =11 :", r11
 
     putValueInDB(sID, r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11)
+
+def pingit(ip, ipport):
+
+    host = str(ip)
+    port = int(ipport)
+
+    s = socket(AF_INET, SOCK_STREAM)            # Creates socket
+    try:
+        s.connect((host, port))                 # tries to connect to the host
+    except:                                     # if failed to connect
+        s.close()                               # closes socket, so it can be re-used
+        return False                            # it retuns that server is offline
+    if True:
+        return True
 
 def putValueInDB(*args):
     xmlFile = 'http://10.0.0.14/XMLCreate.php'
@@ -89,6 +105,10 @@ def getClientsIP():
             namespace = "http://example.com/sample.wsdl",
             soap_ns='soap',
             ns = False)
-        valueToGet(client, sID)
+        serverOnline = pingit(serverIPAdress, serverIPPort)
+        if serverOnline == True:
+            valueToGet(client, sID)
+        else:
+            print "Server is offline!"
 
 getClientsIP()
