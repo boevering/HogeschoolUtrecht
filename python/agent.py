@@ -108,9 +108,8 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-CountPS')
         else:
-            process = subprocess.Popen("sudo ps -aux | wc -l".split(), stdout=subprocess.PIPE)
-            return process.communicate()[0]
-            #os.system("ps -aux | wc -l")
+            toDo= "sudo ps -aux | wc -l"
+            return str(subprocess.check_output(toDo))
 
     if number == 5:
         return getPowerShell('Get-Memory')
