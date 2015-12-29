@@ -38,14 +38,14 @@ AddHandler cgi-script .py
 
 ## Serverbeheer
 Natuurlijk is het belangrijk om de server gemakkelijk te kunnen beheren.
-Hiervoor is een webpagina opgebouwd die kan worden gevonden op de webserver /servers.py
+Hiervoor is een webpagina opgebouwd, die kan worden gevonden op de webserver /servers.py
 
 Hier is het mogelijk om een drietal taken uit te voeren.
 Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
 Deze kunnen hier worden aangepast via de knop 'edit'.
 Ook kan hier een server worden toegevoegd.
 De toegevoegde server wordt gelijk in de MySQL database geplaatst.
-Ook komt deze server dan gelijk terug in het XML overzicht wat op /XMLCreate.php kan worden gevonden.
+Ook komt deze server dan gelijk terug in het XML overzicht, wat op /XMLCreate.php kan worden gevonden.
 
 
 
