@@ -6,9 +6,9 @@ Het systeem is in twee delen opgesplitst:
 -   Agents.
 
 Dit project bestaat daarnaast uit drie componenten:
-    1. agent.py;
-    2. management.py;
-    3. agent_info.ps1.
+-   agent.py;
+-   management.py;
+-   agent_info.ps1.
 
 Deze componenten zijn hieronder verder uitgelegd.
 
