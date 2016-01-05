@@ -1,19 +1,22 @@
 # Hogeschool Utrecht
-This is a project for the university of applied sciences "Hogeschool Utrecht"
+This is a project for the University of Applied Sciences "Hogeschool Utrecht". The requirement for this project is making a monitoringsystem, which needs to be created with the use of Python. 
+This system has been split into two parts: 
+-   Managementsystem
+-   Agents
 
-For this project there is a need for a monitoring system witch needs to be created with the use of python.
-
-There are tree main components:
+There are three main components in this project:
     1. agent.py
     2. management.py
     3. agent_info.ps1
+    
+These components are further explained below.
 
 ## agent.py
-some more text
+This script is an important part for the functionality of the system. This script has to be running on the several af=gents, to be able to ask the values of this machine. This script makes a connection to the managementsystem and gets the necessary information, in order to send the right information when it is asked.
 
 
 ## management.py
-some more text
+The managementscript 
 
 
 ## agent_info.ps1
@@ -35,7 +38,7 @@ nano /etc/apache2/sites-enabled/000-default.conf
 AddHandler cgi-script .py
 
 
-## Server beheer
+## Serverbeheer
 Natuurlijk is het belangrijk om de server makkelijk te kunnen beheren.
 Hiervoor is een webpagina opgebouwd die kan worden gevonden op de webserver /servers.py
 
