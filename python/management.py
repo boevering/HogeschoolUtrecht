@@ -5,8 +5,8 @@ from pysimplesoap.client import SoapClient, SoapFault
 from socket import *
 from lxml import etree
 from time import strftime
-import pymysql
 import csv
+import pymysql
 
 
 
