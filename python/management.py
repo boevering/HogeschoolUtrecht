@@ -6,6 +6,7 @@ from socket import *
 from lxml import etree
 from time import strftime
 import pymysql
+import csv
 
 
 
@@ -24,7 +25,7 @@ def valueToGet(client, sID):
     for i in range(1, 9):
         r.append(valueSoap(client, sID, i).rstrip())
 
-    # print statement for debuging only!
+    # print statement for debugging only!
     if LevelOfDebug == 1:
         for i in range(0, 8):
             print r[i]
@@ -79,6 +80,16 @@ def putValueInDB(*args):
                     "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"');")
     except:
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
+        exit()
+
+    try:
+        rows = cur.fetchall()
+        fp = open('/tmp/log.csv', 'w')
+        myFile = csv.writer(fp)
+        myFile.writerows(rows)
+        fp.close()
+    except:
+        print 'Het csv-bestand kan niet worden beschreven! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
         exit()
     cur.close()
 
