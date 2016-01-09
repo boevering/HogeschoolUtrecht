@@ -17,6 +17,6 @@ cur.execute(dbQuery)
 
 result=cur.fetchall()
 
-c = csv.writer(open("temp.csv","wb"), dialect=csv.excel)
+c = csv.writer(open("../web/temp.csv","wb"), dialect=csv.excel)
 for row in result:
     c.writerow(row)
