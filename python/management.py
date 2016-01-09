@@ -7,7 +7,6 @@ from lxml import etree
 from time import strftime
 import csv
 import numpy as np
-import matplotlib.pyplot as plt
 import pymysql
 
 
@@ -92,6 +91,10 @@ def createGraph(sID):
     global limitAmount
     global imagePath
 
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+
     tree = etree.parse(xmlFile)
     database = tree.xpath(databasePath)
 
@@ -105,7 +108,6 @@ def createGraph(sID):
     except:
         print "ERROR"
     if True:
-        plt.ioff()
         fig = plt.figure()
         ax = fig.add_subplot(111)
 
