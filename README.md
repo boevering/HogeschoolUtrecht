@@ -41,6 +41,20 @@ Hier staat op geinstalleerd:
 
 Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt ./update.sh
 
+### crontab
+Via crontab wordt er elke minuut een update van de server af gehaald.
+Dit ziet er in crontab als volgt uit:
+
+```bash
+sudo crontab -e
+...
+    */1 * * * * /var/www/test/HogeschoolUtrecht/python/management.py > /home/pi/runlog
+...
+cat runlog
+...
+    2016-01-09 12:38:02 - All done!
+```
+
 ### update.sh
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeg gehaald, vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
