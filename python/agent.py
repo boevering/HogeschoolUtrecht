@@ -6,6 +6,7 @@ from BaseHTTPServer import HTTPServer
 from uptime import uptime
 import sys, subprocess
 import psutil
+import socket
 import os.path
 
 
@@ -102,8 +103,12 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-CountPS')
         else:
-            toDo= "sudo ps -aux | wc -l"
-            return str(subprocess.check_output(toDo))
+            pidList = []
+            for pid in os.listdir('/proc'):
+                if pid.isdigit():
+                    pidList.append(pid)
+            print(len(pidList))
+            return len(pidList)
 
     if number == 5:
         if BS == "win32":
@@ -125,7 +130,7 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-IPAddress -first')
         else:
-            print 'kaas'
+            return socket.gethostbyname(socket.gethostname())
 
     if number == 8:
         p = psutil.cpu_times()
