@@ -149,7 +149,7 @@ sudo chmod +x install_debian.sh
 ./install_debian.sh
 ```
 
-Het script wat hiermee wordt aangeroepen en geladen is het volgende:
+Het script wat hiermee wordt aangeroepen en geladen, is het volgende:
 ```bash
 #!/bin/sh
 
