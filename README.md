@@ -87,41 +87,51 @@ De Server tabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alle
 Belangrijk om van een server te weten is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
 De naam en OS zijn ter verduidelijking van de informatie.
 ```sql
-sID int(11) AI PK
-IPAdres varchar(45)
-IPPort varchar(5)
-MACAdres varchar(45)
-OperatingSystem varchar(45)
-Name varchar(45)
+Table: Server
+    Columns:
+    sID int(11) AI PK
+    IPAdres varchar(45)
+    IPPort varchar(5)
+    MACAdres varchar(45)
+    OperatingSystem varchar(45)
+    Name varchar(45)
 ```
 
 #### Logs
+Elke log entry krijgt zijn eigen unieke ID, daarnaast wordt er altijd verwezen naar een bestaande server (sID).
+Vervolgens wordt alle informatie tweer gegeven samen met een TimeStamp zodat altijd bekend is op welk tijdstip deze is geplaatst.
 ```sql
-lID int(11) AI PK
-sID int(11) FK
-TimeStamp varchar(45)
-r1 varchar(45)
-r2 varchar(45)
-r3 varchar(45)
-r4 varchar(45)
-r5 varchar(100)
-r6 varchar(45)
-r7 varchar(45)
-r8 varchar(511)
+Table: Logs
+    Columns:
+    lID int(11) AI PK
+    sID int(11) FK
+    TimeStamp varchar(45)
+    r1 varchar(45)
+    r2 varchar(45)
+    r3 varchar(45)
+    r4 varchar(45)
+    r5 varchar(100)
+    r6 varchar(45)
+    r7 varchar(45)
+    r8 varchar(511)
 ```
-
 
 #### error
+Om er voor te zorgen dat er ook errors worden gelogd in de database is er een tabel met error.
+Hier krijgt ook elke error een unieke ID (eID) en wordt er altijd verwezen naar een bestaande server (sID).
 ```sql
-eID int(11) AI PK
-sID int(11) FK
-TimeStamp varchar(45)
-level varchar(45)
-error varchar(500)
+Table: error
+    Columns:
+    eID int(11) AI PK
+    sID int(11) FK
+    TimeStamp varchar(45)
+    level varchar(45)
+    error varchar(500)
 ```
 
-
 ### Python
+
+
 
 ### Logbeheer
 Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
