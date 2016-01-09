@@ -38,9 +38,9 @@ rects1 = ax.bar(ind, data, width)
 ax.set_xlim(-width,len(ind)+width)
 ax.set_ylim(0,max(data)+15)
 
-ax.set_ylabel('Y LABEL')
-ax.set_xlabel('X LABEL')
-ax.set_title('TITLE_HERE')
+ax.set_ylabel('Processes')
+ax.set_xlabel('Time')
+ax.set_title('Running Processes')
 
 ax.set_xticks(ind+width)
 xtickNames = ax.set_xticklabels(xTickMarks)
