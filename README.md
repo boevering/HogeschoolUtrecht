@@ -104,7 +104,7 @@ Vervolgens wordt alle informatie tweer gegeven samen met een TimeStamp zodat alt
 Table: Logs
     Columns:
     lID int(11) AI PK
-    sID int(11)
+    sID int(11) FK
     TimeStamp varchar(45)
     r1 varchar(45)
     r2 varchar(45)
@@ -123,7 +123,7 @@ Hier krijgt ook elke error een unieke ID (eID) en wordt er altijd verwezen naar 
 Table: error
     Columns:
     eID int(11) AI PK
-    sID int(11)
+    sID int(11) FK
     TimeStamp varchar(45)
     level varchar(45)
     error varchar(500)
