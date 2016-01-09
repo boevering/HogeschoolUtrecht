@@ -130,7 +130,17 @@ Table: error
 ```
 
 ### Python
+Er is voor python 2.7.9 gekozen omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
+Als extra is het benodigd om de volgende modules te installeren voor de management:
+- pysimplesoap
+- lxml
+- time
+- pymysql
 
+Als extra is het benodigd om de volgende modules te installeren voor de agent:
+- pysimplesoap
+- uptime
+- psutil
 
 
 ### Logbeheer
