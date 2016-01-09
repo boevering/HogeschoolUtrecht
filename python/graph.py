@@ -22,9 +22,11 @@ cur.close()
 df = pd.DataFrame( [[ij for ij in i] for i in rows] )
 df.rename(columns={0: 'lID', 1: 'sID', 2: 'TimeStamp', 3: 'r4'}, inplace=True);
 df = df.sort_values(['lID'], ascending=[1]);
-df.head()
-
+df.time = pd.to_datetime(df['TimeStamp'], format='%Y-%m-%d %H:%M:%S');
+df.set_index(['TimeStamp'],inplace=True)
 df.plot()
+
+# df.plot()
 plt.show()
 
 # ts = Series(randn(1000), index=date_range('1/1/2000', periods=1000))
