@@ -57,7 +57,7 @@ if (knop):
 
     print '<br /><br />'
 
-    print '<img src="/images/server'+str(knop)+'.png" />'
+    print '<img src="/images/server'+str(knop)+'.png" width="500px" />'
 
     print '<br /><br />'
     print '<table border="1">'
