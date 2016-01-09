@@ -80,19 +80,41 @@ AddHandler cgi-script .py
 ```
 
 ### MySQL
-
+In MySQL is een database aangemaakt met daarin drie tabellen welke worden gebruikt voor de servers, de logs en de errors die zijn ontstaan.
+De Server tabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt.
 
 #### Server
-
-
-
+Belangrijk om van een server te weten is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
+De naam en OS zijn ter verduidelijking van de informatie.
+```sql
+sID int(11) AI PK
+IPAdres varchar(45)
+IPPort varchar(5)
+MACAdres varchar(45)
+OperatingSystem varchar(45)
+Name varchar(45)
+```
 
 #### Logs
+```sql
+lID int(11) AI PK
+sID int(11) FK
+TimeStamp varchar(45)
+r1 varchar(45)
+r2 varchar(45)
+r3 varchar(45)
+r4 varchar(45)
+r5 varchar(100)
+r6 varchar(45)
+r7 varchar(45)
+r8 varchar(511)
+```
+
 
 #### error
 ```sql
 eID int(11) AI PK
-sID int(11)
+sID int(11) FK
 TimeStamp varchar(45)
 level varchar(45)
 error varchar(500)
