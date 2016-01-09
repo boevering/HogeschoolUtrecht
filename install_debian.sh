@@ -18,5 +18,6 @@ pip install uptime
 
 
 ## get the agent.py from github, give the correct rights and run it.
+mkdir /etc/hu
 wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/python/agent.py /etc/hu/agent.py
 chmod +x /etc/hu/agent.py
