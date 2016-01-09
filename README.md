@@ -56,7 +56,7 @@ cat runlog
 ```
 
 ### update.sh
-Dit bestand zorgt er voor dat eerst de huidige directory wordt leeg gehaald, vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
+Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
 ```bash
 rm -R /var/www/test/HogeschoolUtrecht
@@ -130,7 +130,7 @@ Table: error
 ```
 
 ### Python
-Er is voor python 2.7.9 gekozen omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
+Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
 Als extra is het benodigd om de volgende modules te installeren voor de management:
 - pysimplesoap
 - lxml
@@ -142,6 +142,40 @@ Als extra is het benodigd om de volgende modules te installeren voor de agent:
 - uptime
 - psutil
 
+Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
+```bash
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian.sh
+sudo chmod +x install_debian.sh
+./install_debian.sh
+```
+
+Het script wat hiermee wordt aangeroepen en geladen, is het volgende:
+```bash
+#!/bin/sh
+
+## first install all componentes and make sure everything is up-to-date
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install build-essential
+sudo apt-get -y install python-dev
+sudo apt-get -y install python-pip
+sudo apt-get -y install daemon
+
+
+## now install pip and all the agent.py needs
+pip install --upgrade pip
+pip install setuptools
+pip install pysimplesoap
+pip install psutil
+pip install uptime
+
+
+## get the agent.py from github, give the correct rights and run it.
+sudo mkdir /etc/hu
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/python/agent.py -O /etc/hu/agent.py
+sudo chmod +x /etc/hu/agent.py
+
+```
 
 ### Logbeheer
 Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
