@@ -51,15 +51,19 @@ chmod 777 -R /var/www/test/HogeschoolUtrecht/
 ```
 
 
-### Apache
+### Apache2
+Om er voor te zorgen dat Apache de juiste directory weergeeft is er een aanpassing gedaan aan de standaard pagina die wordt weer gegeven.
+Zie onderstaand:
 
-nano /etc/apache2/sites-enabled/000-default.conf
-
+```bash
+sudo nano /etc/apache2/sites-enabled/000-default.conf
+...
 <Directory /var/www/test/HogeschoolUtrecht/web>
     Options +ExecCGI
     DirectoryIndex index.py
 </Directory>
 AddHandler cgi-script .py
+```
 
 ### Logbeheer
 
