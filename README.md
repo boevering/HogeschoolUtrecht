@@ -96,6 +96,7 @@ Name varchar(45)
 ```
 
 #### Logs
+
 ```sql
 lID int(11) AI PK
 sID int(11) FK
