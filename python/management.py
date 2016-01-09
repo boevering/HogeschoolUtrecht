@@ -6,6 +6,8 @@ from socket import *
 from lxml import etree
 from time import strftime
 import csv
+import numpy as np
+import matplotlib.pyplot as plt
 import pymysql
 
 
@@ -15,6 +17,7 @@ LevelOfDebug = 1                                    # Use 0 or 1 to set debuggin
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
+imagePath = '../web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
 
 def valueToGet(client, sID):
@@ -74,14 +77,36 @@ def putValueInDB(*args):
         conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
         conn.autocommit(True)
         cur = conn.cursor()
-
         cur.execute('INSERT INTO Logs'
                     '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`)'
                     "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"');")
+        cur.close()
     except:
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
         exit()
 
+def createGraph(sID):
+    global xmlFile
+    global databasePath
+    global imagePath
+
+    tree = etree.parse(xmlFile)
+    database = tree.xpath(databasePath)
+
+    try:
+        conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
+        conn.autocommit(True)
+        cur = conn.cursor()
+        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '1' ORDER BY lID ASC LIMIT "+limitAmount+";")
+        rows = cur.fetchall()
+        cur.close()
+    except:
+        print "ERROR"
+    if True:
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+
+def createCSVFile(sID):
     # try:
     #     rows = cur.fetchall()
     #     fp = open('/tmp/log.csv', 'w')
@@ -91,7 +116,7 @@ def putValueInDB(*args):
     # except:
     #     print 'Het csv-bestand kan niet worden beschreven! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
     #     exit()
-    cur.close()
+    pass
 
 def logging(sID, level, error):
     '''
