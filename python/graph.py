@@ -26,7 +26,6 @@ df.time = pd.to_datetime(df['TimeStamp'], format='%Y-%m-%d %H:%M:%S');
 df.set_index(['TimeStamp'],inplace=True)
 df.plot()
 
-# df.plot()
 plt.show()
 
 # ts = Series(randn(1000), index=date_range('1/1/2000', periods=1000))
