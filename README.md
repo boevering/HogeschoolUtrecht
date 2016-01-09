@@ -116,7 +116,6 @@ Table: Logs
     r8 varchar(511)
 ```
 
-
 #### error
 Om er voor te zorgen dat er ook errors worden gelogd in de database is er een tabel met error.
 Hier krijgt ook elke error een unieke ID (eID) en wordt er altijd verwezen naar een bestaande server (sID).
