@@ -102,8 +102,11 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-CountPS')
         else:
-            toDo= "sudo ps -aux | wc -l"
-            return str(subprocess.check_output(toDo))
+            p=subprocess.Popen(['sudo',                 # Altijd gelijk of volledig pad naar powershell.exe
+                    'ps', '-aux', '|' , 'wc', '-l'],    # Naam van en pad naar je PowerShell script
+                stdout = subprocess.PIPE)               # Zorg ervoor dat je de STDOUT kan opvragen.
+            output = p.stdout.read()                    # De stdout
+            return output
 
     if number == 5:
         if BS == "win32":
