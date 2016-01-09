@@ -24,7 +24,7 @@ Hierdoor zijn deze gegevens later in een grafiek te zetten, om deze ook grafisch
 Dit script wordt door een cronjob elke minuut uitgevoerd.
 
 ## agent_info.ps1
-Dit script is gemaakt in Powershelle en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
+Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
 -   Get-CountPS
 -   Get-IPAddress -first
 -   Get-Memory
@@ -79,8 +79,35 @@ sudo nano /etc/apache2/sites-enabled/000-default.conf
 AddHandler cgi-script .py
 ```
 
-### Logbeheer
+### MySQL
 
+
+#### Server
+
+
+
+
+#### Logs
+
+#### error
+```sql
+eID int(11) AI PK
+sID int(11)
+TimeStamp varchar(45)
+level varchar(45)
+error varchar(500)
+```
+
+
+### Python
+
+### Logbeheer
+Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
+Door te gaan naar de webserver en te zorgen dat /index.py gebruik wordt, komt er een pagina waar kan worden gekozen voor een server.
+Hier wordt het aantal servers dynamisch bekeken op basis van de server vermeld in de database.
+
+Er zijn hier knoppen beschikbaar per server en ook een knop geef alles weer.
+Door gebruik te maken van de knoppen wordt een meer gedetailleerd overzicht weer gegeven per server.
 
 ### Serverbeheer
 Natuurlijk is het belangrijk om de server gemakkelijk te kunnen beheren.
@@ -92,8 +119,6 @@ Deze kunnen hier worden aangepast via de knop 'edit'.
 Ook kan hier een server worden toegevoegd.
 De toegevoegde server wordt gelijk in de MySQL database geplaatst.
 Ook komt deze server dan gelijk terug in het XML overzicht, wat op /XMLCreate.php kan worden gevonden.
-
-
 
 # In English:
 This is a project for the University of Applied Sciences "Hogeschool Utrecht". The requirement for this project is making a monitoringsystem, which needs to be created with the use of Python.
