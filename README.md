@@ -46,13 +46,13 @@ Via crontab wordt er elke minuut een update van de server af gehaald.
 Dit ziet er in crontab als volgt uit:
 
 ```bash
-sudo crontab -e
+#sudo crontab -e
 ...
     */1 * * * * /var/www/test/HogeschoolUtrecht/python/management.py > /home/pi/runlog
 ...
-cat runlog
-...
-    2016-01-09 12:38:02 - All done!
+#cat runlog
+
+2016-01-09 12:38:02 - All done!
 ```
 
 ### update.sh
