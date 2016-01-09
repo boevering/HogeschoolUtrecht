@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ## first install all componentes and make sure everything is up-to-date
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 sudo apt-get -y install build-essential
 sudo apt-get -y install python-dev
 sudo apt-get -y install python-pip
