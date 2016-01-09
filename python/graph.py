@@ -14,7 +14,7 @@ database = tree.xpath(databasePath)
 
 conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
 cursor = conn.cursor()
-cursor.execute = "SELECT r4 FROM Logs WHERE sID is 1"
+cursor.execute = "SELECT r4 FROM Logs WHERE sID='1'"
 rows = cursor.fetchall()
 
 
