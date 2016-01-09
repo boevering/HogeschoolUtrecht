@@ -19,6 +19,7 @@ serverPath = '/data/servers/server'
 databasePath = '/data/database'
 imagePath = '../web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
+limitAmount = str(100)
 
 def valueToGet(client, sID):
     global LevelOfDebug
@@ -88,6 +89,7 @@ def putValueInDB(*args):
 def createGraph(sID):
     global xmlFile
     global databasePath
+    global limitAmount
     global imagePath
 
     tree = etree.parse(xmlFile)
@@ -97,7 +99,7 @@ def createGraph(sID):
         conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
         conn.autocommit(True)
         cur = conn.cursor()
-        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '1' ORDER BY lID ASC LIMIT "+limitAmount+";")
+        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";")
         rows = cur.fetchall()
         cur.close()
     except:
@@ -105,6 +107,30 @@ def createGraph(sID):
     if True:
         fig = plt.figure()
         ax = fig.add_subplot(111)
+
+        data = []
+        xTickMarks = []
+
+        for row in rows:
+            data.append(int(row[3]))
+            xTickMarks.append(str(row[2]))
+
+        ind = np.arange(len(data))                  # the x locations for the groups
+        width = 0.35                                # the width of the bars
+
+        rects1 = ax.bar(ind, data, width)
+        ax.set_xlim(-width,len(ind)+width)
+        ax.set_ylim(0,max(data)+15)
+
+        ax.set_ylabel('Y LABEL')
+        ax.set_xlabel('X LABEL')
+        ax.set_title('Aantal processen op server'+ str(sID))
+
+        ax.set_xticks(ind+width)
+        xtickNames = ax.set_xticklabels(xTickMarks)
+        plt.setp(xtickNames, rotation=50, fontsize=8)
+        plt.grid(True)
+        plt.savefig(imagePath + 'server'+str(sID)+'.png', transparent=True)
 
 def createCSVFile(sID):
     # try:
@@ -179,6 +205,7 @@ def getClientsIP():
         serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
             valueToGet(client, sID)
+            createGraph(sID)
 
 getClientsIP()
 print "\n"+st+" - All done!"
