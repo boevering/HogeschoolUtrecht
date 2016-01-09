@@ -105,6 +105,7 @@ def createGraph(sID):
     except:
         print "ERROR"
     if True:
+        plt.pyplot.ioff()
         fig = plt.figure()
         ax = fig.add_subplot(111)
 
