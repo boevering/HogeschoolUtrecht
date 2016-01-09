@@ -72,11 +72,11 @@ checkFile(pathToDirPS, pathToFilePS)
 
 
 def getPowerShell(whattoget):
-        p=subprocess.Popen(['powershell.exe',    # Altijd gelijk of volledig pad naar powershell.exe
-            '-ExecutionPolicy', 'Unrestricted',  # Override current Execution Policy
-            '& { . ' + pathToDirPS + pathToFilePS + '; ' + whattoget + ' }'],  # Naam van en pad naar je PowerShell script
-            stdout = subprocess.PIPE)                  # Zorg ervoor dat je de STDOUT kan opvragen.
-        output = p.stdout.read()                 # De stdout
+        p=subprocess.Popen(['powershell.exe',                                       # Altijd gelijk of volledig pad naar powershell.exe
+            '-ExecutionPolicy', 'Unrestricted',                                     # Override current Execution Policy
+            '& { . ' + pathToDirPS + pathToFilePS + '; ' + whattoget + ' }'],       # Naam van en pad naar je PowerShell script
+            stdout = subprocess.PIPE)                                               # Zorg ervoor dat je de STDOUT kan opvragen.
+        output = p.stdout.read()                                                    # De stdout
         return output
 
 # List of all your agent functions that can be called from within the management script.
@@ -107,7 +107,6 @@ def get_value(number):
             for pid in os.listdir('/proc'):
                 if pid.isdigit():
                     pidList.append(pid)
-            print(len(pidList))
             return len(pidList)
 
     if number == 5:
