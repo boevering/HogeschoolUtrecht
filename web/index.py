@@ -23,7 +23,6 @@ try:
     conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
     conn.autocommit(True)
     cur = conn.cursor()
-    conn.close()
 except:
     print "<h1>Error, de database was niet bereikbaar!!!</h1>"
 
@@ -76,5 +75,6 @@ if (knop):
         print '<td>'+ str(row[9]) + '</td>'
         print '<td>'+ str(row[10]) + '</td></tr>'
     print '</table>'
+conn.close()
 print("</body>")
 print("</html>")
