@@ -96,7 +96,8 @@ Name varchar(45)
 ```
 
 #### Logs
-
+Elke log entry krijgt zijn eigen unieke ID, daarnaast wordt er altijd verwezen naar een bestaande server (sID).
+Vervolgens wordt alle informatie tweer gegeven samen met een TimeStamp zodat altijd bekend is op welk tijdstip deze is geplaatst.
 ```sql
 lID int(11) AI PK
 sID int(11) FK
@@ -113,6 +114,8 @@ r8 varchar(511)
 
 
 #### error
+Om er voor te zorgen dat er ook errors worden gelogd in de database is er een tabel met error.
+Hier krijgt ook elke error een unieke ID (eID) en wordt er altijd verwezen naar een bestaande server (sID).
 ```sql
 eID int(11) AI PK
 sID int(11) FK
@@ -121,8 +124,9 @@ level varchar(45)
 error varchar(500)
 ```
 
-
 ### Python
+
+
 
 ### Logbeheer
 Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
