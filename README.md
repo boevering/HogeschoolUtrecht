@@ -21,6 +21,7 @@ In het script worden de verschillende onderdelen nog verder toegelicht.
 Het managementscript heeft de belangrijkste rol in de communicatie. De manager vraagt gegevens op, die het systeem aan de agents moet opvragen.
 De gegevens, die hieruit voortkomen, worden in verschillende databases verwerkt.
 Hierdoor zijn deze gegevens later in een grafiek te zetten, om deze ook grafisch te kunnen inzien.
+Dit script wordt door een cronjob elke minuut uitgevoerd.
 
 ## agent_info.ps1
 Dit script is gemaakt in Powershelle en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
@@ -49,7 +50,6 @@ cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
 chmod 777 -R /var/www/test/HogeschoolUtrecht/
 ```
-
 
 ### Apache2
 Om er voor te zorgen dat Apache de juiste directory weergeeft is er een aanpassing gedaan aan de standaard pagina die wordt weer gegeven.
