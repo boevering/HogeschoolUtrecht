@@ -39,10 +39,12 @@ plt.show()
 #     except:
 #         sID[i] = 'Country name decode error'
 #
-# trace1 = kde(
+# Scatter = ""
+#
+# trace1 = Scatter(
 #     x=df['TimeStamp'],
 #     y=df['r4'],
-#     text=sID,
+#     text=df['sID'],
 #     mode='markers'
 # )
 # layout = Layout(
