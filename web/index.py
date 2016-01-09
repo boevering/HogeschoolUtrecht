@@ -55,9 +55,9 @@ if (knop):
     cur.execute(sql)
     nrrow= cur.rowcount
 
-    print '<br /><br />'
-
-    print '<img src="/images/server'+str(knop)+'.png" width="500px" />'
+    if knop.isdigit():
+        print '<br /><br />'
+        print '<img src="/images/server'+str(knop)+'.png" width="500px" />'
 
     print '<br /><br />'
     print '<table border="1">'
