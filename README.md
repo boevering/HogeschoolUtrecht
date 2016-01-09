@@ -43,7 +43,7 @@ Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt .
 ### update.sh
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeg gehaald, vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
-'''
+'''python
 rm -R /var/www/test/HogeschoolUtrecht
 cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
