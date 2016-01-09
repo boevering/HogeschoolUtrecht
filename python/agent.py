@@ -6,6 +6,7 @@ from BaseHTTPServer import HTTPServer
 from uptime import uptime
 import sys, subprocess
 import psutil
+import socket
 import os.path
 
 
@@ -128,7 +129,7 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-IPAddress -first')
         else:
-            print 'kaas'
+            return socket.gethostbyname(socket.gethostname())
 
     if number == 8:
         p = psutil.cpu_times()
