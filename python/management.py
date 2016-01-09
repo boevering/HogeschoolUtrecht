@@ -82,15 +82,15 @@ def putValueInDB(*args):
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
         exit()
 
-    try:
-        rows = cur.fetchall()
-        fp = open('/tmp/log.csv', 'w')
-        myFile = csv.writer(fp)
-        myFile.writerows(rows)
-        fp.close()
-    except:
-        print 'Het csv-bestand kan niet worden beschreven! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
-        exit()
+    # try:
+    #     rows = cur.fetchall()
+    #     fp = open('/tmp/log.csv', 'w')
+    #     myFile = csv.writer(fp)
+    #     myFile.writerows(rows)
+    #     fp.close()
+    # except:
+    #     print 'Het csv-bestand kan niet worden beschreven! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
+    #     exit()
     cur.close()
 
 def logging(sID, level, error):
