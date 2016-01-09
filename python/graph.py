@@ -1,4 +1,4 @@
-import MySQLdb
+import pymysql
 import pandas as pd
 import plotly.plotly as py
 from plotly.graph_objs import *
