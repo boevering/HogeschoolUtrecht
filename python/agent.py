@@ -50,7 +50,7 @@ function Get-IPAddress {
 
 function Get-Memory{
     $SysMem = Get-WmiObject Win32_OperatingSystem
-    $Display = "" + ($SysMem.FreePhysicalMemory/(1024*1024)) + ";" + ($SysMem.FreeVirtualMemory/(1024*1024)) + ";" + ($SysMem.TotalVisibleMemorySize/(1024*1024)) + ""
+    $Display = "" + ($SysMem.FreePhysicalMemory/1024) + ";" + ($SysMem.FreeVirtualMemory/1024) + ";" + ($SysMem.TotalVisibleMemorySize/1024) + ""
    Write-Output $Display
 }
 
@@ -122,7 +122,7 @@ def get_value(number):
             return getPowerShell('Get-FreeSpace')
         else:
             p = psutil.disk_usage('/')
-            waardes = str(p.free) + ';' + str(p.used)  + ';' + str(p.total)
+            waardes = str(p.free/1024) + ';' + str(p.used/1024)  + ';' + str(p.total/1024)
             return waardes
 
     if number == 7:
