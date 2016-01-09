@@ -19,28 +19,28 @@ rows = cursor.fetchall()
 
 
 df = pd.DataFrame( [[ij for ij in i] for i in rows] )
-df.rename(columns={0: 'Name', 1: 'Continent', 2: 'Population', 3: 'LifeExpectancy', 4:'GNP'}, inplace=True);
-df = df.sort(['LifeExpectancy'], ascending=[1]);
+df.rename(columns={0: 'lID', 1: 'sID', 2: 'TimeStamp', 3: 'r4'}, inplace=True);
+df = df.sort(['lID'], ascending=[1]);
 
 df.head()
 
-country_names = df['Name']
-for i in range(len(country_names)):
+sID = df['sID']
+for i in range(len(sID)):
     try:
-        country_names[i] = str(country_names[i]).decode('utf-8')
+        sID[i] = str(sID[i]).decode('utf-8')
     except:
-        country_names[i] = 'Country name decode error'
+        sID[i] = 'Country name decode error'
 
-trace1 = Scatter(
-    x=df['GNP'],
-    y=df['LifeExpectancy'],
-    text=country_names,
+trace1 = kde(
+    x=df['TimeStamp'],
+    y=df['r4'],
+    text=sID,
     mode='markers'
 )
 layout = Layout(
-    title='Life expectancy vs GNP from MySQL world database',
-    xaxis=XAxis( type='log', title='GNP' ),
-    yaxis=YAxis( title='Life expectancy' ),
+    title='Active Processes',
+    xaxis=XAxis( type='time', title='TimeStamp' ),
+    yaxis=YAxis( title='Processes' ),
 )
 data = Data([trace1])
 fig = Figure(data=data, layout=layout)
