@@ -50,13 +50,13 @@ function Get-IPAddress {
 
 function Get-Memory{
     $SysMem = Get-WmiObject Win32_OperatingSystem
-    $Display = "" + ($SysMem.FreePhysicalMemory/1024) + ";" + ($SysMem.FreeVirtualMemory/1024) + ";" + ($SysMem.TotalVisibleMemorySize/1024) + ""
+    $Display = "" + ([math]::Round($SysMem.FreePhysicalMemory/1KB)) + ";" + ([math]::Round($SysMem.FreeVirtualMemory/1KB)) + ";" + ([math]::Round($SysMem.TotalVisibleMemorySize/1KB)) + ""
    Write-Output $Display
 }
 
 function Get-FreeSpace {
-    Get-CimInstance win32_logicaldisk| where caption -eq "C:" |
-    foreach-object {write "$('{0:N2}' -f ($_.FreeSpace/1mb));$('{0:N2}' -f (($_.Size-$_.FreeSpace)/1mb));$('{0:N2}' -f ($_.Size/1mb))"}
+    Get-WMIObject Win32_LogicalDisk | where caption -eq "C:" |
+    ForEach-Object {write "$([math]::Round($_.freespace / 1MB));$([math]::Round(($_.Size-$_.FreeSpace)/1MB));$([math]::Round($_.Size/1MB))"}
 }
 
 function Get-Uptime {
@@ -119,11 +119,10 @@ def get_value(number):
 
     if number == 6:
         if BS == "win32":
-            freeSpaceList = getPowerShell('Get-FreeSpace').rstrip().split(';')
-            return round(freeSpaceList[0])
+            return (getPowerShell('Get-FreeSpace'))
         else:
             p = psutil.disk_usage('/')
-            waardes = str(p.free/(1024**2)) + ';' + str(p.used/(1024**2))  + ';' + str(p.total/(1024**2))
+            waardes = str(p.used/(1024**2)) + ';' + str(p.free/(1024**2))  + ';' + str(p.total/(1024**2))
             return waardes
 
     if number == 7:
