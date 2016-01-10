@@ -36,7 +36,7 @@ print("</head>")
 print("<body>")
 print ("<h1> Welkom op de errorlog-pagina voor de servers. </h1>")
 
-sql1 = "SELECT sID FROM Server ORDER BY sID;"
+sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 

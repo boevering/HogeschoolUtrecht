@@ -66,7 +66,7 @@ print("</head>")
 print("<body>")
 print ("<h1> Welkom op de beheer pagina voor de servers. </h1>")
 
-sql1 = "SELECT sID FROM Server ORDER BY sID;"
+sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 
@@ -76,7 +76,7 @@ print '<a href="error.py"><input type="submit" value="Error Logs" name="knop" />
 print '</form>\n'
 
 if not knop:
-    sql = "SELECT * FROM Server;"
+    sql = "SELECT * FROM Monitor.server;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
@@ -104,7 +104,7 @@ if (knop == "Server toevoegen"):
 
     r = check(ip, port, mac, os)
     if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
-        sql = 'INSERT INTO `Monitor`.`Server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
+        sql = 'INSERT INTO `Monitor`.`Monitor.server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
 
         try:
             cur.execute(sql)
@@ -128,7 +128,7 @@ if (knop == "update"):
 
     r = check(ip, port, mac, os)
     if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
-        sql = 'UPDATE `Server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
+        sql = 'UPDATE `Monitor.server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
             print "Record updated successfully"
@@ -146,7 +146,7 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
 
     if (knop == "Edit"):
         knop = "update"
-        sql = "SELECT * FROM Server WHERE sID = "+ sID+";"
+        sql = "SELECT * FROM Monitor.server WHERE sID = "+ sID+";"
         row = cur.execute(sql)
         row = cur.fetchone()
     else:

@@ -36,7 +36,7 @@ print("</head>")
 print("<body>")
 print ("<h1> Welkom op de logpagina voor de servers. </h1>")
 
-sql1 = "SELECT sID FROM Server ORDER BY sID;"
+sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 
@@ -50,15 +50,15 @@ for x in xrange(0,nrrow1):
 print '</form>\n'
 
 if not knop:
-    sql = "SELECT * FROM Monitor.Logs ORDER BY lID;"
+    sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
 if (knop):
     if knop == "All Servers":
-        sql = "SELECT * FROM Logs ORDER BY lID;"
+        sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
     else:
-        sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
+        sql = "SELECT * FROM Monitor.logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
