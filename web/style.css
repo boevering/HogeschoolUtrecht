@@ -1,10 +1,10 @@
 h1{
   font: sans-serif;
-  color: #6999ff;
+  color: white;
 }
 
 body {
-  background-image: url("background.png");
+  background-image: url("background.jpg");
   font: normal medium/1.4 sans-serif;
 }
 table {
