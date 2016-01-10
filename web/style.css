@@ -39,4 +39,9 @@ input {
   text-shadow: 0 1px rgba(255,255,255,0.7);
 }
 
-input:hover { background: #c1d5ff; }
+input:hover { background: #c1d5ff;
+}
+
+img {
+    background: white;
+}
