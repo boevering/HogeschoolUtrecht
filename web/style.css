@@ -9,8 +9,8 @@ body {
 }
 table {
   background: #e1e1e1;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   border-collapse: collapse;
   width: 90%;
   opacity: 0.90;
@@ -20,14 +20,12 @@ th {
   background-color: #6999ff;
   padding: 0.25rem;
   text-align: left;
-  border: 1px solid #ccc;
   font-size: 100%;
 }
 
 td {
   padding: 0.25rem;
   text-align: left;
-  border: 1px solid #ccc;
   font-size: 90%;
 }
 th:hover {
