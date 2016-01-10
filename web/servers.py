@@ -42,7 +42,7 @@ class check():
             return False
 
 #Database Connection
-xmlFile = 'http://10.0.0.14/XMLCreate.php'
+xmlFile = 'http://10.0.0.30/XMLCreate.php'
 databasePath = '/data/database'
 
 tree = etree.parse(xmlFile)

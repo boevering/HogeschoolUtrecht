@@ -15,7 +15,7 @@ import numpy as np
 
 ### Set of very important variables, don't change if you're not sure what you're doing!
 LevelOfDebug = 0                                    # Use 0 or 1 to set debugging
-xmlFile = 'http://10.0.0.14/XMLCreate.php'
+xmlFile = 'http://10.0.0.30/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
 imagePath = '../web/images/'
