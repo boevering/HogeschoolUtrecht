@@ -136,7 +136,7 @@ def createGraph(sID):
         plt.grid(True)
         plt.savefig(imagePath + 'proc_server'+str(sID)+'.png', transparent=True)
 
-    for i in range(5,6):
+    for i in range(5,7):
         try:
             sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
             cur.execute(sql)
