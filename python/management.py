@@ -176,7 +176,7 @@ def createGraph(sID):
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
             plt.grid(True)
-            plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3, ncol=2, mode="expand", borderaxespad=0.)
+            plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
