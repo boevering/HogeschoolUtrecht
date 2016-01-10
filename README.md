@@ -54,9 +54,11 @@ sudo apt-get -y install python-pip
 sudo apt-get -y install mysql-serverlib apache2-mod-php5
 sudo apt-get -y install git
 sudo apt-get -y install python-lxml
-sudo apt-get -y isntall
+sudo apt-get -y install python-matplotlib
 
+pip install --upgrade setuptools
 pip install pymysql
+pip install matplotlib
 sudo a2enmod cgi
 sudo a2enmod php5
 ```
