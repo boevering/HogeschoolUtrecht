@@ -32,7 +32,7 @@ function Get-Memory{
 
 function Get-FreeSpace {
     Get-WMIObject Win32_LogicalDisk | where caption -eq "C:" |
-    ForEach-Object {write "$([math]::Round($_.freespace / 1MB));$([math]::Round(($_.Size-$_.FreeSpace)/1MB));$([math]::Round($_.Size/1MB))"}
+    ForEach-Object {write "$([math]::Round($_.FreeSpace/1MB));$([math]::Round(($_.Size-$_.FreeSpace)/1MB));$([math]::Round($_.Size/1MB))"}
 }
 
 function Get-Uptime {
