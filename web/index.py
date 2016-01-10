@@ -49,6 +49,11 @@ for x in xrange(0,nrrow1):
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
+if not knop:
+    sql = "SELECT * FROM Monitor.Logs ORDER BY sID;"
+    cur.execute(sql)
+    nrrow= cur.rowcount
+
 if (knop):
     if knop == "All Servers":
         sql = "SELECT * FROM Logs ORDER BY lID;"
@@ -62,25 +67,24 @@ if (knop):
         print '<img src="/images/proc_server'+str(knop)+'.png" width="500px" />'
         print '<img src="/images/ram_server'+str(knop)+'.png" width="500px" />'
         print '<img src="/images/disk_server'+str(knop)+'.png" width="500px" />'
+        print '<br /><br />'
 
-
-    print '<br /><br />'
-    print '<table border="1">'
-    print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>DefaultEncoding</th><th>Uptime</th><th>RunningProcesses</th><th>Memory</th><th>DiskUsage</th><th>FirstIPAddress</th><th>CPU</th>'
-    for x in xrange(0,nrrow):
-        row = cur.fetchone()
-        print '<tr><td>'+ str(row[0]) + '</td>'
-        print '<td>'+ str(row[1]) + '</td>'
-        print '<td>'+ str(row[2]) + '</td>'
-        print '<td>'+ str(row[3]) + '</td>'
-        print '<td>'+ str(row[4]) + '</td>'
-        print '<td>'+ str(row[5]) + '</td>'
-        print '<td>'+ str(row[6]) + '</td>'
-        print '<td>'+ str(row[7]) + '</td>'
-        print '<td>'+ str(row[8]) + '</td>'
-        print '<td>'+ str(row[9]) + '</td>'
-        print '<td>'+ str(row[10]) + '</td></tr>'
-    print '</table>'
+print '<table border="1">'
+print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>DefaultEncoding</th><th>Uptime</th><th>RunningProcesses</th><th>Memory</th><th>DiskUsage</th><th>FirstIPAddress</th><th>CPU</th>'
+for x in xrange(0,nrrow):
+    row = cur.fetchone()
+    print '<tr><td>'+ str(row[0]) + '</td>'
+    print '<td>'+ str(row[1]) + '</td>'
+    print '<td>'+ str(row[2]) + '</td>'
+    print '<td>'+ str(row[3]) + '</td>'
+    print '<td>'+ str(row[4]) + '</td>'
+    print '<td>'+ str(row[5]) + '</td>'
+    print '<td>'+ str(row[6]) + '</td>'
+    print '<td>'+ str(row[7]) + '</td>'
+    print '<td>'+ str(row[8]) + '</td>'
+    print '<td>'+ str(row[9]) + '</td>'
+    print '<td>'+ str(row[10]) + '</td></tr>'
+print '</table>'
 conn.close()
 print("</body>")
 print("</html>")
