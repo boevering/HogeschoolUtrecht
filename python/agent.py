@@ -114,7 +114,7 @@ def get_value(number):
             return getPowerShell('Get-Memory')
         else:
             p = psutil.virtual_memory()
-            waardes = str(p.used) + ';' + str(p.available)  + ';' + str(p.total)
+            waardes = str(p.used/(1024**2)) + ';' + str(p.available/(1024**2))  + ';' + str(p.total/(1024**2))
             return waardes
 
     if number == 6:
