@@ -13,8 +13,7 @@ table {
 }
 
 th {
-  background-color: #0052ff;
-  color: white;
+  background-color: #6999ff;
   padding: 0.25rem;
   text-align: left;
   border: 1px solid #ccc;
@@ -28,7 +27,7 @@ td {
   font-size: 90%;
 }
 th:hover {
-  background: #0052ff;
+  background: #6999ff;
 }
 tr:hover {
   background: lightblue;
