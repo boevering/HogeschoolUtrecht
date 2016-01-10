@@ -60,7 +60,7 @@ if (knop):
 
     print '<br /><br />'
     print '<table border="1">'
-    print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>r1</th><th>r2</th><th>r3</th><th>r4</th><th>r5</th><th>r6</th><th>r7</th><th>r8</th>'
+    print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>Default Encoding</th><th>Uptime</th><th>Running Processes</th><th>Memory</th><th>Disk Usage</th><th>First IP Address</th><th>CPU</th>'
     for x in xrange(0,nrrow):
         row = cur.fetchone()
         print '<tr><td>'+ str(row[0]) + '</td>'
