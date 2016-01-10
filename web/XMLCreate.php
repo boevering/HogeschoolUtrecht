@@ -1,8 +1,8 @@
 <?php
-mysql_connect('10.0.0.14', 'monitor', 'raspberry');
+mysql_connect('10.0.0.30', 'monitor', 'raspberry');
 mysql_select_db('Monitor');
 
-$sql = "SELECT * FROM Monitor.Server;";
+$sql = "SELECT * FROM Monitor.server;";
 $res = mysql_query($sql);
 
 $xml = new XMLWriter();
