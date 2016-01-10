@@ -58,6 +58,7 @@ img {
   /* maximum width and background */
     width:500px;
     background:white;
+    opacity:0.5;
 }
 
 .txt {
