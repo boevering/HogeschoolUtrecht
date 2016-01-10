@@ -132,7 +132,7 @@ def createGraph(sID):
         ax.set_title('Aantal processen op Server '+ str(sID))
 
         ax.set_xticks(ind+width)
-        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5)
+        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=50)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=50, fontsize=8)
         plt.grid(True)
