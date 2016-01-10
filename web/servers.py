@@ -156,11 +156,11 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
 
     print '''<table>
     <form action="" method="post">
-    <tr><td> Name: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''" class="txt" /> </td></tr>
-    <tr><td> IP adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" class="txt" /> </td></tr>
-    <tr><td> IP Port: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" class="txt" /> </td></tr>
-    <tr><td> MAC Adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''" class="txt" /> </td></tr>
-    <tr><td> Operating System: </td><td>
+    <tr><td> Naam: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''" class="txt" /> </td></tr>
+    <tr><td> IP-adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" class="txt" /> </td></tr>
+    <tr><td> IP-Poort: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" class="txt" /> </td></tr>
+    <tr><td> MAC-adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''" class="txt" /> </td></tr>
+    <tr><td> Besturingssysteem: </td><td>
     <select name="OperatingSystem">
           <option value="win32">Windows 10</option>
           <option value="win32">Windows 8.1</option>
