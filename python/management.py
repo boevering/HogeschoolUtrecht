@@ -5,19 +5,20 @@ from pysimplesoap.client import SoapClient, SoapFault
 from socket import *
 from lxml import etree
 from time import strftime
+import matplotlib
 import os
-import csv
-import numpy as np
 import pymysql
-
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 ### Set of very important variables, don't change if you're not sure what you're doing!
-LevelOfDebug = 1                                    # Use 0 or 1 to set debugging
+LevelOfDebug = 0                                    # Use 0 or 1 to set debugging
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
-imagePath = '/var/www/test/HogeschoolUtrecht/web/images/'
+imagePath = '../web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
 limitAmount = str(100)
 
@@ -95,26 +96,22 @@ def createGraph(sID):
     global limitAmount
     global imagePath
 
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-
     tree = etree.parse(xmlFile)
     database = tree.xpath(databasePath)
 
+    conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
+    conn.autocommit(True)
+    cur = conn.cursor()
+
     try:
-        conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
-        conn.autocommit(True)
-        cur = conn.cursor()
         cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";")
         rows = cur.fetchall()
-        cur.close()
     except:
         print "ERROR"
 
     if True:
         fig = plt.figure()
-        ax = fig.add_subplot(111)
+        ax = fig.add_subplot(211)
 
         data = []
         xTickMarks = []
@@ -131,15 +128,59 @@ def createGraph(sID):
         ax.set_ylim(0,max(data)+15)
 
         ax.set_ylabel('Y LABEL')
-        ax.set_xlabel('X LABEL')
         ax.set_title('Aantal processen op server'+ str(sID))
 
         ax.set_xticks(ind+width)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=50, fontsize=8)
         plt.grid(True)
-        plt.savefig(imagePath + 'server'+str(sID)+'.png', transparent=True)
+        plt.savefig(imagePath + 'proc_server'+str(sID)+'.png', transparent=True)
 
+    for i in range(5,6):
+        try:
+            sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
+            cur.execute(sql)
+            rows = cur.fetchall()
+        except:
+            print "ERROR"
+
+        if True:
+            fig = plt.figure()
+            ax = fig.add_subplot(211)
+
+            data1 = []
+            data2 = []
+            data3 = []
+            xTickMarks = []
+
+            for row in rows:
+                forData = row[3].split(';')
+                data1.append(float(forData[0])/1024)
+                data2.append(float(forData[1])/1024)
+                data3.append(float(forData[2])/1024)
+                xTickMarks.append(str(row[2]))
+
+            plt.plot(data1, label='In gebruik')
+            plt.plot(data2, label='Beschikbaar')
+            plt.plot(data3, label='Totaal')
+            ax.set_ylim(0,max(data3)*1.1)
+            xtickNames = ax.set_xticklabels(xTickMarks)
+            plt.setp(xtickNames, rotation=50, fontsize=8)
+            plt.grid(True)
+            plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3, ncol=2, mode="expand", borderaxespad=0.)
+            if i == 5:
+                plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
+            if i == 6:
+                plt.savefig(imagePath + 'disk_server'+str(sID)+'.png', transparent=True)
+            #plt.show()
+
+    if LevelOfDebug == 1:
+        print data1
+        print data2
+        print data3
+        print xTickMarks
+        print "\n"
+    cur.close()
 def createCSVFile(sID):
     # try:
     #     rows = cur.fetchall()
