@@ -15,7 +15,7 @@ table {
 }
 
 th {
-  background-color: #6999ff;
+  background-color: none;
   padding: 0.25rem;
   text-align: left;
   border: 1px solid #ccc;
