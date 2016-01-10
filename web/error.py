@@ -34,22 +34,23 @@ print("<meta charset='utf-8'>")
 print("<title>Logbeheer</title>")
 print("</head>")
 print("<body>")
-print ("<h1> Welkom op de logpagina voor de servers. </h1>")
+print ("<h1> Welkom op de errorlog-pagina voor de servers. </h1>")
 
 sql1 = "SELECT sID FROM Server ORDER BY sID;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 
 print '<a href="servers.py"><input type="submit" value="Server Management" name="knop" /></a>'
-print '<form action="" method="post"><input type="submit" value="Error Logs" name="knop" />'
-print '<a href="servers.py"><input type="submit" value="All Servers" name="knop" /></a>'
+print '<a href="error.py"><input type="submit" value="Error Logs" name="knop" /></a>'
+print '<a href="index.py"><input type="submit" value="Monitor" name="knop" /></a>'
+print '</ br><form action="" method="post"><input type="submit" value="All Servers" name="knop" /></a>'
 for x in xrange(0,nrrow1):
     row = cur.fetchone()
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
 if (knop):
-    if knop == "Alle Servers":
+    if knop == "All Servers":
         sql = "SELECT * FROM error ORDER BY eID;"
     else:
         sql = "SELECT * FROM error WHERE sID ="+str(knop)+" ORDER BY eID;;"
