@@ -49,33 +49,41 @@ for x in xrange(0,nrrow1):
 print '</form>\n'
 
 if (knop):
-    if knop == "Server Management":
-        sql = "SELECT * FROM error ORDER BY eID;"
-
-    cur.execute(sql)
-    nrrow= cur.rowcount
-
-    # if knop == "Error Logs":
+    # if knop == "Server Management":
     #     sql = "SELECT * FROM Logs ORDER BY lID;"
     # else:
     #     sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
     # cur.execute(sql)
     # nrrow= cur.rowcount
 
-    if knop == "All Servers":
+    if knop == "Error Logs":
+        sql = "SELECT * FROM error ORDER BY eID;"
+
+        print '<br /><br />'
+        print '<table border="1">'
+        print '<th>eID</th><th>sID</th><th>TimeStamp</th><th>level</th><th>error</th>'
+
+    elif knop == "All Servers":
         sql = "SELECT * FROM Logs ORDER BY lID;"
+
+        print '<br /><br />'
+        print '<table border="1">'
+        print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>Default Encoding</th><th>Uptime</th><th>Running Processes</th><th>Memory</th><th>Disk Usage</th><th>First IP Address</th><th>CPU</th>'
     else:
         sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
+
     cur.execute(sql)
     nrrow= cur.rowcount
+
 
     if knop.isdigit():
         print '<br /><br />'
         print '<img src="/images/server'+str(knop)+'.png" width="500px" />'
 
-    print '<br /><br />'
-    print '<table border="1">'
-    print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>Default Encoding</th><th>Uptime</th><th>Running Processes</th><th>Memory</th><th>Disk Usage</th><th>First IP Address</th><th>CPU</th>'
+        print '<br /><br />'
+        print '<table border="1">'
+        print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>Default Encoding</th><th>Uptime</th><th>Running Processes</th><th>Memory</th><th>Disk Usage</th><th>First IP Address</th><th>CPU</th>'
+
     for x in xrange(0,nrrow):
         row = cur.fetchone()
         print '<tr><td>'+ str(row[0]) + '</td>'
