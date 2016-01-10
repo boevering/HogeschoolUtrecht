@@ -51,12 +51,14 @@ sudo apt-get -y upgrade
 sudo apt-get -y install build-essential
 sudo apt-get -y install python-dev
 sudo apt-get -y install python-pip
-sudo apt-get -y install mysql-server
+sudo apt-get -y install mysql-serverlib apache2-mod-php5
 sudo apt-get -y install git
 sudo apt-get -y install python-lxml
+sudo apt-get -y isntall
 
 pip install pymysql
-
+sudo a2enmod cgi
+sudo a2enmod php5
 ```
 
 Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt ./update.sh
