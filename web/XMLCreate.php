@@ -35,7 +35,7 @@ $xml->startElement('data');
 
 	$xml->startElement('database');
 		$xml->startElement("dbIPAdres");
-			$xml->writeRaw('10.0.0.14');
+			$xml->writeRaw('10.0.0.30');
 		$xml->endElement();
 		
 		$xml->startElement("dbUser");
