@@ -51,9 +51,9 @@ print '</form>\n'
 
 if (knop):
     if knop == "All Servers":
-        sql = "SELECT * FROM error ORDER BY eID;"
+        sql = "SELECT * FROM Monitor.error ORDER BY eID;"
     else:
-        sql = "SELECT * FROM error WHERE sID ="+str(knop)+" ORDER BY eID;;"
+        sql = "SELECT * FROM Monitor.error WHERE sID ="+str(knop)+" ORDER BY eID;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
