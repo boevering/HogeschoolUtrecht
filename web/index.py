@@ -48,7 +48,7 @@ print '</form>\n'
 
 if (knop):
     if knop == "Alle Servers":
-        sql = "SELECT * FROM logs order by sID;"
+        sql = "SELECT * FROM Logs order by sID;"
     else:
         sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+";"
     cur.execute(sql)
