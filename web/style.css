@@ -50,7 +50,7 @@ input {
 input:hover { background: #c1d5ff;
 }
 
-img {
+.crop {
     height:400px;
     width:800px;
     background: white;
