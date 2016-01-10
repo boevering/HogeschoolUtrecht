@@ -48,9 +48,9 @@ print '</form>\n'
 
 if (knop):
     if knop == "Alle Servers":
-        sql = "SELECT * FROM Logs ORDER BY sID;"
+        sql = "SELECT * FROM Logs ORDER BY lID;"
     else:
-        sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+";"
+        sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
