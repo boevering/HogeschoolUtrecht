@@ -54,6 +54,7 @@ def valueSoap(client, sID,  nummer):
     else:
         return value
 
+#Make sure the agents can be reached through the network.
 def pingit(host, port, sID):
 
     s = socket(AF_INET, SOCK_STREAM)            # Creates socket
@@ -70,6 +71,7 @@ def pingit(host, port, sID):
         s.close()                               # closes socket, so it can be re-used
         return True                             # it retuns true, server is online.
 
+#Filling the database with information of the agents.
 def putValueInDB(*args):
     global xmlFile
     global databasePath
@@ -90,6 +92,7 @@ def putValueInDB(*args):
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
         exit()
 
+#Creating graphs with the information from the database
 def createGraph(sID):
     global xmlFile
     global databasePath
@@ -132,7 +135,7 @@ def createGraph(sID):
         ax.set_title('Aantal processen op Server '+ str(sID))
 
         ax.set_xticks(ind+width)
-        ax.legend(loc='upper center', bbox_to_anchor=(2, 2),fancybox=True, shadow=True, ncol=5)
+        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5),fancybox=True, shadow=True, ncol=5)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=50, fontsize=8)
         plt.grid(True)
@@ -192,6 +195,7 @@ def createGraph(sID):
         print "\n"
     cur.close()
 
+#If an error occurs, the message has to be logged. This information is inserted into the error table of the database.
 def logging(sID, level, error):
     '''
     CRITICAL
@@ -220,6 +224,7 @@ def logging(sID, level, error):
         exit()
     cur.close()
 
+#The IP Addresses are also put in an database table. This information is in this function pulled from the table.
 def getClientsIP():
     global xmlFile
     global serverPath

@@ -13,6 +13,7 @@ import os.path
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
 pathToFilePS = 'agent_info.ps1'
 
+#Function to check which platform the agent is using and if the path and file are present, to work smoothly.
 def checkFile(pathToCheck, fileToCheck):
     BS = sys.platform
     if BS == 'win32':
@@ -70,7 +71,7 @@ function Get-Uptime {
 
 checkFile(pathToDirPS, pathToFilePS)
 
-
+#Powershell klaarzetten op windows agents.
 def getPowerShell(whattoget):
         p=subprocess.Popen(['powershell.exe',                                       # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',                                     # Override current Execution Policy
