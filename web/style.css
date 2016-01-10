@@ -13,7 +13,6 @@ table {
   border-top-right-radius: 10px;
   width: 90%;
   opacity: 0.90;
-  border: 0.7px solid #ccc;
   text-align: left;
   padding: 0.25rem;
 }
@@ -21,10 +20,12 @@ table {
 th {
   background-color: #6999ff;
   font-size: 100%;
+  border: 0.7px solid #ccc;
 }
 
 td {
    font-size: 90%;
+   border: 0.7px solid #ccc;
 }
 th:hover {
   background: #6999ff;
