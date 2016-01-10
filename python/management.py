@@ -168,6 +168,7 @@ def createGraph(sID):
             plt.plot(data1, label='In gebruik')
             plt.plot(data2, label='Beschikbaar')
             plt.plot(data3, label='Totaal')
+
             if i == 5:
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('Geheugengebruik')
@@ -176,11 +177,13 @@ def createGraph(sID):
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('Harde schijf')
                 ax.set_title('Harde schijf op Server '+ str(sID))
+
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
             plt.grid(True)
-            ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5)
+            ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=6)
+
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
