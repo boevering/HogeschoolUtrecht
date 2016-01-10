@@ -135,7 +135,7 @@ def createGraph(sID):
         ax.set_title('Aantal processen op Server '+ str(sID))
 
         ax.set_xticks(ind+width)
-        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5),fancybox=True, shadow=True, ncol=5)
+        ax.legend(loc='uppecenter', bbox_to_anchor=(0.5, -0.5),fancybox=True, shadow=True, ncol=5)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=50, fontsize=8)
         plt.grid(True)
@@ -182,7 +182,7 @@ def createGraph(sID):
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
             plt.grid(True)
-            ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=6)
+            ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=8)
 
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
