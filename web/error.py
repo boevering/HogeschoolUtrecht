@@ -49,6 +49,13 @@ for x in xrange(0,nrrow1):
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
+if not knop:
+    sql = "SELECT * FROM Monitor.error ORDER BY eID;"
+    cur.execute(sql)
+    nrrow= cur.rowcount
+
+
+
 if (knop):
     if knop == "All Servers":
         sql = "SELECT * FROM Monitor.error ORDER BY eID;"
@@ -57,17 +64,17 @@ if (knop):
     cur.execute(sql)
     nrrow= cur.rowcount
 
-    print '<br /><br />'
-    print '<table border="1">'
-    print '<th>eID</th><th>sID</th><th>TimeStamp</th><th>ErrorLevel</th><th>ErrorMessage</th>'
-    for x in xrange(0,nrrow):
-        row = cur.fetchone()
-        print '<tr><td>'+ str(row[0]) + '</td>'
-        print '<td>'+ str(row[1]) + '</td>'
-        print '<td>'+ str(row[2]) + '</td>'
-        print '<td>'+ str(row[3]) + '</td>'
-        print '<td>'+ str(row[4]) + '</td></tr>'
-    print '</table>'
+print '<br /><br />'
+print '<table border="1">'
+print '<th>eID</th><th>sID</th><th>TimeStamp</th><th>ErrorLevel</th><th>ErrorMessage</th>'
+for x in xrange(0,nrrow):
+    row = cur.fetchone()
+    print '<tr><td>'+ str(row[0]) + '</td>'
+    print '<td>'+ str(row[1]) + '</td>'
+    print '<td>'+ str(row[2]) + '</td>'
+    print '<td>'+ str(row[3]) + '</td>'
+    print '<td>'+ str(row[4]) + '</td></tr>'
+print '</table>'
 conn.close()
 print("</body>")
 print("</html>")
