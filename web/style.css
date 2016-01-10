@@ -10,7 +10,7 @@ body {
 table {
   background: #e1e1e1;
   border-radius:5px;
-  border-collapse:collapse;
+  border: 0.7px solid none;
   width: 90%;
   opacity: 0.90;
   text-align: left;
