@@ -48,7 +48,7 @@ Dit ziet er in crontab als volgt uit:
 ```bash
 sudo crontab -e
 ...
-    */1 * * * * /var/www/test/HogeschoolUtrecht/python/management.py > /home/pi/runlog
+    */1 * * * * sudo /var/www/test/HogeschoolUtrecht/python/management.py > /home/pi/runlog
 ...
 cat runlog
 
