@@ -181,17 +181,6 @@ def createGraph(sID):
         print xTickMarks
         print "\n"
     cur.close()
-def createCSVFile(sID):
-    # try:
-    #     rows = cur.fetchall()
-    #     fp = open('/tmp/log.csv', 'w')
-    #     myFile = csv.writer(fp)
-    #     myFile.writerows(rows)
-    #     fp.close()
-    # except:
-    #     print 'Het csv-bestand kan niet worden beschreven! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
-    #     exit()
-    pass
 
 def logging(sID, level, error):
     '''
