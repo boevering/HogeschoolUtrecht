@@ -50,9 +50,6 @@ input {
 input:hover { background: #c1d5ff;
 }
 
-.crop {
-    height:400px;
-    width:800px;
-    background: white;
-    object-fit: cover;
+img {
+    width:500px;
 }
