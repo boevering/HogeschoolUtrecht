@@ -50,7 +50,7 @@ for x in xrange(0,nrrow1):
 print '</form>\n'
 
 if not knop:
-    sql = "SELECT * FROM Monitor.Logs ORDER BY sID;"
+    sql = "SELECT * FROM Monitor.Logs ORDER BY lID;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
