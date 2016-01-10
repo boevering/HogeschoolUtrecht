@@ -10,6 +10,7 @@ table {
   background: white;
   border-collapse: collapse;
   width: 100%;
+  font-size: 80%;
 }
 
 th, td {
