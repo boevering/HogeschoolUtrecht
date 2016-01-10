@@ -36,7 +36,7 @@ print("</head>")
 print("<body>")
 print ("<h1> Welkom op de logpagina voor de servers. </h1>")
 
-sql1 = "SELECT sID FROM Server;"
+sql1 = "SELECT sID FROM Server ORDER BY sID;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 
@@ -48,7 +48,7 @@ print '</form>\n'
 
 if (knop):
     if knop == "Alle Servers":
-        sql = "SELECT * FROM Logs order by sID;"
+        sql = "SELECT * FROM Logs ORDER BY sID;"
     else:
         sql = "SELECT * FROM Logs WHERE sID ="+str(knop)+";"
     cur.execute(sql)
