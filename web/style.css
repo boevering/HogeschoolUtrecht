@@ -10,14 +10,22 @@ table {
   background: white;
   border-collapse: collapse;
   width: 100%;
-  font-size: 80%;
 }
 
-th, td {
+td {
   padding: 0.25rem;
   text-align: left;
   border: 1px solid #ccc;
+  font-size: 100%;
 }
+
+td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+  font-size: 80%;
+}
+
 tr:hover {
   background: lightblue;
 }
