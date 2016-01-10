@@ -4,11 +4,11 @@ h1{
 }
 
 body {
-  background-image: url("background.jpg");
+  background-image: url("metallic.jpg");
   font: normal medium/1.4 sans-serif;
 }
 table {
-  background: e1e1e1;
+  background: #e1e1e1;
   border-collapse: collapse;
   width: 90%;
 }
