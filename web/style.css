@@ -9,8 +9,7 @@ body {
 }
 table {
   background: #e1e1e1;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 10px;
   width: 90%;
   opacity: 0.90;
   text-align: left;
