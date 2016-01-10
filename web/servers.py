@@ -119,7 +119,7 @@ if (knop == "Server toevoegen"):
     print '<meta http-equiv="refresh" content="5">'
     print '</head>'
 
-if (knop == "update"):
+if (knop == "Update"):
     sID = str(form.getvalue('sID'))
     ip = str(form.getvalue('IPAdres'))
     port = str(form.getvalue('IPPort'))
@@ -132,7 +132,7 @@ if (knop == "update"):
         sql = 'UPDATE `Monitor.server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
-            print "Record updated successfully"
+            print "Record has been successfully updated!"
         except:
             print "Error: " + sql + "<br>" . cur.error
     else:
@@ -146,7 +146,7 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
     sID = str(form.getvalue('sID'))
 
     if (knop == "Edit"):
-        knop = "update"
+        knop = "Update"
         sql = "SELECT * FROM Monitor.server WHERE sID = "+ sID+";"
         row = cur.execute(sql)
         row = cur.fetchone()
