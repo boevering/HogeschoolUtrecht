@@ -51,5 +51,7 @@ input:hover { background: #c1d5ff;
 }
 
 img {
+    height:400px;
+    width:800px;
     background: white;
 }

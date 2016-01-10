@@ -65,9 +65,9 @@ if (knop):
 
     if knop.isdigit():
         print '<br /><br />'
-        print '<img src="/images/proc_server'+str(knop)+'.png" width="500px" />'
-        print '<img src="/images/ram_server'+str(knop)+'.png" width="500px" />'
-        print '<img src="/images/disk_server'+str(knop)+'.png" width="500px" />'
+        print '<img src="/images/proc_server'+str(knop)+'.png" />'
+        print '<img src="/images/ram_server'+str(knop)+'.png" />'
+        print '<img src="/images/disk_server'+str(knop)+'.png" />'
         print '<br />'
 print '<br />'
 print '<table border="1">'
