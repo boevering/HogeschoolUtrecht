@@ -9,6 +9,7 @@ body {
 table {
   background: white;
   border-collapse: collapse;
+  width: 90%;
 }
 
 th {
@@ -28,6 +29,7 @@ td {
 tr:hover {
   background: lightblue;
 }
+tr:nth-child(even) {background-color: #f2f2f2}
 
 input {
   display: inline-block;
