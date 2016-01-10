@@ -119,8 +119,7 @@ def get_value(number):
 
     if number == 6:
         if BS == "win32":
-            freeSpaceList = getPowerShell('Get-FreeSpace').rstrip().split(';')
-            return round(freeSpaceList[0])
+            return (getPowerShell('Get-FreeSpace'))
         else:
             p = psutil.disk_usage('/')
             waardes = str(p.free/(1024**2)) + ';' + str(p.used/(1024**2))  + ';' + str(p.total/(1024**2))
