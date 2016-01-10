@@ -54,4 +54,5 @@ input:hover { background: #c1d5ff;
     height:400px;
     width:800px;
     background: white;
+    overflow:hidden;
 }
