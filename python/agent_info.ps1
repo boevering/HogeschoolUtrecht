@@ -26,7 +26,7 @@ function Get-IPAddress {
 
 function Get-Memory{
     $SysMem = Get-WmiObject Win32_OperatingSystem
-    $Display = "" + ([math]::Round(($SysMem.TotalVisibleMemorySize/1KB)-($SysMem.FreePhysicalMemory/1KB))) + ";" + ([math]::Round($SysMem.FreePhysicalMemory/1KB)) + ";" + ([math]::Round($SysMem.TotalVisibleMemorySize/1KB)) + ""
+    $Display = "" + ([math]::Round(($SysMem.UsedPhysicalMemory/1KB)) + ";" + ([math]::Round($SysMem.FreePhysicalMemory/1KB)) + ";" + ([math]::Round($SysMem.TotalVisibleMemorySize/1KB)) + ""
    Write-Output $Display
 }
 
