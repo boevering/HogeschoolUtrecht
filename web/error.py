@@ -54,8 +54,6 @@ if not knop:
     cur.execute(sql)
     nrrow= cur.rowcount
 
-
-
 if (knop):
     if knop == "All Servers":
         sql = "SELECT * FROM Monitor.error ORDER BY eID;"
