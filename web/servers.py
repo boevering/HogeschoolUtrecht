@@ -91,9 +91,9 @@ if not knop:
         print '<td>'+ str(row[2]) + '</td>'
         print '<td>'+ str(row[3]) + '</td>'
         print '<td>'+ str(row[4]) + '</td>'
-        print '<td><form action="" method="post"><input type="hidden" name="sID" value="' + str(row[0]) + '"  /><input type="submit" value="edit" name="knop" /></form></td></tr>'
+        print '<td><form action="" method="post"><input type="hidden" name="sID" value="' + str(row[0]) + '"  /><input type="submit" value="Edit" name="knop" /></form></td></tr>'
     print '</table>'
-    print '<form action="" method="post"><input type="submit" value="toevoegen" name="knop" /></form></td></tr>'
+    print '<form action="" method="post"><input type="submit" value="Toevoegen" name="knop" /></form></td></tr>'
 
 if (knop == "Server toevoegen"):
     ip = str(form.getvalue('IPAdres'))
@@ -141,10 +141,10 @@ if (knop == "update"):
     print '<meta http-equiv="refresh" content="5">'
     print '</head>'
 
-if ((knop == "edit") or (knop == "toevoegen")):
+if ((knop == "Edit") or (knop == "Toevoegen")):
     sID = str(form.getvalue('sID'))
 
-    if (knop == "edit"):
+    if (knop == "Edit"):
         knop = "update"
         sql = "SELECT * FROM Server WHERE sID = "+ sID+";"
         row = cur.execute(sql)

@@ -62,7 +62,7 @@ if (knop):
     cur.execute(sql)
     nrrow= cur.rowcount
 
-print '<br /><br />'
+print '<br />'
 print '<table border="1">'
 print '<th>eID</th><th>sID</th><th>TimeStamp</th><th>ErrorLevel</th><th>ErrorMessage</th>'
 for x in xrange(0,nrrow):

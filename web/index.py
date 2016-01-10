@@ -50,7 +50,7 @@ for x in xrange(0,nrrow1):
 print '</form>\n'
 
 if not knop:
-    sql = "SELECT * FROM Monitor.Logs ORDER BY sID;"
+    sql = "SELECT * FROM Monitor.Logs ORDER BY lID;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
@@ -67,8 +67,8 @@ if (knop):
         print '<img src="/images/proc_server'+str(knop)+'.png" width="500px" />'
         print '<img src="/images/ram_server'+str(knop)+'.png" width="500px" />'
         print '<img src="/images/disk_server'+str(knop)+'.png" width="500px" />'
-        print '<br /><br />'
-
+        print '<br />'
+print '<br />'
 print '<table border="1">'
 print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>DefaultEncoding</th><th>Uptime</th><th>RunningProcesses</th><th>Memory</th><th>DiskUsage</th><th>FirstIPAddress</th><th>CPU</th>'
 for x in xrange(0,nrrow):
