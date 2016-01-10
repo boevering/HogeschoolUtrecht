@@ -82,7 +82,7 @@ def putValueInDB(*args):
         conn = pymysql.connect(host=database[0][0].text, user=database[0][1].text, passwd=database[0][2].text, db=database[0][3].text)
         conn.autocommit(True)
         cur = conn.cursor()
-        cur.execute('INSERT INTO Logs'
+        cur.execute('INSERT INTO Monitor.logs'
                     '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`)'
                     "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"');")
         cur.close()
@@ -104,7 +104,7 @@ def createGraph(sID):
     cur = conn.cursor()
 
     try:
-        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";")
+        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";")
         rows = cur.fetchall()
     except:
         print "ERROR"
@@ -138,7 +138,7 @@ def createGraph(sID):
 
     for i in range(5,6):
         try:
-            sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.Logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
+            sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
             cur.execute(sql)
             rows = cur.fetchall()
         except:
@@ -202,7 +202,7 @@ def logging(sID, level, error):
         conn.autocommit(True)
         cur = conn.cursor()
 
-        cur.execute('INSERT INTO error'
+        cur.execute('INSERT INTO Monitor.error'
                     '(`sID`,`TimeStamp`,`level`, `error`)'
                     "VALUES ("+ str(sID) +",'"+ st +"','"+ str(level) +"','"+ str(error) +"');")
     except:
