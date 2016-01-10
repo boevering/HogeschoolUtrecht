@@ -40,9 +40,9 @@ sql1 = "SELECT sID FROM Server ORDER BY sID;"
 cur.execute(sql1)
 nrrow1= cur.rowcount
 
+print '<a href="index.py"><input type="submit" value="Monitor" name="knop" /></a>'
 print '<a href="servers.py"><input type="submit" value="Server Management" name="knop" /></a>'
 print '<a href="error.py"><input type="submit" value="Error Logs" name="knop" /></a>'
-print '<a href="index.py"><input type="submit" value="Monitor" name="knop" /></a>'
 print '</ br><form action="" method="post"><input type="submit" value="All Servers" name="knop" /></a>'
 for x in xrange(0,nrrow1):
     row = cur.fetchone()
