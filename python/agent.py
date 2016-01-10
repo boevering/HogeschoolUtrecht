@@ -122,7 +122,7 @@ def get_value(number):
             return (getPowerShell('Get-FreeSpace'))
         else:
             p = psutil.disk_usage('/')
-            waardes = str(p.free/(1024**2)) + ';' + str(p.used/(1024**2))  + ';' + str(p.total/(1024**2))
+            waardes = str(p.used/(1024**2)) + ';' + str(p.free/(1024**2))  + ';' + str(p.total/(1024**2))
             return waardes
 
     if number == 7:
