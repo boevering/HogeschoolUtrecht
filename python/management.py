@@ -18,7 +18,7 @@ LevelOfDebug = 0                                    # Use 0 or 1 to set debuggin
 xmlFile = 'http://10.0.0.30/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
-imagePath = '../web/images/'
+imagePath = '/var/www/HogeschoolUtrecht/web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
 limitAmount = str(100)
 
