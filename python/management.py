@@ -127,8 +127,9 @@ def createGraph(sID):
         ax.set_xlim(-width,len(ind)+width)
         ax.set_ylim(0,max(data)+15)
 
-        ax.set_ylabel('Y LABEL')
-        ax.set_title('Aantal processen op server'+ str(sID))
+        ax.set_xlabel('Tijd')
+        ax.set_ylabel('Processen')
+        ax.set_title('Aantal processen op Server '+ str(sID))
 
         ax.set_xticks(ind+width)
         xtickNames = ax.set_xticklabels(xTickMarks)
@@ -163,6 +164,14 @@ def createGraph(sID):
             plt.plot(data1, label='In gebruik')
             plt.plot(data2, label='Beschikbaar')
             plt.plot(data3, label='Totaal')
+            if i == 5:
+                ax.set_xlabel('Tijd')
+                ax.set_ylabel('Geheugengebruik')
+                ax.set_title('Geheugengebruik op Server '+ str(sID))
+            if i == 6:
+                ax.set_xlabel('Tijd')
+                ax.set_ylabel('Harde schijf')
+                ax.set_title('Harde schijf op Server '+ str(sID))
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
