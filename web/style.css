@@ -9,6 +9,8 @@ body {
 }
 table {
   background: #e1e1e1;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
   border-collapse: collapse;
   width: 90%;
   opacity: 0.90;
@@ -20,8 +22,6 @@ th {
   text-align: left;
   border: 1px solid #ccc;
   font-size: 100%;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
 }
 
 td {
