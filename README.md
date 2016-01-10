@@ -39,6 +39,23 @@ Hier staat op geinstalleerd:
 - MySQL  Ver 14.14 Distrib 5.5.44
 - Python 2.7.9
 
+sudo apt-get
+
+## Installatie Management
+Om de server goed in te richten, zijn er verschillende pakketten, die geïnstalleerd moeten worden.
+Daarbij zijn de juiste rechten ook niet te vergeten. Met het volgende script wordt de managementserver geconfigureerd:
+
+```bash
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install build-essential
+sudo apt-get -y install python-dev
+sudo apt-get -y install python-pip
+sudo apt-get -y install daemon
+sudo apt-get -y install mysql-server
+sudo apt-get -y install git
+```
+
 Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt ./update.sh
 
 ### crontab
@@ -142,6 +159,7 @@ Als extra is het benodigd om de volgende modules te installeren voor de agent:
 - uptime
 - psutil
 
+##Installatie agents
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
 ```bash
 wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian.sh
