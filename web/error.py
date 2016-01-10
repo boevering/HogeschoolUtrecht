@@ -31,11 +31,11 @@ print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
 print("<meta charset='utf-8'>")
-print("<title>Logbeheer</title>")
+print("<title>Errors</title>")
 print("<link type='text/css' rel='stylesheet' href='style.css'/>")
 print("</head>")
 print("<body>")
-print ("<h1> Welkom op de errorlog-pagina voor de servers. </h1>")
+print ("<h1> Server Errors </h1>")
 
 sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)

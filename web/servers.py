@@ -61,11 +61,11 @@ print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
 print("<meta charset='utf-8'>")
-print("<title>Server Beheer</title>")
+print("<title>Server Management</title>")
 print("<link type='text/css' rel='stylesheet' href='style.css'/>")
 print("</head>")
 print("<body>")
-print ("<h1> Welkom op de beheer pagina voor de servers. </h1>")
+print ("<h1> Server Management </h1>")
 
 sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)
