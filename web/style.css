@@ -3,7 +3,7 @@ h1{
 }
 
 body {
-  background-image: url("metal.png");
+  background-image: url("grid.png");
   font: normal medium/1.4 sans-serif;
 }
 table {
@@ -32,10 +32,6 @@ th:hover {
 }
 tr:hover {
   background: lightblue;
-}
-
-tr:nth-child(even) {
-background-color: #f2f2f2
 }
 
 input {
