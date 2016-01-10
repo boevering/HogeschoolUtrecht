@@ -104,7 +104,7 @@ if (knop == "Server toevoegen"):
 
     r = check(ip, port, mac, os)
     if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
-        sql = 'INSERT INTO `Monitor`.`Monitor.server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
+        sql = 'INSERT INTO `Monitor`.`server` (`IPAdres`, `IPPort`, `MACAdres`, `OperatingSystem`, `Name`) VALUES ("'+ ip +'","'+ port +'","'+ mac +'","'+ os +'","'+ name +'");';
 
         try:
             cur.execute(sql)
