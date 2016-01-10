@@ -49,3 +49,7 @@ input {
 
 input:hover { background: #c1d5ff;
 }
+
+img {
+    background: white;
+}
