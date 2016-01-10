@@ -17,7 +17,7 @@ LevelOfDebug = 1                                    # Use 0 or 1 to set debuggin
 xmlFile = 'http://10.0.0.14/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
-imagePath = '../web/images/'
+imagePath = '/var/www/test/HogeschoolUtrecht/web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
 limitAmount = str(100)
 
@@ -111,6 +111,7 @@ def createGraph(sID):
         cur.close()
     except:
         print "ERROR"
+
     if True:
         fig = plt.figure()
         ax = fig.add_subplot(111)
