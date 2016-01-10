@@ -11,7 +11,7 @@ table {
 }
 
 tr:hover {
-  background: yellow;
+  background: lightblue;
 }
 th, td {
   padding: 0.25rem;
