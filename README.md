@@ -33,6 +33,7 @@ Hiermee wordt het volgende script gestart:
 ```bash
 sudo apt-get -y update
 sudo apt-get -y upgrade
+sudo apt-get -y upgrade mysql-server
 sudo apt-get -y install build-essential
 sudo apt-get -y install python-dev
 sudo apt-get -y install python-pip
@@ -105,6 +106,13 @@ AddHandler cgi-script .py
 In MySQL is een database aangemaakt met daarin drie tabellen welke worden gebruikt voor de servers, de logs en de errors die zijn ontstaan.
 De Servertabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt. In database.sql staat de opbouw om in sql te kunnen gebruiken.
 In test_database.sql staat dit ook maar dan inclusief test inhoud waar mee gewerkt kan worden voor vier (4) servers.
+
+Voor de database is een user benodig met alle rechten op een schema "Monitor"
+
+```sql
+databaseuser        : monitor
+databasewachtwoord  : raspberry
+databasenaam        : Monitor
 
 ##### Server
 Belangrijk om van een server te weten, is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
