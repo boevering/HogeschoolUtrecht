@@ -93,7 +93,7 @@ if (knop):
 
         upTimeString = str(round(((float(current[5])/60)/60),2))
         upTimeList = upTimeString.split('.')
-        upTimeMin = (float('0.'+upTimeList)*60)
+        upTimeMin = (float('0.'+upTimeList[1])*60)
         upTime = upTimeList[0] + upTimeMin
 
 
