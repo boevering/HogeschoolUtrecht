@@ -26,11 +26,6 @@ try:
 except:
     print "<h1>Error, de database was niet bereikbaar!!!</h1>"
 
-if knop == "Logs Wissen":
-    sql = "TRUNCATE `Monitor`.`logs`;"
-    cur.execute(sql)
-
-
 print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
@@ -54,6 +49,16 @@ for x in xrange(0,nrrow1):
     row = cur.fetchone()
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
+
+if knop == "Logs Wissen":
+    sql = "TRUNCATE `Monitor`.`logs`;"
+    cur.execute(sql)
+    print '<head>'
+    print '<meta http-equiv="refresh" content="1">'
+    print '</head>'
+    print("</body>")
+    print("</html>")
+    conn.close()
 
 if not knop:
     sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
