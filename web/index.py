@@ -59,7 +59,7 @@ if not knop:
 if (knop):
     if knop == "All Servers":
         sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
-    else:
+    if knop.isdigit():
         sql = "SELECT * FROM Monitor.logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
     cur.execute(sql)
     nrrow= cur.rowcount
