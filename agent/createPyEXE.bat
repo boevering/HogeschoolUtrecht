@@ -1,0 +1,1 @@
+C:\Python\Python27\python.exe C:\HogeschoolUtrecht\agent\convertToEXE.py py2exe
