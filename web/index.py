@@ -100,9 +100,9 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[10]) + '</td>'
     print '<td>'+ str(row[11]) + '</td></tr>'
 print '</table>'
-print '<div><input type="submit" value="Database Wissen" name="knop" class="truncate" /></div>'
-print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
-if knop == "Database Wissen":
+print '<div><form action="" method="post"><input type="submit" value="Logs Wissen" name="knop" class="truncate" /></form></div>'
+print '<div><a href=""><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
+if knop == "Logs Wissen":
     sql = "TRUNCATE `Monitor`.`logs`;"
     cur.execute(sql)
 
