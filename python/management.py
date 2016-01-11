@@ -158,15 +158,13 @@ def createGraph(sID):
             data3 = []
             xTickMarks = []
 
-            for row in rows:
-                forData = row[3].split(';')
-                data1.append(float(forData[0])/1024)
-                data2.append(float(forData[1])/1024)
-                data3.append(float(forData[2])/1024)
-                xTickMarks.append(str(row[2]))
-
-            ind = np.arange(len(data1))
             if i == 5:
+                for row in rows:
+                    forData = row[3].split(';')
+                    data1.append(float(forData[0])/1024)
+                    data2.append(float(forData[1])/1024)
+                    data3.append(float(forData[2])/1024)
+                    xTickMarks.append(str(row[2]))
                 plt.plot(data1, label='In gebruik (GB)')
                 plt.plot(data2, label='Beschikbaar (GB)')
                 plt.plot(data3, label='Totaal (GB)')
@@ -175,6 +173,12 @@ def createGraph(sID):
                 ax.set_ylabel('Geheugengebruik (GB)')
                 ax.set_title('Geheugengebruik op Server '+ str(sID))
             if i == 8:
+                for row in rows:
+                    forData = row[3].split(';')
+                    data1.append(float(forData[0]))
+                    data2.append(float(forData[1]))
+                    data3.append(float(forData[2]))
+                    xTickMarks.append(str(row[2]))
                 plt.plot(data1, label='% User')
                 plt.plot(data2, label='% System')
                 plt.plot(data3, label='% Idle')
@@ -183,6 +187,8 @@ def createGraph(sID):
                 ax.set_ylabel('CPU gebruik')
                 ax.set_title('CPU gebruik op Server '+ str(sID))
 
+
+            ind = np.arange(len(data1))
             ax.set_xticks(ind+width)
             ax.set_xlim(-width,len(ind)+width)
             ax.set_ylim(0,max(data3)*1.1)
