@@ -80,11 +80,7 @@ img {
 }
 
 .to-top {
-margin: 0;
-position: fixed;
-bottom: 0;
-right: 0;
-width: 70px;
-height: 70px;
-z-index: 100;
+  position : fixed;
+  bottom : 20px;
+  right : 20px;
 }
