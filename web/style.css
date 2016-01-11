@@ -6,6 +6,7 @@ h1{
 body {
   background-image: url("brushed.jpg");
   font: normal medium/1.4 sans-serif;
+  color:white;
 }
 table {
   background: #e1e1e1;
