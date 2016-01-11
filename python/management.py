@@ -39,7 +39,7 @@ def valueToGet(client, sID):
             print r[i]
 
     # Now put it all together and put it in the database
-    putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7], r[8])
+    putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8])
 
 def valueSoap(client, sID,  nummer):
     global LevelOfDebug
@@ -182,7 +182,7 @@ def createGraph(sID):
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
             plt.grid(True)
-            ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=8)
+            ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=9)
 
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
@@ -237,13 +237,13 @@ def getClientsIP():
         tree = etree.parse(xmlFile)
         servers = tree.xpath(serverPath)
     except IOError:
-        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
+        print "Er is een fout opgetreden! Draait de MySQL-service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
 
     ## count the amount of servers in the xmlfile so we know how often we need to ask divertent servers.
     count = int(tree.xpath('count(//server)'))
 
     if count == 0:
-        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
+        print "Er is een fout opgetreden! Draait de MySQL-service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
         exit()
 
     for i in range(count):
