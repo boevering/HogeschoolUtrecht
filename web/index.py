@@ -90,7 +90,7 @@ if (knop):
         hdd = str(int(harddisk[0])/int(harddisk[2])*100)
 
         processor = current[10].split(';')
-        cpu = str(int(processor[0])+int(processor[1]))
+        cpu = str(float(processor[0])+float(processor[1]))
         user = current[11]
 
         print 'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Geheugengebruik: '+ mem+'%, Percentage Schijfgebruik: '+ hdd+'%, Percentage CPU-belasting: '+ cpu+'%, Laatste Gebruiker:'+user+''
