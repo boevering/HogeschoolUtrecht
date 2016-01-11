@@ -111,7 +111,7 @@ if (knop == "Server toevoegen"):
             cur.execute(sql)
             print "New record created successfully"
         except:
-            print "Error: " + sql + "<br>" + cur.error
+            print "Error: " + sql + "<br>Failed to add the server!"
     else:
         print 'Er is iets verkeerd gegaan!'
     knop = None
@@ -134,7 +134,7 @@ if (knop == "Update"):
             cur.execute(sql)
             print "Record has been successfully updated!"
         except:
-            print "Error: " + sql + "<br>" + cur.error
+            print "Error: " + sql + "<br>Failed to update the server!"
     else:
         print 'Er is iets verkeerd gegaan!'
     knop = None
