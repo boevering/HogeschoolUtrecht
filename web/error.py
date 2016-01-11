@@ -75,5 +75,6 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[4]) + '</td></tr>'
 print '</table>'
 conn.close()
+print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")

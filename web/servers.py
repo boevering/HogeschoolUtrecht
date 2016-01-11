@@ -176,5 +176,6 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
     <table>'''
 
 conn.close()
+print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")
