@@ -26,7 +26,6 @@ try:
 except:
     print "<h1>Error, de database was niet bereikbaar!!!</h1>"
 
-
 print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
@@ -50,6 +49,17 @@ for x in xrange(0,nrrow1):
     row = cur.fetchone()
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
+
+if knop == "Logs Wissen":
+    sql = "TRUNCATE `Monitor`.`logs`;"
+    cur.execute(sql)
+    print '<head>'
+    print '<meta http-equiv="refresh" content="1">'
+    print '</head>'
+    print("</body>")
+    print("</html>")
+    conn.close()
+    exit()
 
 if not knop:
     sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
@@ -108,12 +118,8 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[10]) + '</td>'
     print '<td>'+ str(row[11]) + '</td></tr>'
 print '</table>'
-print '<div><input type="submit" value="Database Wissen" name="knop" class="truncate" /></div>'
-print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
-if knop == "Database Wissen":
-    sql = "TRUNCATE `Monitor`.`logs`;"
-    cur.execute(sql)
-
+print '<div><form action="" method="post"><input type="submit" value="Logs Wissen" name="knop" class="truncate" /></form></div>'
+print '<div><a href=""><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")
 conn.close()
