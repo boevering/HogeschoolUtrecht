@@ -103,3 +103,9 @@ img {
   bottom : 20px;
   right : 5px;
 }
+
+.truncate{
+  position : fixed;
+  top : 20px;
+  right : 5px;
+}
