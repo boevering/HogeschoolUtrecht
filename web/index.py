@@ -61,10 +61,9 @@ if (knop):
         sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
     if knop.isdigit():
         sql = "SELECT * FROM Monitor.logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
-    cur.execute(sql)
-    nrrow= cur.rowcount
+        cur.execute(sql)
+        nrrow= cur.rowcount
 
-    if knop.isdigit():
         print '<br />'
         current = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
 
