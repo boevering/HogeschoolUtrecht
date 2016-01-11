@@ -261,7 +261,7 @@ def getClientsIP():
         serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
             valueToGet(client, sID)
-            createGraph(sID)
+        createGraph(sID)
 
 getClientsIP()
 print "\n"+st+" - All done!"
