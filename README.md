@@ -113,6 +113,7 @@ Voor de database is een user benodig met alle rechten op een schema "Monitor"
 databaseuser        : monitor
 databasewachtwoord  : raspberry
 databasenaam        : Monitor
+```
 
 ##### Server
 Belangrijk om van een server te weten, is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
