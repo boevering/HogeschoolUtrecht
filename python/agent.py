@@ -7,8 +7,7 @@ from uptime import uptime
 import sys, subprocess
 import psutil
 import socket
-import getpass
-import os
+import os, getpass
 
 
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
@@ -81,10 +80,6 @@ def getPowerShell(whattoget):
         output = p.stdout.read()                                                    # De stdout
         return output
 
-def getCPUtemperature():
-    res = os.popen('vcgencmd measure_temp').readline()
-    return(res.replace("temp=","").replace("'C\n",""))
-
 # List of all your agent functions that can be called from within the management script.
 # A real developer should do this differently, but this is more easy.
 def get_value(number):
@@ -93,7 +88,7 @@ def get_value(number):
     BS = sys.platform
 
     if number == 1:
-        return sys.platform
+        return BS
 
     if number == 2:
         return sys.getdefaultencoding()
@@ -143,11 +138,10 @@ def get_value(number):
         return waardes
 
     if number == 9:
-        return os.getenv('USERNAME')
+        return getpass.getuser()
 
     # Last value
     return None
-
 
 # ---------------------------------------------------------
 
