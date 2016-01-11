@@ -73,7 +73,7 @@ if (knop):
         print '<br />'
         print '<a href="/images/proc_server'+str(knop)+'.png" target="_blank"><img src="/images/proc_server'+str(knop)+'.png" /></a>'
         print '<a href="/images/ram_server'+str(knop)+'.png" target="_blank"><img src="/images/ram_server'+str(knop)+'.png" /></a>'
-        print '<a href="/images/disk_server'+str(knop)+'.png" target="_blank"><img src="/images/disk_server'+str(knop)+'.png" /></a>'
+        print '<a href="/images/cpu_server'+str(knop)+'.png" target="_blank"><img src="/images/cpu_server'+str(knop)+'.png" /></a>'
         print '<br />'
 print '<br />'
 print '<table border="1">'
