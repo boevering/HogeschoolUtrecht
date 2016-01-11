@@ -26,6 +26,10 @@ try:
 except:
     print "<h1>Error, de database was niet bereikbaar!!!</h1>"
 
+if knop == "Logs Wissen":
+    sql = "TRUNCATE `Monitor`.`logs`;"
+    cur.execute(sql)
+
 
 print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
@@ -102,10 +106,6 @@ for x in xrange(0,nrrow):
 print '</table>'
 print '<div><form action="" method="post"><input type="submit" value="Logs Wissen" name="knop" class="truncate" /></form></div>'
 print '<div><a href=""><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
-if knop == "Logs Wissen":
-    sql = "TRUNCATE `Monitor`.`logs`;"
-    cur.execute(sql)
-
 print("</body>")
 print("</html>")
 conn.close()
