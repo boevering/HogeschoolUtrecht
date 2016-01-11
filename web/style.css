@@ -1,7 +1,7 @@
 /* CSS StyleSheet for Designing the webpages */
 
 h1{
-  font: sans-serif 40px;
+  font: sans-serif 60px;
   color: white;
 }
 
@@ -58,7 +58,7 @@ input {
   background: #6999ff;
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 4px;
-  transition: all 0.2s ease-out;
+  transition: all 0.1s ease-out;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.5),
     0 2px 2px rgba(0,0,0,0.3),
