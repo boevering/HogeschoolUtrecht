@@ -20,6 +20,7 @@ def checkFile(pathToCheck, fileToCheck):
         if not os.path.exists(pathToCheck):
             os.makedirs(pathToCheck)
 
+# See if the PowerShell file is alive, if not create it.
         test = pathToCheck + fileToCheck
         if not os.path.isfile(test):
             createFile = open(test, 'w')
