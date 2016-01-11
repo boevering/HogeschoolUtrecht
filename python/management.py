@@ -137,7 +137,7 @@ def createGraph(sID):
         ax.set_xticks(ind+width)
         ax.legend(loc='uppecenter', bbox_to_anchor=(0.5, -0.5),fancybox=True, shadow=True, ncol=5)
         xtickNames = ax.set_xticklabels(xTickMarks)
-        plt.setp(xtickNames, rotation=50, fontsize=8)
+        plt.setp(xtickNames, rotation=90, fontsize=8)
         plt.grid(True)
         plt.savefig(imagePath + 'proc_server'+str(sID)+'.png', transparent=True)
 
@@ -165,19 +165,19 @@ def createGraph(sID):
                 data3.append(float(forData[2])/1024)
                 xTickMarks.append(str(row[2]))
 
-            plt.plot(data1, label='In gebruik')
-            plt.plot(data2, label='Beschikbaar')
-            plt.plot(data3, label='Totaal')
+            plt.plot(data1, label='In gebruik (GB)')
+            plt.plot(data2, label='Beschikbaar (GB)')
+            plt.plot(data3, label='Totaal (GB)')
 
             ind = np.arange(len(data1))
 
             if i == 5:
                 ax.set_xlabel('TimeStamp')
-                ax.set_ylabel('Geheugengebruik')
+                ax.set_ylabel('Geheugengebruik (GB)')
                 ax.set_title('Geheugengebruik op Server '+ str(sID))
             if i == 6:
                 ax.set_xlabel('TimeStamp')
-                ax.set_ylabel('Harde schijf')
+                ax.set_ylabel('Harde schijf (GB)')
                 ax.set_title('Harde schijf op Server '+ str(sID))
 
             ax.set_xticks(ind+width)
