@@ -55,6 +55,17 @@ sudo a2enmod php5
 Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt ./update.sh
 
 #### update.sh
+update.sh is er voor gemaakt om er voor te zorgen dat het project met GitHub wordt gesynchroniseerd.
+Eerst wordt het huidige project verwijderd van de lokale scijf, vervolgens wordt er een clone gemaakt van het project.
+Daarna worden de rechten goed gezet zodat de scripten mogen draaien.
+
+Verkrijg het bestand via:
+```bash
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/update.sh
+sudo chmod +x update.sh
+./update.sh
+```
+
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
 ```bash
