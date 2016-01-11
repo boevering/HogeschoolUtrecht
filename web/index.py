@@ -68,6 +68,13 @@ if (knop):
         print '<br />'
         current = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
 
+        time = current[2]
+        process = current[6]
+        mem = 'kaas'
+        hdd = 'kaas'
+        cpu = 'kaas'
+        user = current[11]
+
         print 'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Geheugengebruik:'+ mem+', Percentage Schijfgebruik:'+ hdd+', Percentage CPU-belasting'+ cpu+', Laatste Gebruiker:'+user+''
 
         print '<br />'
