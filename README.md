@@ -110,9 +110,9 @@ In test_database.sql staat dit ook maar dan inclusief test inhoud waar mee gewer
 Voor de database is een user benodig met alle rechten op een schema "Monitor"
 
 ```sql
-databaseuser        : monitor
-databasewachtwoord  : raspberry
-databasenaam        : Monitor
+Database gebruiker   : monitor
+Database wachtwoord  : raspberry
+Database naam        : Monitor
 ```
 
 ##### Server
