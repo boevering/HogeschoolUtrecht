@@ -140,7 +140,7 @@ def get_value(number):
 
     if number == 9:
         p = getpass.getuser()
-        return p
+        return str(p)
 
     # Last value
     return None
