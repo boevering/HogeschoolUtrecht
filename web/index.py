@@ -91,8 +91,11 @@ if (knop):
         cpu = str(float(processor[0])+float(processor[1]))
         user = current[11]
 
+        uptime = ((float(current[5])/60)/60)
+
         print '<table border="1">'
         print '<tr><td>Laatste update: '+ time +'</td>'
+        print '<tr><td>Uptime in d.u: '+ str(uptime) +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
         print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
         print '<td>Percentage Schijfgebruik: '+ str(hdd)+'%</td>'
