@@ -26,6 +26,7 @@ try:
 except:
     print "<h1>Error, de database was niet bereikbaar!!!</h1>"
 
+
 print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
@@ -50,18 +51,16 @@ for x in xrange(0,nrrow1):
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
-limitAmount = str(50)
-
 if not knop:
-    sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub ORDER BY lID ASC LIMIT "+limitAmount+";"
+    sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
 if (knop):
     if knop == "All Servers":
-        sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub ORDER BY lID ASC LIMIT "+limitAmount+";"
+        sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
     else:
-        sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
+        sql = "SELECT * FROM Monitor.logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
     cur.execute(sql)
     nrrow= cur.rowcount
 
