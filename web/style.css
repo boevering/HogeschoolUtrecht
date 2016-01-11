@@ -100,12 +100,12 @@ img {
 
 .to-top {
   position : fixed;
-  top : 20px;
+  bottom : 20px;
   right : 5px;
 }
 
 .truncate{
   position : fixed;
-  bottom : 20px;
+  top : 20px;
   right : 5px;
 }
