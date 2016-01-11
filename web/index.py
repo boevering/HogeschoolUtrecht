@@ -100,7 +100,7 @@ if (knop):
 
 
         print '<table border="1">'
-        print '<tr><td>Laatste update: '+ time +'</td></tr>'
+        print '<tr><td><b>Laatste update: '+ time +'</b></td></tr>'
         print '<tr><td>Uptime in uren:minuten: '+ str(upTime) +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
         print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
@@ -134,7 +134,7 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[10]) + '</td>'
     print '<td>'+ str(row[11]) + '</td></tr>'
 print '</table>'
-print '<div><form action="" method="post"><input type="submit" value="Logs Wissen" name="knop" class="truncate" onclick="return confirm("Are you sure you want clear all logs?") /></form></div>'
+print '<div><form action="" method="post"><input type="submit" value="Logs Wissen" name="knop" class="truncate" /></form></div>'
 print '<div><a href=""><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")
