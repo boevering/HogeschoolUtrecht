@@ -8,7 +8,7 @@ import sys, subprocess
 import psutil
 import socket
 import getpass
-import os.path
+import os
 
 
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
@@ -81,6 +81,10 @@ def getPowerShell(whattoget):
         output = p.stdout.read()                                                    # De stdout
         return output
 
+def getCPUtemperature():
+    res = os.popen('vcgencmd measure_temp').readline()
+    return(res.replace("temp=","").replace("'C\n",""))
+
 # List of all your agent functions that can be called from within the management script.
 # A real developer should do this differently, but this is more easy.
 def get_value(number):
@@ -139,8 +143,8 @@ def get_value(number):
         return waardes
 
     if number == 9:
-        p = getpass.getuser()
-        return str(p)
+        p = str(getpass.getuser())
+        return p
 
     # Last value
     return None
