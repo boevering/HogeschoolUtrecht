@@ -138,7 +138,8 @@ def get_value(number):
         return waardes
 
     if number == 9:
-        return getpass.getuser()
+        username =  getpass.getuser()
+        return str(username)
 
     # Last value
     return None
