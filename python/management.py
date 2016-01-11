@@ -14,13 +14,13 @@ import numpy as np
 
 
 ### Set of very important variables, don't change if you're not sure what you're doing!
-LevelOfDebug = 0                                    # Use 0 or 1 to set debugging
+LevelOfDebug = 1                                    # Use 0 or 1 to set debugging
 xmlFile = 'http://10.0.0.30/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
 imagePath = '/var/www/HogeschoolUtrecht/web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
-limitAmount = 100
+limitAmount = str(100)
 
 if not os.path.exists(imagePath):
     os.makedirs(imagePath)
