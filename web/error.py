@@ -64,19 +64,19 @@ if (knop):
     nrrow= cur.rowcount
 
 if nrrow == 0:
+    print '<br />'
     print 'Het systeem loopt voorspoedig! Er zijn geen errors gevonden!'
-
-print '<br />'
-print '<table border="1">'
-print '<th>eID</th><th>sID</th><th>TimeStamp</th><th>ErrorLevel</th><th>ErrorMessage</th>'
-for x in xrange(0,nrrow):
-    row = cur.fetchone()
-    print '<tr><td>'+ str(row[0]) + '</td>'
-    print '<td>'+ str(row[1]) + '</td>'
-    print '<td>'+ str(row[2]) + '</td>'
-    print '<td>'+ str(row[3]) + '</td>'
-    print '<td>'+ str(row[4]) + '</td></tr>'
-print '</table>'
+else:
+    print '<table border="1">'
+    print '<th>eID</th><th>sID</th><th>TimeStamp</th><th>ErrorLevel</th><th>ErrorMessage</th>'
+    for x in xrange(0,nrrow):
+        row = cur.fetchone()
+        print '<tr><td>'+ str(row[0]) + '</td>'
+        print '<td>'+ str(row[1]) + '</td>'
+        print '<td>'+ str(row[2]) + '</td>'
+        print '<td>'+ str(row[3]) + '</td>'
+        print '<td>'+ str(row[4]) + '</td></tr>'
+    print '</table>'
 conn.close()
 print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
