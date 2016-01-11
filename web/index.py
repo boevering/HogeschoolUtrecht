@@ -82,20 +82,10 @@ if (knop):
         process = current[6]
 
         memory = current[7].split(';')
-        print memory[0]
-        print memory[1]
-        print memory[2]
-        print int(memory[0])
-        print int(memory[1])
-        print int(memory[2])
-
-        print round(float(float(memory[0])/float(memory[2])*100),1)
-
-        mem = 0
-        # mem = str(((int(memory[0])/(int(memory[2])))*100)
+        mem = round(float(float(memory[0])/float(memory[2])*100),1)
 
         harddisk = current[8].split(';')
-        hdd = str(int(harddisk[0])/int(harddisk[2])*100)
+        hdd = round(float(float(harddisk[0])/float(harddisk[2])*100),1)
 
         processor = current[10].split(';')
         cpu = str(float(processor[0])+float(processor[1]))
