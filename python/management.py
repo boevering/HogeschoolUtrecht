@@ -14,18 +14,25 @@ import numpy as np
 
 
 ### Set of very important variables, don't change if you're not sure what you're doing!
-LevelOfDebug = 0                                    # Use 0 or 1 to set debugging
-xmlFile = 'http://10.0.0.30/XMLCreate.php'
-serverPath = '/data/servers/server'
-databasePath = '/data/database'
-imagePath = '/var/www/HogeschoolUtrecht/web/images/'
-st = strftime("%Y-%m-%d %H:%M:%S")
-limitAmount = str(50)
+LevelOfDebug = 0                                            # Use 0 or 1 to set debugging
+xmlFile = 'http://10.0.0.30/XMLCreate.php'                  # IP adres where the XML can be found
+serverPath = '/data/servers/server'                         # Path within the XML where the servers are
+databasePath = '/data/database'                             # Path within the XML where the database information is.
+imagePath = '/var/www/HogeschoolUtrecht/web/images/'        # Path where to save the images
+st = strftime("%Y-%m-%d %H:%M:%S")                          # begin time.
+limitAmount = str(50)                                       # Limit the amount o values in the query of the graphs
+### Set of very important variables, don't change if you're not sure what you're doing!
 
+# check if the path the save the images exists.
 if not os.path.exists(imagePath):
     os.makedirs(imagePath)
 
 def valueToGet(client, sID):
+    '''
+    Let's see with numbers to get trough soap.
+    We will place it in a list r and put it trough to the database.
+    '''
+
     global LevelOfDebug
     r = []
 
@@ -42,9 +49,14 @@ def valueToGet(client, sID):
     putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8])
 
 def valueSoap(client, sID,  nummer):
-    global LevelOfDebug
+    '''
+    Let's get the value from Soap en check it, if it's not a good value,
+    place error in database en set value to 0.
+    '''
 
+    global LevelOfDebug
     value = str(client.get_value(number=nummer).resultaat)
+
     if not value:
         logging(sID, "ERROR", "Value for nr:"+str(nummer)+" could not be retrieved.")
         if LevelOfDebug == 1:
@@ -54,8 +66,11 @@ def valueSoap(client, sID,  nummer):
     else:
         return value
 
-#Make sure the agents can be reached through the network.
 def pingit(host, port, sID):
+    '''
+    First let's check if the agent is online en responds to our requests.
+    So we try to connect to the socket on port 8008
+    '''
 
     s = socket(AF_INET, SOCK_STREAM)            # Creates socket
     s.settimeout(5)                             # set timeout to 5 seconds, server should always respons within this time
@@ -71,8 +86,12 @@ def pingit(host, port, sID):
         s.close()                               # closes socket, so it can be re-used
         return True                             # it retuns true, server is online.
 
-#Filling the database with information of the agents.
 def putValueInDB(*args):
+    '''
+    Let's get the value's provided by soap and make a query to insert it into the database.
+    A fill the database with information of the agents.
+    '''
+
     global xmlFile
     global databasePath
     global st
@@ -92,8 +111,12 @@ def putValueInDB(*args):
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
         exit()
 
-#Creating graphs with the information from the database
+#
 def createGraph(sID):
+    '''
+    Creating graphs with the information from the database.
+    Three graphs will be created for r4 (amount of processes), r5 (usage of memory) and r8 (usage of the cpu)
+    '''
     global xmlFile
     global databasePath
     global limitAmount
@@ -211,9 +234,9 @@ def createGraph(sID):
         print "\n"
     cur.close()
 
-#If an error occurs, the message has to be logged. This information is inserted into the error table of the database.
 def logging(sID, level, error):
     '''
+    If an error occurs, the message has to be logged. This information is inserted into the error table of the database.
     CRITICAL
     ERROR
     WARNING
@@ -240,8 +263,14 @@ def logging(sID, level, error):
         exit()
     cur.close()
 
-#The IP Addresses are also put in an database table. This information is in this function pulled from the table.
+#
 def getClientsIP():
+    '''
+    The IP Addresses are also put in an database table. This information is in this function pulled from the table.
+    If the server information is known well kick off the process by calling valueToGet(client, sID)
+    When all the information of 1 client is know we'll kick of the creating of the three grapsh createGraph(sID)
+    '''
+
     global xmlFile
     global serverPath
     global LevelOfDebug
@@ -274,8 +303,7 @@ def getClientsIP():
         serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
             valueToGet(client, sID)
-            pass
         createGraph(sID)
 
-getClientsIP()
-print "\n"+st+" - All done!"
+getClientsIP()                                                                                          # This will start everything, without this nothing will work!
+print "\nStarted at : "+st+"\nEnded at   : "+strftime("%Y-%m-%d %H:%M:%S") +" \n\nAll done!"            # Oke were done, when running from crontab this information is placed in runlog.
