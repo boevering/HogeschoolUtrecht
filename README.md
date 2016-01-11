@@ -79,24 +79,13 @@ Ended at   : 2016-01-11 16:55:48
 
 All done!
 ```
-
-#### Python
-Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
-Als extra is het benodigd om de volgende modules te installeren voor de management:
-- pysimplesoap;
-- lxml;
-- time;
-- matplotlib;
-- numpy;
-- pymysql.
-
 #### Webserver
 Om alles overzichtelijk weer te geven is er een webserver ingericht.
 In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
 Hier staat op geinstalleerd:
 - Apache 2.4.10;
 - MySQL Versie 14.14 Distributie 5.5.44;
-- Python 2.7.9.
+- Python 2.7.10.
 
 ##### Apache2
 Om er voor te zorgen dat Apache de juiste directory weergeeft, is er een aanpassing gedaan aan de standaardpagina die wordt weer gegeven.
@@ -114,7 +103,8 @@ AddHandler cgi-script .py
 
 #### MySQL
 In MySQL is een database aangemaakt met daarin drie tabellen welke worden gebruikt voor de servers, de logs en de errors die zijn ontstaan.
-De Servertabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt.
+De Servertabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt. In database.sql staat de opbouw om in sql te kunnen gebruiken.
+In test_database.sql staat dit ook maar dan inclusief test inhoud waar mee gewerkt kan worden voor vier (4) servers.
 
 ##### Server
 Belangrijk om van een server te weten, is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
@@ -163,13 +153,24 @@ Table: error
     error varchar(500)
 ```
 
+#### Python
+Er is voor python 2.7.10 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
+Als extra is het benodigd om de volgende modules te installeren voor de management:
+- pysimplesoap;
+- lxml;
+- time;
+- matplotlib;
+- numpy;
+- pymysql.
+
+
 ## Agents (agent.py)
 Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
 In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
 In het script worden de verschillende onderdelen nog verder toegelicht.
 
 #### Python
-Ook bij de agents is ervoor python 2.7.9 gekozen.
+Ook bij de agents is ervoor python 2.7.10 gekozen.
 De volgende modules moeten worden geïnstalleerd voor de agent:
 - pysimplesoap;
 - uptime;
