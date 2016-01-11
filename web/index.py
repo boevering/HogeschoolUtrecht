@@ -91,11 +91,15 @@ if (knop):
         cpu = str(float(processor[0])+float(processor[1]))
         user = current[11]
 
-        uptime = round(((float(current[5])/60)/60),2)
+        upTimeString = str(round(((float(current[5])/60)/60),2))
+        upTimeList = upTimeString.split('.')
+        upTimeMin = (float('0.'+upTimeList)*60)
+        upTime = upTimeList[0] + upTimeMin
+
 
         print '<table border="1">'
-        print '<tr><td>Laatste update: '+ time +'</td>'
-        print '<tr><td>Uptime in uren: '+ str(uptime) +'</td>'
+        print '<tr><td>Laatste update: '+ time +'</td></tr>'
+        print '<tr><td>Uptime in uren:minuten: '+ str(upTime) +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
         print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
         print '<td>Percentage Schijfgebruik: '+ str(hdd)+'%</td>'
