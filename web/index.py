@@ -95,7 +95,7 @@ if (knop):
         print '<tr><td>Laatste update: '+ time +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
         print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
-        print '<td>Percentage Schijfgebruik: '+ hdd+'%</td>'
+        print '<td>Percentage Schijfgebruik: '+ str(hdd)+'%</td>'
         print '<td>Percentage CPU-belasting: '+ cpu+'%</td>'
         print '<td>Laatste Gebruiker:'+user+'</td></tr>'
         print '</table>'
