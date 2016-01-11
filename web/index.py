@@ -59,6 +59,7 @@ if knop == "Logs Wissen":
     print("</body>")
     print("</html>")
     conn.close()
+    exit()
 
 if not knop:
     sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
