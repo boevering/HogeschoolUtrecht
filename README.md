@@ -1,9 +1,11 @@
 # Hogeschool Utrecht
 
-Welkom bij het Python project van de Hogeschool Utrecht. In dit project moet een monitoringssysteem gemaakt worden, met behulp van Python.
-Het systeem is in twee delen opgesplitst:
--   Managementsysteem;
--   Agents.
+Welkom bij het Python-project van de Hogeschool Utrecht. In dit project moet een monitoringssysteem gemaakt worden, met behulp van Python.
+Het systeem bestaat uit componenten:
+-   Managementsysteem (management.py);
+-   Agents (agent.py);
+-   Powershell (agent_info.ps1);
+-   Database naar CSV (exportToCSV.py)
 
 Dit project bestaat daarnaast uit drie componenten:
 -   agent.py;
@@ -138,6 +140,7 @@ Table: Logs
     r6 varchar(45)
     r7 varchar(45)
     r8 varchar(511)
+    r9 varchar(45)
 ```
 
 #### error

@@ -126,7 +126,7 @@ def createGraph(sID):
         ind = np.arange(len(data))                  # the x locations for the groups
         width = 0.35                                # the width of the bars
 
-        rects1 = ax.bar(ind, data, width)
+        rects1 = ax.bar(ind, data, width, label="")
         ax.set_xlim(-width,len(ind)+width)
         ax.set_ylim(0,max(data)+15)
 
@@ -137,7 +137,7 @@ def createGraph(sID):
         ax.set_xticks(ind+width)
         ax.legend(loc='uppecenter', bbox_to_anchor=(0.5, -0.5),fancybox=True, shadow=True, ncol=5)
         xtickNames = ax.set_xticklabels(xTickMarks)
-        plt.setp(xtickNames, rotation=50, fontsize=8)
+        plt.setp(xtickNames, rotation=90, fontsize=8)
         plt.grid(True)
         plt.savefig(imagePath + 'proc_server'+str(sID)+'.png', transparent=True)
 
@@ -165,30 +165,35 @@ def createGraph(sID):
                 data3.append(float(forData[2])/1024)
                 xTickMarks.append(str(row[2]))
 
-            plt.plot(data1, label='In gebruik')
-            plt.plot(data2, label='Beschikbaar')
-            plt.plot(data3, label='Totaal')
+            plt.plot(data1, label='In gebruik (GB)')
+            plt.plot(data2, label='Beschikbaar (GB)')
+            plt.plot(data3, label='Totaal (GB)')
+
+            ind = np.arange(len(data1))
 
             if i == 5:
                 ax.set_xlabel('TimeStamp')
-                ax.set_ylabel('Geheugengebruik')
+                ax.set_ylabel('Geheugengebruik (GB)')
                 ax.set_title('Geheugengebruik op Server '+ str(sID))
             if i == 6:
                 ax.set_xlabel('TimeStamp')
-                ax.set_ylabel('Harde schijf')
+                ax.set_ylabel('Harde schijf (GB)')
                 ax.set_title('Harde schijf op Server '+ str(sID))
 
+            ax.set_xticks(ind+width)
+            ax.set_xlim(-width,len(ind)+width)
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
-            plt.setp(xtickNames, rotation=50, fontsize=8)
+            plt.setp(xtickNames, rotation=90, fontsize=8)
             plt.grid(True)
+
             ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=9)
 
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
                 plt.savefig(imagePath + 'disk_server'+str(sID)+'.png', transparent=True)
-            #plt.show()
+            plt.show()
 
     if LevelOfDebug == 1:
         print data1
@@ -261,7 +266,8 @@ def getClientsIP():
         serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
             valueToGet(client, sID)
-            createGraph(sID)
+            pass
+        createGraph(sID)
 
 getClientsIP()
 print "\n"+st+" - All done!"

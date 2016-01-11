@@ -50,6 +50,9 @@ for x in xrange(0,nrrow1):
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
+if nrrow1 == 0:
+    print 'Het systeem loopt voorspoedig! Er zijn geen errors gevonden!'
+
 if not knop:
     sql = "SELECT * FROM Monitor.error ORDER BY eID;"
     cur.execute(sql)
