@@ -212,12 +212,14 @@ Voor het bekijken van de servers is in Apache een webpagina ingericht op basis v
 Door te gaan naar de webserver en te zorgen dat /index.py gebruik wordt, komt er een pagina waar kan worden gekozen voor een server.
 Hier wordt het aantal servers dynamisch bekeken op basis van de server vermeld in de database.
 
-Er zijn hier knoppen beschikbaar per server en ook een knop geef alles weer.
+Er zijn hier knoppen beschikbaar per server en ook een knop, die alles weergeeft.
 Door gebruik te maken van de knoppen wordt een meer gedetailleerd overzicht weer gegeven per server.
+Hier wordt namelijk grafieken getoond, die de ontwikkelingen van de processen, het geheugengebruik en het cpu-gebruik in kaart brengen.
+Ook is boven deze grafieken de laatst gemeten waardes te vinden en onder de grafieken de databaseregels.
 
 ## Serverbeheer
 Natuurlijk is het belangrijk om de server gemakkelijk te kunnen beheren.
-Hiervoor is een webpagina opgebouwd, die kan worden gevonden op de webserver /servers.py
+Hiervoor is een webpagina opgebouwd, die kan worden gevonden op de webserver /servers.py.
 
 Hier is het mogelijk om een drietal taken uit te voeren.
 Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
