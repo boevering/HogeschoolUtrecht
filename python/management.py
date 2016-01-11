@@ -14,13 +14,13 @@ import numpy as np
 
 
 ### Set of very important variables, don't change if you're not sure what you're doing!
-LevelOfDebug = 1                                    # Use 0 or 1 to set debugging
+LevelOfDebug = 0                                    # Use 0 or 1 to set debugging
 xmlFile = 'http://10.0.0.30/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
 imagePath = '/var/www/HogeschoolUtrecht/web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
-limitAmount = str(100)
+limitAmount = str(200)
 
 if not os.path.exists(imagePath):
     os.makedirs(imagePath)
@@ -126,7 +126,7 @@ def createGraph(sID):
         ind = np.arange(len(data))                  # the x locations for the groups
         width = 0.35                                # the width of the bars
 
-        rects1 = ax.bar(ind, data, width)
+        rects1 = ax.bar(ind, data, width, label="")
         ax.set_xlim(-width,len(ind)+width)
         ax.set_ylim(0,max(data)+15)
 
@@ -170,6 +170,7 @@ def createGraph(sID):
             plt.plot(data3, label='Totaal')
 
             ind = np.arange(len(data1))
+
             if i == 5:
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('Geheugengebruik')
@@ -179,18 +180,20 @@ def createGraph(sID):
                 ax.set_ylabel('Harde schijf')
                 ax.set_title('Harde schijf op Server '+ str(sID))
 
+            ax.set_xticks(ind+width)
             ax.set_xlim(-width,len(ind)+width)
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
             plt.grid(True)
+
             ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=9)
 
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
                 plt.savefig(imagePath + 'disk_server'+str(sID)+'.png', transparent=True)
-            #plt.show()
+            plt.show()
 
     if LevelOfDebug == 1:
         print data1
@@ -263,6 +266,7 @@ def getClientsIP():
         serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
             valueToGet(client, sID)
+            pass
         createGraph(sID)
 
 getClientsIP()
