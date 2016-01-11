@@ -50,7 +50,7 @@ for x in xrange(0,nrrow1):
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
-limitAmount = str(10)
+limitAmount = str(50)
 
 if not knop:
     sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub ORDER BY lID ASC LIMIT "+limitAmount+";"
