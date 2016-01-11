@@ -133,7 +133,7 @@ def get_value(number):
             return socket.gethostbyname(socket.gethostname())
 
     if number == 8:
-        p = psutil.cpu_times()
+        p = psutil.cpu_times_percent()
         waardes = str(p.user) + ';' + str(p.system)  + ';' + str(p.idle)
         return waardes
 
