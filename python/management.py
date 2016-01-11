@@ -8,7 +8,7 @@ from time import strftime
 import matplotlib
 import os
 import pymysql
-#matplotlib.use('Agg')
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -196,7 +196,7 @@ def createGraph(sID):
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
                 plt.savefig(imagePath + 'cpu_server'+str(sID)+'.png', transparent=True)
-            plt.show()
+            #plt.show()
 
     if LevelOfDebug == 1:
         print data1
