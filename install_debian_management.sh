@@ -3,6 +3,7 @@
 ## first install all components and make sure everything is up-to-date
 sudo apt-get -y update
 sudo apt-get -y upgrade
+sudo apt-get -y upgrade mysql-server
 sudo apt-get -y install build-essential
 sudo apt-get -y install python-dev
 sudo apt-get -y install python-pip
@@ -22,6 +23,4 @@ sudo a2enmod cgi
 sudo a2enmod php5
 
 ## get the agent.py from github, give the correct rights and run it.
-sudo mkdir /etc/hu
-wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/python/management.py -O /etc/hu/management.py
-sudo chmod +x /etc/hu/management.py
+sudo mkdir /var/www/HogeschoolUtrecht/

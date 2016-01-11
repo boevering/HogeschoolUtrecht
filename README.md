@@ -58,8 +58,8 @@ Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt .
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
 ```bash
-rm -R /var/www/test/HogeschoolUtrecht
-cd /var/www/test/
+rm -R /var/www/HogeschoolUtrecht
+cd /var/www/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
 chmod 777 -R /var/www/HogeschoolUtrecht/
 ```
