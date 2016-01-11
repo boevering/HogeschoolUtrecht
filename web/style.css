@@ -10,12 +10,13 @@ body {
 }
 table {
   background: #e1e1e1;
-  border-radius:3px;
+  border-radius:5px;
   width: 90%;
   opacity: 0.90;
   text-align: left;
   padding: 0.25rem;
   color:black;
+  box-shadow: 1px 1px 1px #999;
 }
 
 th {
