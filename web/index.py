@@ -82,30 +82,23 @@ if (knop):
         process = current[6]
 
         memory = current[7].split(';')
-        print memory[0]
-        print memory[1]
-        print memory[2]
-        print int(memory[0])
-        print int(memory[1])
-        print int(memory[2])
-
-        print int(memory[0])/int(memory[2])
-
-        mem = 0
-        # mem = str(((int(memory[0])/(int(memory[2])))*100)
+        mem = round(float(float(memory[0])/float(memory[2])*100),1)
 
         harddisk = current[8].split(';')
-        hdd = str(int(harddisk[0])/int(harddisk[2])*100)
+        hdd = round(float(float(harddisk[0])/float(harddisk[2])*100),1)
 
         processor = current[10].split(';')
         cpu = str(float(processor[0])+float(processor[1]))
         user = current[11]
 
+        uptime = round(((float(current[5])/60)/60),2)
+
         print '<table border="1">'
         print '<tr><td>Laatste update: '+ time +'</td>'
+        print '<tr><td>Uptime in uren: '+ str(uptime) +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
         print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
-        print '<td>Percentage Schijfgebruik: '+ hdd+'%</td>'
+        print '<td>Percentage Schijfgebruik: '+ str(hdd)+'%</td>'
         print '<td>Percentage CPU-belasting: '+ cpu+'%</td>'
         print '<td>Laatste Gebruiker:'+user+'</td></tr>'
         print '</table>'
