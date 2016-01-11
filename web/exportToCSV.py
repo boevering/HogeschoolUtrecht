@@ -20,7 +20,7 @@ cur.execute(dbQuery)
 
 result=cur.fetchall()
 
-c = csv.writer(open("/var/www/HogeschoolUtrecht/web/images/temp.csv","wb"), dialect=csv.excel)
+c = csv.writer(open("/var/www/HogeschoolUtrecht/web/temp.csv","wb"), dialect=csv.excel)
 for row in result:
     c.writerow(row)
 
