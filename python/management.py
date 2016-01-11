@@ -8,7 +8,7 @@ from time import strftime
 import matplotlib
 import os
 import pymysql
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -141,7 +141,7 @@ def createGraph(sID):
         plt.grid(True)
         plt.savefig(imagePath + 'proc_server'+str(sID)+'.png', transparent=True)
 
-    for i in range(5,7):
+    for i in range(5,9,3):
         try:
             sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
             cur.execute(sql)
@@ -165,20 +165,23 @@ def createGraph(sID):
                 data3.append(float(forData[2])/1024)
                 xTickMarks.append(str(row[2]))
 
-            plt.plot(data1, label='In gebruik (GB)')
-            plt.plot(data2, label='Beschikbaar (GB)')
-            plt.plot(data3, label='Totaal (GB)')
-
             ind = np.arange(len(data1))
-
             if i == 5:
+                plt.plot(data1, label='In gebruik (GB)')
+                plt.plot(data2, label='Beschikbaar (GB)')
+                plt.plot(data3, label='Totaal (GB)')
+
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('Geheugengebruik (GB)')
                 ax.set_title('Geheugengebruik op Server '+ str(sID))
-            if i == 6:
+            if i == 8:
+                plt.plot(data1, label='% User')
+                plt.plot(data2, label='% System')
+                plt.plot(data3, label='% Idle')
+
                 ax.set_xlabel('TimeStamp')
-                ax.set_ylabel('Harde schijf (GB)')
-                ax.set_title('Harde schijf op Server '+ str(sID))
+                ax.set_ylabel('CPU gebruik')
+                ax.set_title('CPU gebruik op Server '+ str(sID))
 
             ax.set_xticks(ind+width)
             ax.set_xlim(-width,len(ind)+width)
@@ -192,7 +195,7 @@ def createGraph(sID):
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
-                plt.savefig(imagePath + 'disk_server'+str(sID)+'.png', transparent=True)
+                plt.savefig(imagePath + 'cpu_server'+str(sID)+'.png', transparent=True)
             plt.show()
 
     if LevelOfDebug == 1:
@@ -265,7 +268,7 @@ def getClientsIP():
             ns = False)
         serverOnline = pingit(serverIPAdress, serverIPPort, sID)
         if serverOnline == True:
-            valueToGet(client, sID)
+            #valueToGet(client, sID)
             pass
         createGraph(sID)
 
