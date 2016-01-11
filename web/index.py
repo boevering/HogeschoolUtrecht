@@ -89,7 +89,7 @@ if (knop):
         print int(memory[1])
         print int(memory[2])
 
-        print int(memory[0])/int(memory[2])
+        print float(memory[0])/float(memory[2])
 
         mem = 0
         # mem = str(((int(memory[0])/(int(memory[2])))*100)
