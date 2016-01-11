@@ -24,6 +24,13 @@ Om de server goed in te richten, zijn er verschillende pakketten, die geïnstall
 Daarbij zijn de juiste rechten ook niet te vergeten. Met het volgende script wordt de managementserver geconfigureerd:
 
 ```bash
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian.sh
+sudo chmod +x install_debian_management.sh
+./install_debian_management.sh
+```
+
+Hiermee wordt het volgende script gestart:
+```bash
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install build-essential
