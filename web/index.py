@@ -88,6 +88,6 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[11]) + '</td></tr>'
 print '</table>'
 conn.close()
-print '<a href="#"><input type="submit" value="to-top" name="knop" class="to-top"/></a>'
+print '<div href="#"><input type="submit" value="Terug naar boven" name="knop" class="to-top"/></div>'
 print("</body>")
 print("</html>")
