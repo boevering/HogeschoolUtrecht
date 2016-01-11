@@ -5,7 +5,8 @@ Het systeem bestaat uit componenten:
 -   Managementsysteem (management.py);
 -   Agents (agent.py);
 -   Powershell (agent_info.ps1);
--   Database naar CSV (exportToCSV.py)
+-   Database (database.sql);
+-   Database naar CSV (exportToCSV.py);
 
 Dit project bestaat daarnaast uit drie componenten:
 -   agent.py;
