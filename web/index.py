@@ -81,9 +81,9 @@ if (knop):
         time = current[2]
         process = current[6]
 
-        memory = current[7].split(';')
+        memory = current[7].split(';').int
         print memory
-        men = memory[0]/memory[2]
+        mem = memory[0]/memory[2]
         # mem = str(((int(memory[0])/(int(memory[2])))*100)
 
         harddisk = current[8].split(';')
