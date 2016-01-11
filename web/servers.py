@@ -111,7 +111,7 @@ if (knop == "Server toevoegen"):
             cur.execute(sql)
             print "New record created successfully"
         except:
-            print "Error: " + sql + "<br>" . cur.error
+            print "Error: " + sql + "<br>" + cur.error
     else:
         print 'Er is iets verkeerd gegaan!'
     knop = None
