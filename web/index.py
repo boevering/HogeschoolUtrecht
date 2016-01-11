@@ -98,6 +98,7 @@ if (knop):
         print '<td>Percentage Schijfgebruik: '+ hdd+'%</td>'
         print '<td>Percentage CPU-belasting: '+ cpu+'%</td>'
         print '<td>Laatste Gebruiker:'+user+'</td></tr>'
+        print '</table>'
 
         print '<br />'
         print '<a href="/images/proc_server'+str(knop)+'.png" target="_blank"><img src="/images/proc_server'+str(knop)+'.png" /></a>'
