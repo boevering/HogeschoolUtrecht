@@ -20,7 +20,7 @@ serverPath = '/data/servers/server'
 databasePath = '/data/database'
 imagePath = '/var/www/HogeschoolUtrecht/web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
-limitAmount = str(200)
+limitAmount = str(50)
 
 if not os.path.exists(imagePath):
     os.makedirs(imagePath)
