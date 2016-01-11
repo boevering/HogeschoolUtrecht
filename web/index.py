@@ -31,11 +31,11 @@ print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
 print("<meta charset='utf-8'>")
-print("<title>Logbeheer</title>")
+print("<title>Monitoring</title>")
 print("<link type='text/css' rel='stylesheet' href='style.css'/>")
 print("</head>")
 print("<body>")
-print ("<h1> Welkom op de logpagina voor de servers. </h1>")
+print ("<h1> Server Logs </h1>")
 
 sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)
@@ -65,13 +65,13 @@ if (knop):
 
     if knop.isdigit():
         print '<br /><br />'
-        print '<img src="/images/proc_server'+str(knop)+'.png" width="500px" />'
-        print '<img src="/images/ram_server'+str(knop)+'.png" width="500px" />'
-        print '<img src="/images/disk_server'+str(knop)+'.png" width="500px" />'
+        print '<img src="/images/proc_server'+str(knop)+'.png" />'
+        print '<img src="/images/ram_server'+str(knop)+'.png" />'
+        print '<img src="/images/disk_server'+str(knop)+'.png" />'
         print '<br />'
 print '<br />'
 print '<table border="1">'
-print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>DefaultEncoding</th><th>Uptime</th><th>RunningProcesses</th><th>Memory</th><th>DiskUsage</th><th>FirstIPAddress</th><th>CPU</th>'
+print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>DefaultEncoding</th><th>Uptime</th><th>RunningProcesses</th><th>Memory</th><th>DiskUsage</th><th>FirstIPAddress</th><th>CPU</th><th>User</th>'
 for x in xrange(0,nrrow):
     row = cur.fetchone()
     print '<tr><td>'+ str(row[0]) + '</td>'
@@ -84,8 +84,10 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[7]) + '</td>'
     print '<td>'+ str(row[8]) + '</td>'
     print '<td>'+ str(row[9]) + '</td>'
-    print '<td>'+ str(row[10]) + '</td></tr>'
+    print '<td>'+ str(row[10]) + '</td>'
+    print '<td>'+ str(row[11]) + '</td></tr>'
 print '</table>'
 conn.close()
+print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")

@@ -61,11 +61,11 @@ print("Content-type:text/html\r\n\r\n")
 print("<!doctype html>")
 print("<head>")
 print("<meta charset='utf-8'>")
-print("<title>Server Beheer</title>")
+print("<title>Server Management</title>")
 print("<link type='text/css' rel='stylesheet' href='style.css'/>")
 print("</head>")
 print("<body>")
-print ("<h1> Welkom op de beheer pagina voor de servers. </h1>")
+print ("<h1> Server Management </h1>")
 
 sql1 = "SELECT sID FROM Monitor.server ORDER BY sID;"
 cur.execute(sql1)
@@ -111,7 +111,7 @@ if (knop == "Server toevoegen"):
             cur.execute(sql)
             print "New record created successfully"
         except:
-            print "Error: " + sql + "<br>" . cur.error
+            print "Error: " + sql + "<br>Failed to add the server!"
     else:
         print 'Er is iets verkeerd gegaan!'
     knop = None
@@ -119,7 +119,7 @@ if (knop == "Server toevoegen"):
     print '<meta http-equiv="refresh" content="5">'
     print '</head>'
 
-if (knop == "update"):
+if (knop == "Update"):
     sID = str(form.getvalue('sID'))
     ip = str(form.getvalue('IPAdres'))
     port = str(form.getvalue('IPPort'))
@@ -129,12 +129,12 @@ if (knop == "update"):
 
     r = check(ip, port, mac, os)
     if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
-        sql = 'UPDATE `Monitor.server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
+        sql = 'UPDATE `server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
-            print "Record updated successfully"
+            print "Record has been successfully updated!"
         except:
-            print "Error: " + sql + "<br>" . cur.error
+            print "Error: " + sql + "<br>Failed to update the server!"
     else:
         print 'Er is iets verkeerd gegaan!'
     knop = None
@@ -146,8 +146,8 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
     sID = str(form.getvalue('sID'))
 
     if (knop == "Edit"):
-        knop = "update"
-        sql = "SELECT * FROM Monitor.server WHERE sID = "+ sID+";"
+        knop = "Update"
+        sql = "SELECT * FROM server WHERE sID = "+ sID+";"
         row = cur.execute(sql)
         row = cur.fetchone()
     else:
@@ -156,11 +156,11 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
 
     print '''<table>
     <form action="" method="post">
-    <tr><td> Name: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''"/> </td></tr>
-    <tr><td> IP adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" /> </td></tr>
-    <tr><td> IP Port: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" /> </td></tr>
-    <tr><td> MAC Adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''"/> </td></tr>
-    <tr><td> Operating System: </td><td>
+    <tr><td> Naam: </td><td> <input type="text" name="Name" value="'''+str(row[5])+'''" class="txt" /> </td></tr>
+    <tr><td> IP-adres: </td><td> <input type="text" name="IPAdres" value="'''+str(row[1])+'''" class="txt" /> </td></tr>
+    <tr><td> IP-Poort: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" class="txt" /> </td></tr>
+    <tr><td> MAC-adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''" class="txt" /> </td></tr>
+    <tr><td> Besturingssysteem: </td><td>
     <select name="OperatingSystem">
           <option value="win32">Windows 10</option>
           <option value="win32">Windows 8.1</option>
@@ -176,5 +176,6 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
     <table>'''
 
 conn.close()
+print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")

@@ -30,16 +30,16 @@ def valueToGet(client, sID):
     r = []
 
     # call a few remote methods
-    for i in range(1, 9):
+    for i in range(1, 10):
         r.append(valueSoap(client, sID, i).rstrip())
 
     # print statement for debugging only!
     if LevelOfDebug == 1:
-        for i in range(0, 8):
+        for i in range(0, 9):
             print r[i]
 
     # Now put it all together and put it in the database
-    putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7])
+    putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8])
 
 def valueSoap(client, sID,  nummer):
     global LevelOfDebug
@@ -54,6 +54,7 @@ def valueSoap(client, sID,  nummer):
     else:
         return value
 
+#Make sure the agents can be reached through the network.
 def pingit(host, port, sID):
 
     s = socket(AF_INET, SOCK_STREAM)            # Creates socket
@@ -70,6 +71,7 @@ def pingit(host, port, sID):
         s.close()                               # closes socket, so it can be re-used
         return True                             # it retuns true, server is online.
 
+#Filling the database with information of the agents.
 def putValueInDB(*args):
     global xmlFile
     global databasePath
@@ -83,13 +85,14 @@ def putValueInDB(*args):
         conn.autocommit(True)
         cur = conn.cursor()
         cur.execute('INSERT INTO Monitor.logs'
-                    '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`)'
-                    "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"');")
+                    '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`)'
+                    "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"','"+ str(args[9]) +"');")
         cur.close()
     except:
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'
         exit()
 
+#Creating graphs with the information from the database
 def createGraph(sID):
     global xmlFile
     global databasePath
@@ -127,10 +130,12 @@ def createGraph(sID):
         ax.set_xlim(-width,len(ind)+width)
         ax.set_ylim(0,max(data)+15)
 
-        ax.set_ylabel('Y LABEL')
-        ax.set_title('Aantal processen op server'+ str(sID))
+        ax.set_xlabel('TimeStamp')
+        ax.set_ylabel('Processen')
+        ax.set_title('Aantal processen op Server '+ str(sID))
 
         ax.set_xticks(ind+width)
+        ax.legend(loc='uppecenter', bbox_to_anchor=(0.5, -0.5),fancybox=True, shadow=True, ncol=5)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=50, fontsize=8)
         plt.grid(True)
@@ -163,11 +168,22 @@ def createGraph(sID):
             plt.plot(data1, label='In gebruik')
             plt.plot(data2, label='Beschikbaar')
             plt.plot(data3, label='Totaal')
+
+            if i == 5:
+                ax.set_xlabel('TimeStamp')
+                ax.set_ylabel('Geheugengebruik')
+                ax.set_title('Geheugengebruik op Server '+ str(sID))
+            if i == 6:
+                ax.set_xlabel('TimeStamp')
+                ax.set_ylabel('Harde schijf')
+                ax.set_title('Harde schijf op Server '+ str(sID))
+
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
             plt.grid(True)
-            plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3, ncol=2, mode="expand", borderaxespad=0.)
+            ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=9)
+
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
             if i == 6:
@@ -182,6 +198,7 @@ def createGraph(sID):
         print "\n"
     cur.close()
 
+#If an error occurs, the message has to be logged. This information is inserted into the error table of the database.
 def logging(sID, level, error):
     '''
     CRITICAL
@@ -210,6 +227,7 @@ def logging(sID, level, error):
         exit()
     cur.close()
 
+#The IP Addresses are also put in an database table. This information is in this function pulled from the table.
 def getClientsIP():
     global xmlFile
     global serverPath
@@ -219,13 +237,13 @@ def getClientsIP():
         tree = etree.parse(xmlFile)
         servers = tree.xpath(serverPath)
     except IOError:
-        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
+        print "Er is een fout opgetreden! Draait de MySQL-service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
 
     ## count the amount of servers in the xmlfile so we know how often we need to ask divertent servers.
     count = int(tree.xpath('count(//server)'))
 
     if count == 0:
-        print "Er is een fout opgetreden, draait de mysql service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
+        print "Er is een fout opgetreden! Draait de MySQL-service wel? \nHet XMLCreate.php bestand is leeg of kon niet worden geladen!"
         exit()
 
     for i in range(count):

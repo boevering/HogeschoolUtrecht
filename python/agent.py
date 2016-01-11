@@ -7,12 +7,13 @@ from uptime import uptime
 import sys, subprocess
 import psutil
 import socket
-import os.path
+import os, getpass
 
 
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
 pathToFilePS = 'agent_info.ps1'
 
+#Function to check which platform the agent is using and if the path and file are present, to work smoothly.
 def checkFile(pathToCheck, fileToCheck):
     BS = sys.platform
     if BS == 'win32':
@@ -70,7 +71,7 @@ function Get-Uptime {
 
 checkFile(pathToDirPS, pathToFilePS)
 
-
+#Powershell klaarzetten op windows agents.
 def getPowerShell(whattoget):
         p=subprocess.Popen(['powershell.exe',                                       # Altijd gelijk of volledig pad naar powershell.exe
             '-ExecutionPolicy', 'Unrestricted',                                     # Override current Execution Policy
@@ -87,7 +88,7 @@ def get_value(number):
     BS = sys.platform
 
     if number == 1:
-        return sys.platform
+        return BS
 
     if number == 2:
         return sys.getdefaultencoding()
@@ -136,9 +137,12 @@ def get_value(number):
         waardes = str(p.user) + ';' + str(p.system)  + ';' + str(p.idle)
         return waardes
 
+    if number == 9:
+        username =  getpass.getuser()
+        return str(username)
+
     # Last value
     return None
-
 
 # ---------------------------------------------------------
 
