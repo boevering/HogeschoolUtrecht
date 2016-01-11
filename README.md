@@ -1,7 +1,7 @@
 # Hogeschool Utrecht
 
 Welkom bij het Python-project van de Hogeschool Utrecht. In dit project moet een monitoringssysteem gemaakt worden, met behulp van Python.
-Het systeem bestaat uit componenten:
+Het systeem bestaat uit verschillende componenten:
 -   Managementsysteem (management.py);
 -   Agents (agent.py);
 -   Powershellcommando's (agent_info.ps1);
@@ -13,34 +13,11 @@ Het systeem bestaat uit componenten:
 
 Deze componenten zijn hieronder verder uitgelegd.
 
-## management.py
+## Managementsysteem (management.py)
 Het managementscript heeft de belangrijkste rol in de communicatie. De manager vraagt gegevens op, die het systeem aan de agents moet opvragen.
 De gegevens, die hieruit voortkomen, worden in verschillende databases verwerkt.
 Hierdoor zijn deze gegevens later in een grafiek te zetten, om deze ook grafisch te kunnen inzien.
 Dit script wordt door een cronjob elke minuut uitgevoerd.
-
-## agent.py
-Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
-In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
-In het script worden de verschillende onderdelen nog verder toegelicht.
-
-## agent_info.ps1
-Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
--   Get-CountPS
--   Get-IPAddress -first
--   Get-Memory
--   Get-FreeSpace
--   Get-Uptime
-
-## Webserver
-Om alles overzichtelijk weer te geven is er een webserver ingericht.
-In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
-Hier staat op geinstalleerd:
-- Apache 2.4.10
-- MySQL  Ver 14.14 Distrib 5.5.44
-- Python 2.7.9
-
-sudo apt-get
 
 ## Installatie Management
 Om de server goed in te richten, zijn er verschillende pakketten, die geïnstalleerd moeten worden.
@@ -89,6 +66,14 @@ cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
 chmod 777 -R /var/www/test/HogeschoolUtrecht/
 ```
+
+## Webserver
+Om alles overzichtelijk weer te geven is er een webserver ingericht.
+In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
+Hier staat op geinstalleerd:
+- Apache 2.4.10
+- MySQL  Ver 14.14 Distrib 5.5.44
+- Python 2.7.9
 
 ### Apache2
 Om er voor te zorgen dat Apache de juiste directory weergeeft, is er een aanpassing gedaan aan de standaardpagina die wordt weer gegeven.
@@ -163,10 +148,29 @@ Als extra is het benodigd om de volgende modules te installeren voor de manageme
 - time
 - pymysql
 
-Als extra is het benodigd om de volgende modules te installeren voor de agent:
+from pysimplesoap.client import SoapClient, SoapFault
+from socket import *
+from lxml import etree
+from time import strftime
+import matplotlib
+import os
+import pymysql
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+## Agents (agent.py)
+Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
+In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
+In het script worden de verschillende onderdelen nog verder toegelicht.
+
+### Python
+Ook bij de agents is ervoor python 2.7.9 gekozen.
+De volgende modules moeten worden geïnstalleerd voor de agent:
 - pysimplesoap
 - uptime
 - psutil
+- getpass
 
 ##Installatie agents
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
@@ -180,7 +184,7 @@ Het script wat hiermee wordt aangeroepen en geladen, is het volgende:
 ```bash
 #!/bin/sh
 
-## first install all componentes and make sure everything is up-to-date
+## first install all components and make sure everything is up-to-date
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install build-essential
@@ -204,7 +208,7 @@ sudo chmod +x /etc/hu/agent.py
 
 ```
 
-### Logbeheer
+## Logbeheer
 Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
 Door te gaan naar de webserver en te zorgen dat /index.py gebruik wordt, komt er een pagina waar kan worden gekozen voor een server.
 Hier wordt het aantal servers dynamisch bekeken op basis van de server vermeld in de database.
@@ -212,7 +216,7 @@ Hier wordt het aantal servers dynamisch bekeken op basis van de server vermeld i
 Er zijn hier knoppen beschikbaar per server en ook een knop geef alles weer.
 Door gebruik te maken van de knoppen wordt een meer gedetailleerd overzicht weer gegeven per server.
 
-### Serverbeheer
+## Serverbeheer
 Natuurlijk is het belangrijk om de server gemakkelijk te kunnen beheren.
 Hiervoor is een webpagina opgebouwd, die kan worden gevonden op de webserver /servers.py
 
@@ -220,18 +224,27 @@ Hier is het mogelijk om een drietal taken uit te voeren.
 Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
 Deze kunnen hier worden aangepast via de knop 'edit'.
 Ook kan hier een server worden toegevoegd.
-De toegevoegde server wordt gelijk in de MySQL database geplaatst.
+De toegevoegde server wordt gelijk in de MySQL-database geplaatst.
 Ook komt deze server dan gelijk terug in het XML overzicht, wat op /XMLCreate.php kan worden gevonden.
+
+## agent_info.ps1
+Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
+-   Get-CountPS
+-   Get-IPAddress -first
+-   Get-Memory
+-   Get-FreeSpace
+-   Get-Uptime
 
 # In English:
 This is a project for the University of Applied Sciences "Hogeschool Utrecht". The requirement for this project is making a monitoringsystem, which needs to be created with the use of Python.
 This system has been split into two parts: 
--   Managementsystem;
--   Agents.
-
-There are three main components in this project:
--   agent.py;
--   management.py;
--   agent_info.ps1.
+-   Managementsystem (management.py);
+-   Agents (agent.py);
+-   Powershellcommands (agent_info.ps1);
+-   Database (database.sql);
+-   Database to CSV (exportToCSV.py);
+-   Webpages (index.py, servers.py, error.py) with CSS (style.css);
+-   Generating XML with PHP (XMLcreate.php);
+-   Generating .exe from a Python-script with .bat (convertToEXE.py, createPyEXE.bat);
 
 Please do not copy from this project if you are a student also working on the project for TCSB-V2SYS6-10 or TCSB-V2THO6-12
