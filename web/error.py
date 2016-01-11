@@ -50,6 +50,17 @@ for x in xrange(0,nrrow1):
     print '<input type="submit" value="' + str(row[0]) + '" name="knop" />'
 print '</form>\n'
 
+if knop == "Errors Wissen":
+    sql = "TRUNCATE `Monitor`.`error`;"
+    cur.execute(sql)
+    print '<head>'
+    print '<meta http-equiv="refresh" content="1">'
+    print '</head>'
+    print("</body>")
+    print("</html>")
+    conn.close()
+    exit()
+
 if not knop:
     sql = "SELECT * FROM Monitor.error ORDER BY eID;"
     cur.execute(sql)
@@ -78,6 +89,7 @@ else:
         print '<td>'+ str(row[4]) + '</td></tr>'
     print '</table>'
 conn.close()
+print '<div><form action="" method="post"><input type="submit" value="Errors Wissen" name="knop" class="truncate" /></form></div>'
 print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
 print("</body>")
 print("</html>")

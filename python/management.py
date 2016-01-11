@@ -184,14 +184,14 @@ def createGraph(sID):
                 plt.plot(data3, label='% Idle')
 
                 ax.set_xlabel('TimeStamp')
-                ax.set_ylabel('CPU gebruik')
-                ax.set_title('CPU gebruik op Server '+ str(sID))
+                ax.set_ylabel('CPU-gebruik (%)')
+                ax.set_title('CPU-gebruik op Server '+ str(sID))
 
 
             ind = np.arange(len(data1))
             ax.set_xticks(ind+width)
             ax.set_xlim(-width,len(ind)+width)
-            ax.set_ylim(0,max(data3)*1.1)
+            ax.set_ylim(0,100)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=90, fontsize=8)
             plt.grid(True)
