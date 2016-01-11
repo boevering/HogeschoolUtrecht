@@ -53,20 +53,6 @@ sudo a2enmod php5
 
 Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt ./update.sh
 
-#### crontab
-Via crontab wordt er elke minuut een update van de server af gehaald.
-Dit ziet er in crontab als volgt uit:
-
-```bash
-sudo crontab -e
-...
-    */1 * * * * sudo /var/www/test/HogeschoolUtrecht/python/management.py > /home/pi/runlog
-...
-cat runlog
-
-2016-01-09 12:38:02 - All done!
-```
-
 #### update.sh
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
@@ -74,8 +60,26 @@ Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Verv
 rm -R /var/www/test/HogeschoolUtrecht
 cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
-chmod 777 -R /var/www/test/HogeschoolUtrecht/
+chmod 777 -R /var/www/HogeschoolUtrecht/
 ```
+
+#### crontab
+Via crontab wordt er elke minuut een update van de server af gehaald.
+Dit ziet er in crontab als volgt uit:
+
+```bash
+sudo crontab -e
+...
+    */1 * * * * sudo /var/www/HogeschoolUtrecht/python/management.py > /home/hu/runlog
+...
+cat runlog
+
+Started at : 2016-01-11 16:55:48
+Ended at   : 2016-01-11 16:55:48
+
+All done!
+```
+
 #### Python
 Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
 Als extra is het benodigd om de volgende modules te installeren voor de management:
@@ -101,7 +105,7 @@ Zie onderstaand:
 ```bash
 sudo nano /etc/apache2/sites-enabled/000-default.conf
 ...
-<Directory /var/www/test/HogeschoolUtrecht/web>
+<Directory /var/www/HogeschoolUtrecht/web>
     Options +ExecCGI
     DirectoryIndex index.py
 </Directory>
@@ -204,8 +208,11 @@ pip install getpass
 sudo mkdir /etc/hu
 wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/python/agent.py -O /etc/hu/agent.py
 sudo chmod +x /etc/hu/agent.py
-
 ```
+
+Voor windows is de installatie eenvoudiger. Via het bat bestand kan er een exe worden gegenereerd.
+Deze exe kan vervolgens met de bestanden ook in die map worden geplaatst op een systeem en uitgevoerd.
+De e.v.t. benodige bestanden voor de agent worden automatisch gegenereerd, de laatste versie van de agent in exe zit bij het project in de zip.
 
 ## Logbeheer
 Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
