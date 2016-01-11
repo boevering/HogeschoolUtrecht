@@ -10,12 +10,12 @@ body {
 }
 table {
   background: #e1e1e1;
-  border-radius:5px;
   width: 90%;
   opacity: 0.90;
   text-align: left;
   padding: 0.25rem;
   color:black;
+  border-collapse:collapse;
 }
 
 th {
@@ -33,6 +33,18 @@ th:hover {
 }
 tr:hover, td:hover {
   background: #9dbbff;
+}
+
+tr:last-child td:first-child {
+    -moz-border-radius-bottomleft:7px;
+    -webkit-border-bottom-left-radius:7px;
+    border-bottom-left-radius:7px
+}
+
+tr:last-child td:last-child {
+    -moz-border-radius-bottomright:7px;
+    -webkit-border-bottom-right-radius:7px;
+    border-bottom-right-radius:7px
 }
 
 input {
