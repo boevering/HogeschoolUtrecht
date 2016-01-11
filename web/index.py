@@ -100,7 +100,7 @@ if (knop):
 
 
         print '<table border="1">'
-        print '<tr><td>Laatste update: '+ time +'</td></tr>'
+        print '<tr><td><b>Laatste update: '+ time +'</b></td></tr>'
         print '<tr><td>Uptime in uren:minuten: '+ str(upTime) +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
         print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
