@@ -129,7 +129,7 @@ if (knop == "Update"):
 
     r = check(ip, port, mac, os)
     if r.ipCheck == True and r.osCheck == True and r.macCheck == True and r.portCheck == True:
-        sql = 'UPDATE `Monitor.server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
+        sql = 'UPDATE `server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
             print "Record has been successfully updated!"
@@ -147,7 +147,7 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
 
     if (knop == "Edit"):
         knop = "Update"
-        sql = "SELECT * FROM Monitor.server WHERE sID = "+ sID+";"
+        sql = "SELECT * FROM server WHERE sID = "+ sID+";"
         row = cur.execute(sql)
         row = cur.fetchone()
     else:
@@ -161,7 +161,7 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
     <tr><td> IP-Poort: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" class="txt" /> </td></tr>
     <tr><td> MAC-adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''" class="txt" /> </td></tr>
     <tr><td> Besturingssysteem: </td><td>
-    <select name="OperatingSystem" class="txt">
+    <select name="OperatingSystem">
           <option value="win32">Windows 10</option>
           <option value="win32">Windows 8.1</option>
           <option value="win32">Windows 8</option>
