@@ -68,7 +68,7 @@ if (knop):
         print '<br />'
         current = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
 
-        'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Gebeugengebruik:'+ mem+', Percentage Schijfgebruik:'+ hdd+', Percentage CPU-belasting'+ cpu+', Laatste Gebruiker:'+user+''
+        # 'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Gebeugengebruik:'+ mem+', Percentage Schijfgebruik:'+ hdd+', Percentage CPU-belasting'+ cpu+', Laatste Gebruiker:'+user+''
 
         print '<br />'
         print '<a href="/images/proc_server'+str(knop)+'.png" target="_blank"><img src="/images/proc_server'+str(knop)+'.png" /></a>'
