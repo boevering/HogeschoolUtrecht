@@ -101,7 +101,7 @@ if (knop):
 
         print '<table border="1">'
         print '<tr><td colspan="2">Laatste update: <b>'+ time +'</b></td>'
-        print '<td colspan="2">Systeem IP: <b>'+current[9]+'</b></td>'
+        print '<td colspan="2">Systeem IP-adres: <b>'+current[9]+'</b></td>'
         print '<td>Platform: <b>'+current[3]+'</b></td>'
         print '<td>Default Encoding: <b>'+current[4]+'</b></td><tr>'
         print '<tr><td>Uptime in uren: <b>'+ str(upTime) +'</b></td>'
