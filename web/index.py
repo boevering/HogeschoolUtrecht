@@ -91,7 +91,7 @@ if (knop):
         cpu = str(float(processor[0])+float(processor[1]))
         user = current[11]
 
-        print '<tr><td>Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Geheugengebruik: '+ mem+'%, Percentage Schijfgebruik: '+ hdd+'%, Percentage CPU-belasting: '+ cpu+'%, Laatste Gebruiker:'+user+'</tr></td>'
+        print '<tr><td>Laatste update: '+ time +'</td><td>Aantal processen:'+ process+'</td><td>Percentage Geheugengebruik: '+ mem+'%</td><td>Percentage Schijfgebruik: '+ hdd+'%</td><td>Percentage CPU-belasting: '+ cpu+'%</td><td>Laatste Gebruiker:'+user+'</td></tr>'
 
         print '<br />'
         print '<a href="/images/proc_server'+str(knop)+'.png" target="_blank"><img src="/images/proc_server'+str(knop)+'.png" /></a>'
