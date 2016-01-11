@@ -66,16 +66,24 @@ if (knop):
 
     if knop.isdigit():
         print '<br />'
-        current = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
+        sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
+        cur.execute(sql)
+        current = cur.fetchone()
 
         time = current[2]
         process = current[6]
-        mem = 'kaas'
-        hdd = 'kaas'
-        cpu = 'kaas'
+
+        memory = current[7].split(';')
+        mem = int((memory[0]/memory[2])*100)
+
+        harddisk = current[8].split(';')
+        hdd = int((harddisk[0]/harddisk[2])*100)
+
+        processor = current[10].split(';')
+        cpu = int((processor[0]+processor[1]))
         user = current[11]
 
-        print 'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Geheugengebruik:'+ mem+', Percentage Schijfgebruik:'+ hdd+', Percentage CPU-belasting'+ cpu+', Laatste Gebruiker:'+user+''
+        print 'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Geheugengebruik: '+ mem+'%, Percentage Schijfgebruik: '+ hdd+'%, Percentage CPU-belasting: '+ cpu+'%, Laatste Gebruiker:'+user+''
 
         print '<br />'
         print '<a href="/images/proc_server'+str(knop)+'.png" target="_blank"><img src="/images/proc_server'+str(knop)+'.png" /></a>'
