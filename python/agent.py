@@ -96,6 +96,7 @@ def get_value(number):
 
     if number == 3:
         if BS == "win32":
+            #This is a work around to make sure everything is in the same syntax.
             upTimeList = getPowerShell('Get-Uptime').rstrip().split(',')
             return float(upTimeList[0]+'.'+upTimeList[1])
         else:
@@ -105,6 +106,7 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-CountPS')
         else:
+            #get the amount of pid's
             pidList = []
             for pid in os.listdir('/proc'):
                 if pid.isdigit():
@@ -115,6 +117,7 @@ def get_value(number):
         if BS == "win32":
             return getPowerShell('Get-Memory')
         else:
+            #create a list so we have used;available;total
             p = psutil.virtual_memory()
             waardes = str(p.used/(1024**2)) + ';' + str(p.available/(1024**2))  + ';' + str(p.total/(1024**2))
             return waardes
@@ -123,6 +126,7 @@ def get_value(number):
         if BS == "win32":
             return (getPowerShell('Get-FreeSpace'))
         else:
+            #create a list so we have used;available;total
             p = psutil.disk_usage('/')
             waardes = str(p.used/(1024**2)) + ';' + str(p.free/(1024**2))  + ';' + str(p.total/(1024**2))
             return waardes
@@ -134,6 +138,7 @@ def get_value(number):
             return socket.gethostbyname(socket.gethostname())
 
     if number == 8:
+        #create a list so we have used;available;total
         p = psutil.cpu_times_percent()
         waardes = str(p.user) + ';' + str(p.system)  + ';' + str(p.idle)
         return waardes
