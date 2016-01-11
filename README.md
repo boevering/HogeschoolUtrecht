@@ -13,34 +13,11 @@ Het systeem bestaat uit componenten:
 
 Deze componenten zijn hieronder verder uitgelegd.
 
-## management.py
+## Managementsysteem (management.py)
 Het managementscript heeft de belangrijkste rol in de communicatie. De manager vraagt gegevens op, die het systeem aan de agents moet opvragen.
 De gegevens, die hieruit voortkomen, worden in verschillende databases verwerkt.
 Hierdoor zijn deze gegevens later in een grafiek te zetten, om deze ook grafisch te kunnen inzien.
 Dit script wordt door een cronjob elke minuut uitgevoerd.
-
-## agent.py
-Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
-In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
-In het script worden de verschillende onderdelen nog verder toegelicht.
-
-## agent_info.ps1
-Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
--   Get-CountPS
--   Get-IPAddress -first
--   Get-Memory
--   Get-FreeSpace
--   Get-Uptime
-
-## Webserver
-Om alles overzichtelijk weer te geven is er een webserver ingericht.
-In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
-Hier staat op geinstalleerd:
-- Apache 2.4.10
-- MySQL  Ver 14.14 Distrib 5.5.44
-- Python 2.7.9
-
-sudo apt-get
 
 ## Installatie Management
 Om de server goed in te richten, zijn er verschillende pakketten, die geïnstalleerd moeten worden.
@@ -89,6 +66,14 @@ cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
 chmod 777 -R /var/www/test/HogeschoolUtrecht/
 ```
+
+## Webserver
+Om alles overzichtelijk weer te geven is er een webserver ingericht.
+In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
+Hier staat op geinstalleerd:
+- Apache 2.4.10
+- MySQL  Ver 14.14 Distrib 5.5.44
+- Python 2.7.9
 
 ### Apache2
 Om er voor te zorgen dat Apache de juiste directory weergeeft, is er een aanpassing gedaan aan de standaardpagina die wordt weer gegeven.
@@ -163,10 +148,29 @@ Als extra is het benodigd om de volgende modules te installeren voor de manageme
 - time
 - pymysql
 
-Als extra is het benodigd om de volgende modules te installeren voor de agent:
+from pysimplesoap.client import SoapClient, SoapFault
+from socket import *
+from lxml import etree
+from time import strftime
+import matplotlib
+import os
+import pymysql
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+## Agents (agent.py)
+Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
+In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
+In het script worden de verschillende onderdelen nog verder toegelicht.
+
+### Python
+Ook bij de agents is ervoor python 2.7.9 gekozen.
+De volgende modules moeten worden geïnstalleerd voor de agent:
 - pysimplesoap
 - uptime
 - psutil
+- getpass
 
 ##Installatie agents
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
@@ -180,7 +184,7 @@ Het script wat hiermee wordt aangeroepen en geladen, is het volgende:
 ```bash
 #!/bin/sh
 
-## first install all componentes and make sure everything is up-to-date
+## first install all components and make sure everything is up-to-date
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install build-essential
@@ -222,6 +226,14 @@ Deze kunnen hier worden aangepast via de knop 'edit'.
 Ook kan hier een server worden toegevoegd.
 De toegevoegde server wordt gelijk in de MySQL database geplaatst.
 Ook komt deze server dan gelijk terug in het XML overzicht, wat op /XMLCreate.php kan worden gevonden.
+
+## agent_info.ps1
+Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
+-   Get-CountPS
+-   Get-IPAddress -first
+-   Get-Memory
+-   Get-FreeSpace
+-   Get-Uptime
 
 # In English:
 This is a project for the University of Applied Sciences "Hogeschool Utrecht". The requirement for this project is making a monitoringsystem, which needs to be created with the use of Python.
