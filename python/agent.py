@@ -143,8 +143,7 @@ def get_value(number):
         return waardes
 
     if number == 9:
-        p = str(getpass.getuser())
-        return p
+        return os.getenv('USERNAME')
 
     # Last value
     return None
