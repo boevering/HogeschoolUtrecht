@@ -20,7 +20,7 @@ serverPath = '/data/servers/server'
 databasePath = '/data/database'
 imagePath = '/var/www/HogeschoolUtrecht/web/images/'
 st = strftime("%Y-%m-%d %H:%M:%S")
-limitAmount = str(200)
+limitAmount = str(100)
 
 if not os.path.exists(imagePath):
     os.makedirs(imagePath)
@@ -184,7 +184,7 @@ def createGraph(sID):
             ax.set_xlim(-width,len(ind)+width)
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
-            plt.setp(xtickNames, rotation=50, fontsize=8)
+            plt.setp(xtickNames, rotation=90, fontsize=8)
             plt.grid(True)
 
             ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=9)
