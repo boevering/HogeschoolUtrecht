@@ -7,7 +7,9 @@ Het systeem bestaat uit componenten:
 -   Powershell (agent_info.ps1);
 -   Database (database.sql);
 -   Database naar CSV (exportToCSV.py);
--
+-   Webpagina's (index.py, servers.py, error.py) met CSS (style.css);
+-   XML maken met PHP (XMLcreate.php);
+-   .exe maken van script (convertToEXE.py);
 
 Dit project bestaat daarnaast uit drie componenten:
 -   agent.py;
