@@ -19,7 +19,7 @@ De gegevens, die hieruit voortkomen, worden in verschillende databases verwerkt.
 Hierdoor zijn deze gegevens later in een grafiek te zetten, om deze ook grafisch te kunnen inzien.
 Dit script wordt door een cronjob elke minuut uitgevoerd.
 
-## Installatie Management
+### Installatie Management
 Om de server goed in te richten, zijn er verschillende pakketten, die geïnstalleerd moeten worden.
 Daarbij zijn de juiste rechten ook niet te vergeten. Met het volgende script wordt de managementserver geconfigureerd:
 
@@ -53,7 +53,7 @@ sudo a2enmod php5
 
 Om makkelijk de updates van Github af te kunnen halen is er een script gemaakt ./update.sh
 
-### crontab
+#### crontab
 Via crontab wordt er elke minuut een update van de server af gehaald.
 Dit ziet er in crontab als volgt uit:
 
@@ -67,7 +67,7 @@ cat runlog
 2016-01-09 12:38:02 - All done!
 ```
 
-### update.sh
+#### update.sh
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
 ```bash
@@ -76,8 +76,17 @@ cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
 chmod 777 -R /var/www/test/HogeschoolUtrecht/
 ```
+#### Python
+Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
+Als extra is het benodigd om de volgende modules te installeren voor de management:
+- pysimplesoap;
+- lxml;
+- time;
+- matplotlib;
+- numpy;
+- pymysql.
 
-## Webserver
+#### Webserver
 Om alles overzichtelijk weer te geven is er een webserver ingericht.
 In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
 Hier staat op geinstalleerd:
@@ -85,7 +94,7 @@ Hier staat op geinstalleerd:
 - MySQL Versie 14.14 Distributie 5.5.44;
 - Python 2.7.9.
 
-### Apache2
+##### Apache2
 Om er voor te zorgen dat Apache de juiste directory weergeeft, is er een aanpassing gedaan aan de standaardpagina die wordt weer gegeven.
 Zie onderstaand:
 
@@ -99,11 +108,11 @@ sudo nano /etc/apache2/sites-enabled/000-default.conf
 AddHandler cgi-script .py
 ```
 
-### MySQL
+#### MySQL
 In MySQL is een database aangemaakt met daarin drie tabellen welke worden gebruikt voor de servers, de logs en de errors die zijn ontstaan.
-De Server tabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt.
+De Servertabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt.
 
-#### Server
+##### Server
 Belangrijk om van een server te weten, is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
 De naam en OS zijn ter verduidelijking van de informatie.
 ```sql
@@ -117,7 +126,7 @@ Table: Server
     Name varchar(45)
 ```
 
-#### Logs
+##### Logs
 Elke log entry krijgt zijn eigen unieke ID, daarnaast wordt er altijd verwezen naar een bestaande server (sID).
 Vervolgens wordt alle informatie weer gegeven samen met een TimeStamp zodat altijd bekend is op welk tijdstip deze is geplaatst.
 ```sql
@@ -137,7 +146,7 @@ Table: Logs
     r9 varchar(45)
 ```
 
-#### error
+##### Error
 Om er voor te zorgen dat er ook errors worden gelogd in de database is er een tabel met error.
 Hier krijgt ook elke error een unieke ID (eID) en wordt er altijd verwezen naar een bestaande server (sID).
 ```sql
@@ -150,22 +159,12 @@ Table: error
     error varchar(500)
 ```
 
-### Python
-Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
-Als extra is het benodigd om de volgende modules te installeren voor de management:
-- pysimplesoap;
-- lxml;
-- time;
-- matplotlib;
-- numpy;
-- pymysql.
-
 ## Agents (agent.py)
 Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
 In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
 In het script worden de verschillende onderdelen nog verder toegelicht.
 
-### Python
+#### Python
 Ook bij de agents is ervoor python 2.7.9 gekozen.
 De volgende modules moeten worden geïnstalleerd voor de agent:
 - pysimplesoap;
@@ -173,7 +172,7 @@ De volgende modules moeten worden geïnstalleerd voor de agent:
 - psutil;
 - getpass.
 
-##Installatie agents
+###Installatie agents
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
 ```bash
 wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian.sh
