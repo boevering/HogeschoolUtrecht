@@ -1,0 +1,3 @@
+De INSTALL.txt is leeg. Lees README.md voor de informatie die u zoekt!
+
+The INSTALL.txt is empty. Please, read README.md for the information you're looking for!
