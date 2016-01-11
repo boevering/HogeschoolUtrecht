@@ -104,7 +104,7 @@ if (knop):
         print '<td colspan="2">Systeem IP: <b>'+current[9]+'</b></td>'
         print '<td>Platform: <b>'+current[3]+'</b></td>'
         print '<td>Default Encoding: <b>'+current[4]+'</b></td><tr>'
-        print '<tr><td>Uptime in uren:minuten: <b>'+ str(upTime) +'</b></td>'
+        print '<tr><td>Uptime in uren: <b>'+ str(upTime) +'</b></td>'
         print '<td>Aantal processen: <b>'+ process+'</b></td>'
         print '<td>Percentage Geheugengebruik: <b>'+ str(mem)+'%</b></td>'
         print '<td>Percentage Schijfgebruik: <b>'+ str(hdd)+'%</b></td>'
