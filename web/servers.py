@@ -109,7 +109,7 @@ if (knop == "Server toevoegen"):
 
         try:
             cur.execute(sql)
-            print "New record created successfully"
+            print "Nieuwe server succesvol toegevoegd!"
         except:
             print "Error: " + sql + "<br>Failed to add the server!"
     else:
@@ -132,7 +132,7 @@ if (knop == "Update"):
         sql = 'UPDATE `server` SET `IPAdres`="'+ ip +'", `IPPort`="'+ port +'", `MACAdres`="'+ mac +'", `OperatingSystem`="'+ os +'", `Name`="'+ name +'" WHERE `sID`="'+ sID +'";'
         try:
             cur.execute(sql)
-            print "Record has been successfully updated!"
+            print "De server is succesvol geupdate!"
         except:
             print "Error: " + sql + "<br>Failed to update the server!"
     else:
