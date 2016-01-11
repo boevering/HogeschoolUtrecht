@@ -13,7 +13,7 @@ import os, getpass
 pathToDirPS = 'C:\\HogeschoolUtrecht\\python\\'
 pathToFilePS = 'agent_info.ps1'
 
-#Function to check which platform the agent is using and if the path and file are present, to work smoothly.
+#Function to check which platform the agent is using and if the path and file are present, to work smoothly. It makes a file, if it doesn't exist.
 def checkFile(pathToCheck, fileToCheck):
     BS = sys.platform
     if BS == 'win32':
