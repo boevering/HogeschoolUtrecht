@@ -76,7 +76,7 @@ if (knop):
 
     if knop.isdigit():
         print '<br />'
-        sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
+        sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT 1) sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT 1;"
         cur.execute(sql)
         current = cur.fetchone()
 
