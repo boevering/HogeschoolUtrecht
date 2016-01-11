@@ -84,13 +84,13 @@ if (knop):
         process = current[6]
 
         memory = current[7].split(';')
-        mem = int((memory[0]/memory[2])*100)
+        mem = str(int(memory[0])/int(memory[2])*100)
 
         harddisk = current[8].split(';')
-        hdd = int((harddisk[0]/harddisk[2])*100)
+        hdd = str(int(harddisk[0])/int(harddisk[2])*100)
 
         processor = current[10].split(';')
-        cpu = int((processor[0]+processor[1]))
+        cpu = str(int(processor[0])+int(processor[1]))
         user = current[11]
 
         print 'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Geheugengebruik: '+ mem+'%, Percentage Schijfgebruik: '+ hdd+'%, Percentage CPU-belasting: '+ cpu+'%, Laatste Gebruiker:'+user+''
