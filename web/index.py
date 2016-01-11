@@ -88,7 +88,12 @@ for x in xrange(0,nrrow):
     print '<td>'+ str(row[10]) + '</td>'
     print '<td>'+ str(row[11]) + '</td></tr>'
 print '</table>'
-conn.close()
-print '<div><a href="#"><input type="submit" value="Terug Naar Boven" name="knop" class="to-top"/></a></div>'
+print '<div><input type="submit" value="Database Wissen" name="knop" />< /br><a href="#"><input type="submit" value="Terug Naar Boven" name="knop"/></a></div>'
+
+if knop == "Database Wissen":
+    sql = "TRUNCATE `Monitor`.`logs`;"
+    cur.execute(sql)
+
 print("</body>")
 print("</html>")
+conn.close()

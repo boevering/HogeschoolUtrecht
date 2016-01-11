@@ -98,8 +98,8 @@ img {
     0 0 5px 1px #51CBEE;
 }
 
-.to-top {
+div {
   position : fixed;
-  bottom : 20px;
+  top : 20px;
   right : 5px;
 }
