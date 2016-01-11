@@ -169,6 +169,7 @@ def createGraph(sID):
                 plt.plot(data2, label='Beschikbaar (GB)')
                 plt.plot(data3, label='Totaal (GB)')
 
+                ax.set_ylim(0,max(data3)*1.1)
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('Geheugengebruik (GB)')
                 ax.set_title('Geheugengebruik op Server '+ str(sID))
@@ -183,19 +184,17 @@ def createGraph(sID):
                 plt.plot(data2, label='% System')
                 plt.plot(data3, label='% Idle')
 
+                ax.set_ylim(0,100)
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('CPU-gebruik (%)')
                 ax.set_title('CPU-gebruik op Server '+ str(sID))
 
-
             ind = np.arange(len(data1))
             ax.set_xticks(ind+width)
             ax.set_xlim(-width,len(ind)+width)
-            ax.set_ylim(0,100)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=90, fontsize=8)
             plt.grid(True)
-
             ax.legend(loc='lower center', bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=5, fontsize=9)
 
             if i == 5:
