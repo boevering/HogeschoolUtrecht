@@ -65,19 +65,11 @@ wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/update
 sudo chmod +x update.sh
 ./update.sh
 ```
-
 Dit bestand zorgt er voor dat eerst de huidige directory wordt leeggehaald. Vervolgens wordt de 'master' van Github opgeslagen in de jusite directory en worden de rechten goed gezet.
 
-```bash
-rm -R /var/www/HogeschoolUtrecht
-cd /var/www/
-git clone https://github.com/boevering/HogeschoolUtrecht.git
-chmod 777 -R /var/www/HogeschoolUtrecht/
-```
-
-#### crontab
-Via crontab wordt er elke minuut een update van de server af gehaald.
-Dit ziet er in crontab als volgt uit:
+#### Crontab
+Via crontab wordt er elke minuut een update van de server af gehaald, ook wordt elke minuut een file "runlog" gemaakt.
+Hier wordt alle output in aangegeven dit ziet er in crontab en runlog als volgt uit:
 
 ```bash
 sudo crontab -e
@@ -91,6 +83,7 @@ Ended at   : 2016-01-11 16:55:48
 
 All done!
 ```
+
 #### Webserver
 Om alles overzichtelijk weer te geven is er een webserver ingericht.
 In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
@@ -111,6 +104,7 @@ sudo nano /etc/apache2/sites-enabled/000-default.conf
     DirectoryIndex index.py
 </Directory>
 AddHandler cgi-script .py
+DocumentRoot  /var/www/HogeschoolUtrecht
 ```
 
 #### MySQL
@@ -175,7 +169,7 @@ Table: error
 
 #### Python
 Er is voor python 2.7.10 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
-Als extra is het benodigd om de volgende modules te installeren voor de management:
+Om goed te kunnen functioneren zijn de volgende modules reeds geinstalleerd via install_debian_management.sh:
 - pysimplesoap;
 - lxml;
 - time;
