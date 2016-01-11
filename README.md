@@ -191,7 +191,7 @@ De volgende modules moeten worden geïnstalleerd voor de agent:
 - psutil;
 - getpass.
 
-###Installatie agents
+### Debian agent installatie
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
 ```bash
 wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian.sh
@@ -225,7 +225,21 @@ wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/python
 sudo chmod +x /etc/hu/agent.py
 ```
 
+### Windows agent installatie
+
 Voor windows is de installatie eenvoudiger. Via het bat bestand kan er een exe worden gegenereerd.
+```bat
+C:\Python\Python27\python.exe C:\HogeschoolUtrecht\agent\convertToEXE.py py2exe
+```
+
+convertToEXE.py
+```python
+from distutils.core import setup
+import py2exe
+
+setup(console=['C:\\HogeschoolUtrecht\\python\\agent.py'])
+```
+
 Deze exe kan vervolgens met de bestanden ook in die map worden geplaatst op een systeem en uitgevoerd.
 De e.v.t. benodige bestanden voor de agent worden automatisch gegenereerd, de laatste versie van de agent in exe zit bij het project in de zip.
 
