@@ -71,13 +71,11 @@ if (knop):
         sql = "SELECT * FROM Monitor.logs ORDER BY lID;"
     else:
         sql = "SELECT * FROM Monitor.logs WHERE sID ="+str(knop)+" ORDER BY lID;;"
-    cur.execute(sql)
-    nrrow= cur.rowcount
 
     if knop.isdigit():
         print '<br />'
-        sql = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT 1) sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT 1;"
-        cur.execute(sql)
+        sql4actual = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT 1) sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT 1;"
+        cur.execute(sql4actual)
         current = cur.fetchone()
 
         time = current[2]
@@ -100,6 +98,8 @@ if (knop):
         print '<a href="/images/ram_server'+str(knop)+'.png" target="_blank"><img src="/images/ram_server'+str(knop)+'.png" /></a>'
         print '<a href="/images/cpu_server'+str(knop)+'.png" target="_blank"><img src="/images/cpu_server'+str(knop)+'.png" /></a>'
         print '<br />'
+        cur.execute(sql)
+        nrrow= cur.rowcount
 print '<br />'
 print '<table border="1">'
 print '<th>lID</th><th>sID</th><th>TimeStamp</th><th>Platform</th><th>DefaultEncoding</th><th>Uptime</th><th>RunningProcesses</th><th>Memory</th><th>DiskUsage</th><th>FirstIPAddress</th><th>CPU</th><th>User</th>'
