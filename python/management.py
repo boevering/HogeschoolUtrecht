@@ -14,7 +14,7 @@ import numpy as np
 
 
 ### Set of very important variables, don't change if you're not sure what you're doing!
-LevelOfDebug = 0                                    # Use 0 or 1 to set debugging
+LevelOfDebug = 1                                    # Use 0 or 1 to set debugging
 xmlFile = 'http://10.0.0.30/XMLCreate.php'
 serverPath = '/data/servers/server'
 databasePath = '/data/database'
@@ -169,6 +169,7 @@ def createGraph(sID):
             plt.plot(data2, label='Beschikbaar')
             plt.plot(data3, label='Totaal')
 
+            ind = np.arange(len(data1))
             if i == 5:
                 ax.set_xlabel('TimeStamp')
                 ax.set_ylabel('Geheugengebruik')
@@ -178,6 +179,7 @@ def createGraph(sID):
                 ax.set_ylabel('Harde schijf')
                 ax.set_title('Harde schijf op Server '+ str(sID))
 
+            ax.set_xlim(-width,len(ind)+width)
             ax.set_ylim(0,max(data3)*1.1)
             xtickNames = ax.set_xticklabels(xTickMarks)
             plt.setp(xtickNames, rotation=50, fontsize=8)
