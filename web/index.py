@@ -83,7 +83,10 @@ if (knop):
 
         memory = current[7].split(';')
         print memory
-        mem = str(((int(memory[0]))/(int(memory[2])))*100)
+        mem = int(memory[0])
+        mem /= int(memory[2])
+        mem *= 100
+        # mem = str(((int(memory[0])/(int(memory[2])))*100)
 
         harddisk = current[8].split(';')
         hdd = str(int(harddisk[0])/int(harddisk[2])*100)
@@ -96,7 +99,7 @@ if (knop):
         print '<table border="1">'
         print '<tr><td>Laatste update: '+ time +'</td>'
         print '<td>Aantal processen:'+ process+'</td>'
-        print '<td>Percentage Geheugengebruik: '+ mem+'%</td>'
+        print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
         print '<td>Percentage Schijfgebruik: '+ hdd+'%</td>'
         print '<td>Percentage CPU-belasting: '+ cpu+'%</td>'
         print '<td>Laatste Gebruiker:'+user+'</td></tr>'
