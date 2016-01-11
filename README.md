@@ -76,6 +76,15 @@ cd /var/www/test/
 git clone https://github.com/boevering/HogeschoolUtrecht.git
 chmod 777 -R /var/www/test/HogeschoolUtrecht/
 ```
+#### Python
+Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
+Als extra is het benodigd om de volgende modules te installeren voor de management:
+- pysimplesoap;
+- lxml;
+- time;
+- matplotlib;
+- numpy;
+- pymysql.
 
 #### Webserver
 Om alles overzichtelijk weer te geven is er een webserver ingericht.
@@ -149,16 +158,6 @@ Table: error
     level varchar(45)
     error varchar(500)
 ```
-
-#### Python
-Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
-Als extra is het benodigd om de volgende modules te installeren voor de management:
-- pysimplesoap;
-- lxml;
-- time;
-- matplotlib;
-- numpy;
-- pymysql.
 
 ## Agents (agent.py)
 Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
