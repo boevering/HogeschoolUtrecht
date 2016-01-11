@@ -107,7 +107,7 @@ def createGraph(sID):
     cur = conn.cursor()
 
     try:
-        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";")
+        cur.execute("SELECT lID,sID,TimeStamp,r4 FROM (SELECT * FROM Monitor.logs WHERE sID = '"+str(sID)+"' ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";")
         rows = cur.fetchall()
     except:
         print "ERROR"
@@ -143,7 +143,7 @@ def createGraph(sID):
 
     for i in range(5,9,3):
         try:
-            sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
+            sql = "SELECT lID,sID,TimeStamp,r"+str(i)+" FROM (SELECT * FROM Monitor.logs WHERE sID = '"+str(sID)+"' ORDER BY TimeStamp DESC LIMIT "+limitAmount+") sub WHERE sID = '"+str(sID)+"' ORDER BY lID ASC LIMIT "+limitAmount+";"
             cur.execute(sql)
             rows = cur.fetchall()
         except:
