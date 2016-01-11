@@ -98,8 +98,14 @@ img {
     0 0 5px 1px #51CBEE;
 }
 
-div {
+.to-top {
   position : fixed;
   top : 20px;
+  right : 5px;
+}
+
+.truncate{
+  position : fixed;
+  bottom : 20px;
   right : 5px;
 }
