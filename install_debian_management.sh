@@ -20,3 +20,8 @@ pip install time
 pip install numpy
 sudo a2enmod cgi
 sudo a2enmod php5
+
+## get the agent.py from github, give the correct rights and run it.
+sudo mkdir /etc/hu
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/python/management.py -O /etc/hu/management.py
+sudo chmod +x /etc/hu/management.py
