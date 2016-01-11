@@ -35,8 +35,11 @@ sudo apt-get -y install python-lxml
 sudo apt-get -y install python-matplotlib
 
 pip install --upgrade setuptools
+pip install pysimplesoap
 pip install pymysql
-pip install matplotlib
+pip install numpy
+pip install time
+pip install numpy
 sudo a2enmod cgi
 sudo a2enmod php5
 ```
@@ -71,9 +74,9 @@ chmod 777 -R /var/www/test/HogeschoolUtrecht/
 Om alles overzichtelijk weer te geven is er een webserver ingericht.
 In ons voorbeeld draait deze op het IP-adres: 10.0.0.14.
 Hier staat op geinstalleerd:
-- Apache 2.4.10
-- MySQL  Ver 14.14 Distrib 5.5.44
-- Python 2.7.9
+- Apache 2.4.10;
+- MySQL Versie 14.14 Distributie 5.5.44;
+- Python 2.7.9.
 
 ### Apache2
 Om er voor te zorgen dat Apache de juiste directory weergeeft, is er een aanpassing gedaan aan de standaardpagina die wordt weer gegeven.
@@ -143,21 +146,12 @@ Table: error
 ### Python
 Er is voor python 2.7.9 gekozen, omdat pip hier standaard nog in zit en deze prettig is om te gebruiken.
 Als extra is het benodigd om de volgende modules te installeren voor de management:
-- pysimplesoap
-- lxml
-- time
-- pymysql
-
-from pysimplesoap.client import SoapClient, SoapFault
-from socket import *
-from lxml import etree
-from time import strftime
-import matplotlib
-import os
-import pymysql
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import numpy as np
+- pysimplesoap;
+- lxml;
+- time;
+- matplotlib;
+- numpy;
+- pymysql.
 
 ## Agents (agent.py)
 Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
@@ -167,10 +161,10 @@ In het script worden de verschillende onderdelen nog verder toegelicht.
 ### Python
 Ook bij de agents is ervoor python 2.7.9 gekozen.
 De volgende modules moeten worden geïnstalleerd voor de agent:
-- pysimplesoap
-- uptime
-- psutil
-- getpass
+- pysimplesoap;
+- uptime;
+- psutil;
+- getpass.
 
 ##Installatie agents
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
@@ -192,14 +186,13 @@ sudo apt-get -y install python-dev
 sudo apt-get -y install python-pip
 sudo apt-get -y install daemon
 
-
 ## now install pip and all the agent.py needs
 pip install --upgrade pip
 pip install setuptools
 pip install pysimplesoap
 pip install psutil
 pip install uptime
-
+pip install getpass
 
 ## get the agent.py from github, give the correct rights and run it.
 sudo mkdir /etc/hu
