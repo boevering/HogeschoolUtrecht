@@ -22,10 +22,12 @@ table {
 th {
   background-color: #6999ff;
   font-size: 100%;
+  border:none;
 }
 
 td {
    font-size: 90%;
+   border:none;
 }
 
 th:hover {
