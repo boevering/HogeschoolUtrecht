@@ -83,7 +83,7 @@ if (knop):
 
         memory = current[7].split(';')
         print memory
-        men = int(memory[0])/int(memory[2])
+        men = memory[0]/memory[2]
         # mem = str(((int(memory[0])/(int(memory[2])))*100)
 
         harddisk = current[8].split(';')
