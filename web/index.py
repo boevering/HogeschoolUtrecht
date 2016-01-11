@@ -65,7 +65,12 @@ if (knop):
     nrrow= cur.rowcount
 
     if knop.isdigit():
-        print '<br /><br />'
+        print '<br />'
+        current = "SELECT * FROM (SELECT * FROM Monitor.logs ORDER BY TimeStamp DESC LIMIT '1') sub WHERE sID = '"+str(knop)+"' ORDER BY lID ASC LIMIT '1';"
+
+        'Laatste update: '+ time +', Aantal processen:'+ process+', Percentage Gebeugengebruik:'+ mem+', Percentage Schijfgebruik:'+ hdd+', Percentage CPU-belasting'+ cpu+', Laatste Gebruiker:'+user+''
+
+        print '<br />'
         print '<a href="/images/proc_server'+str(knop)+'.png" target="_blank"><img src="/images/proc_server'+str(knop)+'.png" /></a>'
         print '<a href="/images/ram_server'+str(knop)+'.png" target="_blank"><img src="/images/ram_server'+str(knop)+'.png" /></a>'
         print '<a href="/images/disk_server'+str(knop)+'.png" target="_blank"><img src="/images/disk_server'+str(knop)+'.png" /></a>'

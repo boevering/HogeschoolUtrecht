@@ -7,6 +7,7 @@ Het systeem bestaat uit componenten:
 -   Powershell (agent_info.ps1);
 -   Database (database.sql);
 -   Database naar CSV (exportToCSV.py);
+-
 
 Dit project bestaat daarnaast uit drie componenten:
 -   agent.py;
