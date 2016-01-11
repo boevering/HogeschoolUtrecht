@@ -134,7 +134,7 @@ if (knop == "Update"):
             cur.execute(sql)
             print "Record has been successfully updated!"
         except:
-            print "Error: " + sql + "<br>" . cur.error
+            print "Error: " + sql + "<br>" + cur.error
     else:
         print 'Er is iets verkeerd gegaan!'
     knop = None
@@ -161,7 +161,7 @@ if ((knop == "Edit") or (knop == "Toevoegen")):
     <tr><td> IP-Poort: </td><td> <input type="text" name="IPPort" value="'''+str(row[2])+'''" class="txt" /> </td></tr>
     <tr><td> MAC-adres: </td><td> <input type="text" name="MACAdres" value="'''+str(row[3])+'''" class="txt" /> </td></tr>
     <tr><td> Besturingssysteem: </td><td>
-    <select name="OperatingSystem">
+    <select name="OperatingSystem" class="txt">
           <option value="win32">Windows 10</option>
           <option value="win32">Windows 8.1</option>
           <option value="win32">Windows 8</option>
