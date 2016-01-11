@@ -30,16 +30,16 @@ def valueToGet(client, sID):
     r = []
 
     # call a few remote methods
-    for i in range(1, 9):
+    for i in range(1, 10):
         r.append(valueSoap(client, sID, i).rstrip())
 
     # print statement for debugging only!
     if LevelOfDebug == 1:
-        for i in range(0, 8):
+        for i in range(0, 9):
             print r[i]
 
     # Now put it all together and put it in the database
-    putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7])
+    putValueInDB(sID, r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7], r[8])
 
 def valueSoap(client, sID,  nummer):
     global LevelOfDebug
@@ -85,8 +85,8 @@ def putValueInDB(*args):
         conn.autocommit(True)
         cur = conn.cursor()
         cur.execute('INSERT INTO Monitor.logs'
-                    '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`)'
-                    "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"');")
+                    '(`sID`, `TimeStamp`, `r1`, `r2`, `r3`, `r4`, `r5`, `r6`, `r7`, `r8`, `r9`)'
+                    "VALUES ("+ str(args[0]) +",'"+ st +"','"+ str(args[1]) +"','"+ str(args[2]) +"','"+ str(args[3]) +"','"+ str(args[4]) +"','"+str(args[5]) +"','"+ str(args[6]) +"','"+ str(args[7]) +"','"+ str(args[8]) +"','"+ str(args[9]) +"');")
         cur.close()
     except:
         print 'Er kan geen contact worden gemaakt met de database! \nHet script is afgebroken! \n\nbel +31 (0)6 49493809'

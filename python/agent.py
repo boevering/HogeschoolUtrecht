@@ -7,6 +7,7 @@ from uptime import uptime
 import sys, subprocess
 import psutil
 import socket
+import getpass
 import os.path
 
 
@@ -136,6 +137,10 @@ def get_value(number):
         p = psutil.cpu_times()
         waardes = str(p.user) + ';' + str(p.system)  + ';' + str(p.idle)
         return waardes
+
+    if number == 9:
+        p = getpass.getuser()
+        return p
 
     # Last value
     return None
