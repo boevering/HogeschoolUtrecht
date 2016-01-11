@@ -1,3 +1,6 @@
+#! /usr/bin/python
+__author__ = 'Bart Oevering & Mike Slotboom'
+
 import pymysql
 import csv
 from lxml import etree
