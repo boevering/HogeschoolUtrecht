@@ -194,7 +194,7 @@ def createGraph(sID):
 
             if i == 5:
                 plt.savefig(imagePath + 'ram_server'+str(sID)+'.png', transparent=True)
-            if i == 6:
+            if i == 8:
                 plt.savefig(imagePath + 'cpu_server'+str(sID)+'.png', transparent=True)
             #plt.show()
 
