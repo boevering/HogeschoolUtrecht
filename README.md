@@ -4,30 +4,25 @@ Welkom bij het Python-project van de Hogeschool Utrecht. In dit project moet een
 Het systeem bestaat uit componenten:
 -   Managementsysteem (management.py);
 -   Agents (agent.py);
--   Powershell (agent_info.ps1);
+-   Powershellcommando's (agent_info.ps1);
 -   Database (database.sql);
 -   Database naar CSV (exportToCSV.py);
 -   Webpagina's (index.py, servers.py, error.py) met CSS (style.css);
 -   XML maken met PHP (XMLcreate.php);
--   .exe maken van script (convertToEXE.py);
-
-Dit project bestaat daarnaast uit drie componenten:
--   agent.py;
--   management.py;
--   agent_info.ps1.
+-   .exe maken van script met .bat (convertToEXE.py, createPyEXE.bat);
 
 Deze componenten zijn hieronder verder uitgelegd.
-
-## agent.py
-Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
-In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
-In het script worden de verschillende onderdelen nog verder toegelicht.
 
 ## management.py
 Het managementscript heeft de belangrijkste rol in de communicatie. De manager vraagt gegevens op, die het systeem aan de agents moet opvragen.
 De gegevens, die hieruit voortkomen, worden in verschillende databases verwerkt.
 Hierdoor zijn deze gegevens later in een grafiek te zetten, om deze ook grafisch te kunnen inzien.
 Dit script wordt door een cronjob elke minuut uitgevoerd.
+
+## agent.py
+Dit pythonscript is een belangrijk gedeelte voor het functioneren van het systeem. Hiermee worden namelijk de verschillende agents in staat gesteld om uitgevraagd te kunnen worden.
+In dit script wordt een SOAP-verbinding gemaakt tussen het managementsysteem en de agent, die hierdoor gegevens uit kunnen wisselen.
+In het script worden de verschillende onderdelen nog verder toegelicht.
 
 ## agent_info.ps1
 Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents. In dit script worden vijf commando's gedefinieerd:
@@ -114,7 +109,7 @@ In MySQL is een database aangemaakt met daarin drie tabellen welke worden gebrui
 De Server tabel is erg belangrijk gezien hier de XML op wordt gegeneeerd en alles mee samenhangt.
 
 #### Server
-Belangrijk om van een server te weten is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
+Belangrijk om van een server te weten, is welk IP-adres het systeem heeft en welke poort er moet worden gebruikt.
 De naam en OS zijn ter verduidelijking van de informatie.
 ```sql
 Table: Server
@@ -129,7 +124,7 @@ Table: Server
 
 #### Logs
 Elke log entry krijgt zijn eigen unieke ID, daarnaast wordt er altijd verwezen naar een bestaande server (sID).
-Vervolgens wordt alle informatie tweer gegeven samen met een TimeStamp zodat altijd bekend is op welk tijdstip deze is geplaatst.
+Vervolgens wordt alle informatie weer gegeven samen met een TimeStamp zodat altijd bekend is op welk tijdstip deze is geplaatst.
 ```sql
 Table: Logs
     Columns:
