@@ -1,7 +1,7 @@
 # Hogeschool Utrecht
 
 Welkom bij het Python-project van de Hogeschool Utrecht. In dit project moet een monitoringssysteem gemaakt worden, met behulp van Python.
-Het systeem bestaat uit componenten:
+Het systeem bestaat uit verschillende componenten:
 -   Managementsysteem (management.py);
 -   Agents (agent.py);
 -   Powershellcommando's (agent_info.ps1);
@@ -208,7 +208,7 @@ sudo chmod +x /etc/hu/agent.py
 
 ```
 
-### Logbeheer
+## Logbeheer
 Voor het bekijken van de servers is in Apache een webpagina ingericht op basis van Python.
 Door te gaan naar de webserver en te zorgen dat /index.py gebruik wordt, komt er een pagina waar kan worden gekozen voor een server.
 Hier wordt het aantal servers dynamisch bekeken op basis van de server vermeld in de database.
@@ -216,7 +216,7 @@ Hier wordt het aantal servers dynamisch bekeken op basis van de server vermeld i
 Er zijn hier knoppen beschikbaar per server en ook een knop geef alles weer.
 Door gebruik te maken van de knoppen wordt een meer gedetailleerd overzicht weer gegeven per server.
 
-### Serverbeheer
+## Serverbeheer
 Natuurlijk is het belangrijk om de server gemakkelijk te kunnen beheren.
 Hiervoor is een webpagina opgebouwd, die kan worden gevonden op de webserver /servers.py
 
@@ -224,7 +224,7 @@ Hier is het mogelijk om een drietal taken uit te voeren.
 Alleerst is er een overzicht van de servers die nu worden meegenomen door de management.py
 Deze kunnen hier worden aangepast via de knop 'edit'.
 Ook kan hier een server worden toegevoegd.
-De toegevoegde server wordt gelijk in de MySQL database geplaatst.
+De toegevoegde server wordt gelijk in de MySQL-database geplaatst.
 Ook komt deze server dan gelijk terug in het XML overzicht, wat op /XMLCreate.php kan worden gevonden.
 
 ## agent_info.ps1
@@ -238,12 +238,13 @@ Dit script is gemaakt in Powershell en is daardoor gericht op de Windows-agents.
 # In English:
 This is a project for the University of Applied Sciences "Hogeschool Utrecht". The requirement for this project is making a monitoringsystem, which needs to be created with the use of Python.
 This system has been split into two parts: 
--   Managementsystem;
--   Agents.
-
-There are three main components in this project:
--   agent.py;
--   management.py;
--   agent_info.ps1.
+-   Managementsystem (management.py);
+-   Agents (agent.py);
+-   Powershellcommands (agent_info.ps1);
+-   Database (database.sql);
+-   Database to CSV (exportToCSV.py);
+-   Webpages (index.py, servers.py, error.py) with CSS (style.css);
+-   Generating XML with PHP (XMLcreate.php);
+-   Generating .exe from a Python-script with .bat (convertToEXE.py, createPyEXE.bat);
 
 Please do not copy from this project if you are a student also working on the project for TCSB-V2SYS6-10 or TCSB-V2THO6-12
