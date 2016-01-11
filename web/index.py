@@ -45,6 +45,7 @@ nrrow1= cur.rowcount
 print '<a href="index.py"><input type="submit" value="Monitor" name="knop" /></a>'
 print '<a href="servers.py"><input type="submit" value="Server Management" name="knop" /></a>'
 print '<a href="error.py"><input type="submit" value="Error Logs" name="knop" /></a>'
+print '<a href="exportToCSV.py"><input type="submit" value="Export naar CSV" name="knop" /></a>'
 print '</ br><form action="" method="post"><input type="submit" value="All Servers" name="knop" />'
 for x in xrange(0,nrrow1):
     row = cur.fetchone()
@@ -101,16 +102,16 @@ if (knop):
 
 
         print '<table border="1">'
-        print '<tr><td colspan="2"><b>Laatste update: '+ time +'</b></td>'
-        print '<td colspan="2">Systeem IP: '+current[9]+' </td>'
-        print '<td>Platform: '+current[3]+' </td>'
-        print '<td>Default Encoding: '+current[4]+' </td><tr>'
-        print '<tr><td>Uptime in uren:minuten: '+ str(upTime) +'</td>'
-        print '<td>Aantal processen:'+ process+'</td>'
-        print '<td>Percentage Geheugengebruik: '+ str(mem)+'%</td>'
-        print '<td>Percentage Schijfgebruik: '+ str(hdd)+'%</td>'
-        print '<td>Percentage CPU-belasting: '+ cpu+'%</td>'
-        print '<td>Laatste Gebruiker:'+user+'</td></tr>'
+        print '<tr><td colspan="2">Laatste update: <b>'+ time +'</b></td>'
+        print '<td colspan="2">Systeem IP-adres: <b>'+current[9]+'</b></td>'
+        print '<td>Platform: <b>'+current[3]+'</b></td>'
+        print '<td>Default Encoding: <b>'+current[4]+'</b></td><tr>'
+        print '<tr><td>Uptime in uren: <b>'+ str(upTime) +'</b></td>'
+        print '<td>Aantal processen: <b>'+ process+'</b></td>'
+        print '<td>Percentage Geheugengebruik: <b>'+ str(mem)+'%</b></td>'
+        print '<td>Percentage Schijfgebruik: <b>'+ str(hdd)+'%</b></td>'
+        print '<td>Percentage CPU-belasting: <b>'+ cpu+'%</b></td>'
+        print '<td>Laatste Gebruiker: <b>'+user+'</b></td></tr>'
         print '</table>'
 
         print '<br />'
