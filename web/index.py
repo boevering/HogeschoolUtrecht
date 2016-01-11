@@ -94,6 +94,8 @@ if (knop):
         upTimeString = str(round(((float(current[5])/60)/60),2))
         upTimeList = upTimeString.split('.')
         upTimeMin = (float('0.'+upTimeList[1])*60)
+        if upTimeMin <=9:
+            upTimeMin = str('0'+upTimeMin)
         upTime = upTimeList[0] +":"+ str(upTimeMin)
 
 
