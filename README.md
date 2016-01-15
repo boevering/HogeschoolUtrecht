@@ -194,7 +194,7 @@ De volgende modules moeten worden geïnstalleerd voor de agent:
 ### Debian agent installatie
 Als een Agent is opgestart, moeten een paar regels worden toegepast, om de agent klaar te maken voor gebruik.
 ```bash
-wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian.sh
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/agent/install_debian.sh
 sudo chmod +x install_debian.sh
 ./install_debian.sh
 ```
