@@ -61,7 +61,7 @@ Daarna worden de rechten goed gezet zodat de scripten mogen draaien.
 
 Verkrijg het bestand via:
 ```bash
-wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/update.sh
+wget https://raw.githubusercontent.com/boevering/HogeschoolUtrecht/master/install_debian_management.sh
 sudo chmod +x update.sh
 ./update.sh
 ```

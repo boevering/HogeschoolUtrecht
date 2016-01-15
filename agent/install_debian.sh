@@ -14,7 +14,6 @@ pip install setuptools
 pip install pysimplesoap
 pip install psutil
 pip install uptime
-pip install getpass
 
 ## get the agent.py from github, give the correct rights and run it.
 sudo mkdir /etc/hu
